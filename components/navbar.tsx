@@ -66,6 +66,12 @@ export function Navbar() {
             <Link href="/contact" className="text-slate-500 hover:text-slate-700 transition-colors">
               Contact
             </Link>
+            <Link 
+              href="/register" 
+              className="px-4 py-2 bg-slate-700 text-white rounded-full text-xs font-medium hover:bg-slate-800 transition-colors"
+            >
+              Sign Up
+            </Link>
             <Search className="w-4 h-4 text-slate-400 cursor-pointer hover:text-slate-600" />
           </div>
 
@@ -102,6 +108,13 @@ export function Navbar() {
             </Link>
             <Link href="/contact" className="block py-3 text-slate-500" onClick={() => setMobileMenuOpen(false)}>
               Contact
+            </Link>
+            <Link 
+              href="/register" 
+              className="block py-3 px-4 bg-slate-700 text-white rounded-lg text-center font-medium mt-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Sign Up
             </Link>
           </div>
         </div>

@@ -4,8 +4,8 @@
   "description": "Your trusted gateway to China - Visa-free travel & world-class healthcare",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#667eea",
+  "background_color": "#f8fafc",
+  "theme_color": "#334155",
   "orientation": "portrait",
   "scope": "/",
   "icons": [
