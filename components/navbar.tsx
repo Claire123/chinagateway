@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { href: '/travel', label: 'Travel' },
@@ -26,32 +26,35 @@ export function Navbar() {
 
   return (
     <>
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-slate-800">
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#007AFF] focus:text-white focus:rounded-lg"
+      >
         Skip to content
       </a>
 
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           scrolled 
-            ? 'bg-white/80 backdrop-blur-xl border-b border-slate-200/50' 
+            ? 'bg-white/80 backdrop-blur-xl border-b border-black/5' 
             : 'bg-white/60'
         }`}
       >
-        <nav className="container-wide flex h-12 items-center justify-between text-xs text-slate-500">
+        <nav className="container-apple flex h-14 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-base font-semibold text-slate-700 tracking-tight">
+          <Link href="/" className="flex items-center">
+            <span className="text-[15px] font-semibold text-[#1D1D1F] tracking-tight">
               ChinaGateway
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link 
                 key={item.href}
                 href={item.href} 
-                className="text-slate-500 hover:text-slate-700 transition-colors"
+                className="px-3 py-2 text-[13px] text-black/60 hover:text-[#1D1D1F] rounded-lg hover:bg-black/5 transition-colors"
               >
                 {item.label}
               </Link>
@@ -59,25 +62,30 @@ export function Navbar() {
           </div>
 
           {/* Right Side */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="/about" className="text-slate-500 hover:text-slate-700 transition-colors">
+          <div className="hidden md:flex items-center gap-3">
+            <Link 
+              href="/about" 
+              className="px-3 py-2 text-[13px] text-black/60 hover:text-[#1D1D1F] rounded-lg hover:bg-black/5 transition-colors"
+            >
               About
             </Link>
-            <Link href="/contact" className="text-slate-500 hover:text-slate-700 transition-colors">
+            <Link 
+              href="/contact" 
+              className="px-3 py-2 text-[13px] text-black/60 hover:text-[#1D1D1F] rounded-lg hover:bg-black/5 transition-colors"
+            >
               Contact
             </Link>
             <Link 
               href="/register" 
-              className="px-4 py-2 bg-slate-700 text-white rounded-full text-xs font-medium hover:bg-slate-800 transition-colors"
+              className="ml-2 px-4 py-2 text-[13px] font-medium text-white bg-[#007AFF] hover:bg-[#0051D5] rounded-full transition-colors active:scale-95"
             >
               Sign Up
             </Link>
-            <Search className="w-4 h-4 text-slate-400 cursor-pointer hover:text-slate-600" />
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-500"
+            className="md:hidden p-2 text-black/60 hover:text-[#1D1D1F] rounded-lg hover:bg-black/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -87,31 +95,31 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         <div 
-          className={`md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-200 transition-all duration-300 ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-black/5 transition-all duration-200 ${
             mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
         >
-          <div className="container-wide py-4 space-y-1">
+          <div className="container-apple py-4 space-y-1">
             {navItems.map((item) => (
               <Link 
                 key={item.href}
                 href={item.href} 
-                className="block py-3 text-slate-700 font-medium"
+                className="block py-3 text-[15px] font-medium text-[#1D1D1F] rounded-lg hover:bg-black/5 px-3"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <hr className="my-2 border-slate-100" />
-            <Link href="/about" className="block py-3 text-slate-500" onClick={() => setMobileMenuOpen(false)}>
+            <div className="my-2 border-t border-black/5" />
+            <Link href="/about" className="block py-3 text-[15px] text-black/60 rounded-lg hover:bg-black/5 px-3" onClick={() => setMobileMenuOpen(false)}>
               About
             </Link>
-            <Link href="/contact" className="block py-3 text-slate-500" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/contact" className="block py-3 text-[15px] text-black/60 rounded-lg hover:bg-black/5 px-3" onClick={() => setMobileMenuOpen(false)}>
               Contact
             </Link>
             <Link 
               href="/register" 
-              className="block py-3 px-4 bg-slate-700 text-white rounded-lg text-center font-medium mt-2"
+              className="block py-3 px-4 mt-2 text-[15px] font-medium text-white bg-[#007AFF] hover:bg-[#0051D5] rounded-full text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
               Sign Up
