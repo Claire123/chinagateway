@@ -21,262 +21,262 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
-// 真实攻略内容
+// Real guide content - ALL IN ENGLISH
 const guides = [
   {
     id: 1,
-    title: '144小时免签上海完全攻略：6天5夜深度游',
+    title: 'Complete 144-Hour Visa-Free Shanghai Guide: 6-Day Deep Dive',
     author: 'Traveler_John',
     avatar: 'J',
     date: '2024-03-15',
     views: 3240,
     likes: 256,
     comments: 45,
-    tags: ['上海', '免签', '攻略', '深度游'],
-    excerpt: '详细记录了我用144小时免签政策游上海的完整经历。Day1: 外滩+南京路；Day2: 豫园+城隍庙；Day3: 田子坊+新天地；Day4: 陆家嘴+东方明珠；Day5: 迪士尼；Day6: 购物返程。包含详细的地铁线路、美食推荐、避坑指南...',
+    tags: ['Shanghai', 'Visa-Free', 'Guide', 'Deep Dive'],
+    excerpt: 'A detailed record of my complete experience traveling Shanghai with the 144-hour visa-free policy. Day 1: The Bund + Nanjing Road; Day 2: Yu Garden + City God Temple; Day 3: Tianzifang + Xintiandi; Day 4: Lujiazui + Oriental Pearl; Day 5: Disney; Day 6: Shopping and departure. Includes detailed subway routes, food recommendations, and tips to avoid tourist traps...',
     image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80',
     content: `
-## Day 1: 抵达上海，外滩夜景
-- 上午：抵达浦东机场，乘坐磁悬浮到市区
-- 下午：入住酒店，休息调整
-- 晚上：外滩夜景，推荐拍照点：外滩观景台
+## Day 1: Arrival in Shanghai, The Bund Night View
+- Morning: Arrive at Pudong Airport, take Maglev to city center
+- Afternoon: Check into hotel, rest and adjust
+- Evening: The Bund night view, recommended photo spot: Bund Viewing Platform
 
-## Day 2: 老城厢文化之旅
-- 上午：豫园（建议早去避开人流）
-- 中午：城隍庙小吃（推荐：南翔小笼、生煎包）
-- 下午：上海博物馆
-- 晚上：南京路步行街
+## Day 2: Old Shanghai Cultural Tour
+- Morning: Yu Garden (go early to avoid crowds)
+- Noon: City God Temple snacks (recommended: Nanxiang Steamed Buns, Pan-Fried Buns)
+- Afternoon: Shanghai Museum
+- Evening: Nanjing Road Pedestrian Street
 
-## Day 3: 文艺上海
-- 上午：田子坊（石库门建筑+创意小店）
-- 下午：新天地（时尚购物+下午茶）
-- 晚上：淮海路商圈
+## Day 3: Artsy Shanghai
+- Morning: Tianzifang (Shikumen architecture + creative shops)
+- Afternoon: Xintiandi (fashion shopping + afternoon tea)
+- Evening: Huaihai Road commercial district
 
-## Day 4: 现代上海
-- 上午：陆家嘴金融区
-- 下午：东方明珠/上海中心大厦观景台
-- 晚上：滨江大道散步
+## Day 4: Modern Shanghai
+- Morning: Lujiazui Financial District
+- Afternoon: Oriental Pearl / Shanghai Tower observation deck
+- Evening: Riverside Promenade walk
 
-## Day 5: 迪士尼一日游
-- 全天：上海迪士尼乐园
-- 建议：提前下载迪士尼APP，购买早享卡
+## Day 5: Disney Day Trip
+- All day: Shanghai Disneyland
+- Tips: Download Disney app in advance, purchase Early Entry pass
 
-## Day 6: 购物返程
-- 上午：免税店购物
-- 下午：前往机场
+## Day 6: Shopping and Departure
+- Morning: Duty-free shopping
+- Afternoon: Head to airport
 
-## 实用信息
-- 交通：地铁一日票18元，三日票45元
-- 住宿：推荐住在外滩或人民广场附近
-- 预算：6天约5000-8000元（不含购物）
+## Practical Information
+- Transportation: Subway day pass 18 RMB, 3-day pass 45 RMB
+- Accommodation: Recommended to stay near The Bund or People's Square
+- Budget: 6 days approximately 5000-8000 RMB (excluding shopping)
     `
   },
   {
     id: 2,
-    title: '北京协和医院就医全流程分享：从预约到出院',
+    title: 'Peking Union Medical College Hospital: Complete Medical Tourism Experience',
     author: 'MedicalTourist_Sarah',
     avatar: 'S',
     date: '2024-03-10',
     views: 2890,
     likes: 312,
     comments: 67,
-    tags: ['医疗旅游', '北京', '经验分享', '协和医院'],
-    excerpt: '从预约到出院，详细记录了我在协和医院的就医体验。包括：1)如何预约国际部；2)就诊当天流程；3)检查项目安排；4)费用明细；5)住宿推荐。总费用比美国便宜70%，医生非常专业...',
+    tags: ['Medical Tourism', 'Beijing', 'Experience', 'Peking Union'],
+    excerpt: 'From appointment to discharge, a detailed record of my medical experience at Peking Union Hospital. Includes: 1) How to book the International Department; 2) Day-of-appointment process; 3) Examination arrangements; 4) Cost breakdown; 5) Accommodation recommendations. Total cost was 70% cheaper than the US, doctors were very professional...',
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
-    content: '详细就医流程分享...'
+    content: 'Detailed medical tourism experience...'
   },
   {
     id: 3,
-    title: '成都美食地图：本地人推荐的10家必吃餐厅',
+    title: 'Chengdu Food Map: 10 Must-Eat Restaurants Recommended by Locals',
     author: 'Foodie_Mike',
     avatar: 'M',
     date: '2024-03-05',
     views: 4567,
     likes: 523,
     comments: 89,
-    tags: ['成都', '美食', '推荐', '火锅'],
-    excerpt: '在成都住了3年，整理出这份最地道的美食地图。从火锅到小吃一网打尽：1)小龙坎火锅；2)蜀大侠；3)陈麻婆豆腐；4)钟水饺；5)龙抄手；6)担担面；7)串串香；8)兔头；9)钵钵鸡；10)甜水面...',
+    tags: ['Chengdu', 'Food', 'Recommendations', 'Hot Pot'],
+    excerpt: 'Lived in Chengdu for 3 years, compiled this most authentic food map. From hot pot to snacks: 1) Xiaolongkan Hot Pot; 2) Shu Da Xia; 3) Chen Mapo Tofu; 4) Zhong Dumplings; 5) Dragon Wontons; 6) Dan Dan Noodles; 7) Skewered Delights; 8) Rabbit Heads; 9) Bobo Chicken; 10) Sweet Water Noodles...',
     image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80',
-    content: '成都美食详细推荐...'
+    content: 'Detailed Chengdu food recommendations...'
   },
   {
     id: 4,
-    title: '西安兵马俑+华清池一日游攻略',
+    title: 'Xi\'an Terracotta Warriors + Huaqing Pool One-Day Guide',
     author: 'HistoryBuff_Tom',
     avatar: 'T',
     date: '2024-02-28',
     views: 2156,
     likes: 178,
     comments: 34,
-    tags: ['西安', '兵马俑', '一日游', '历史'],
-    excerpt: '西安必去的兵马俑和华清池，如何安排一日游？包含交通指南、门票预订、最佳参观时间、讲解服务推荐。建议早上8点出发，避开人流高峰...',
+    tags: ['Xi\'an', 'Terracotta Warriors', 'One-Day', 'History'],
+    excerpt: 'Must-visit Terracotta Warriors and Huaqing Pool in Xi\'an, how to arrange a one-day tour? Includes transportation guide, ticket booking, best visiting times, and guide service recommendations. Suggested departure at 8 AM to avoid peak crowds...',
     image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800&q=80',
-    content: '西安一日游攻略...'
+    content: 'Xi\'an one-day tour guide...'
   },
   {
     id: 5,
-    title: '桂林山水甲天下：漓江游船+阳朔西街',
+    title: 'Guilin Landscape: Li River Cruise + Yangshuo West Street',
     author: 'NatureLover_Amy',
     avatar: 'A',
     date: '2024-02-20',
     views: 1876,
     likes: 234,
     comments: 41,
-    tags: ['桂林', '漓江', '阳朔', '自然风光'],
-    excerpt: '桂林山水甲天下，阳朔山水甲桂林。3天2夜行程：Day1 漓江游船；Day2 遇龙河竹筏+十里画廊；Day3 阳朔西街+印象刘三姐。最佳季节是4-10月...',
+    tags: ['Guilin', 'Li River', 'Yangshuo', 'Nature'],
+    excerpt: 'Guilin landscape is the best under heaven, Yangshuo landscape is the best in Guilin. 3-day 2-night itinerary: Day 1 Li River cruise; Day 2 Yulong River bamboo raft + Ten Mile Gallery; Day 3 Yangshuo West Street + Impression Liu Sanjie. Best season is April-October...',
     image: 'https://images.unsplash.com/photo-1537531383496-f4749b8032cf?w=800&q=80',
-    content: '桂林旅游攻略...'
+    content: 'Guilin travel guide...'
   },
 ]
 
-// 真实问答内容
+// Real Q&A content - ALL IN ENGLISH
 const questions = [
   {
     id: 1,
-    title: '144小时免签可以从上海入境北京出境吗？',
+    title: 'Can I enter through Shanghai and exit through Beijing with 144-hour visa-free?',
     author: 'FirstTimer_2024',
     avatar: 'F',
     date: '2024-03-18',
     replies: 12,
     views: 1567,
-    tags: ['免签', '入境', '政策'],
+    tags: ['Visa-Free', 'Entry', 'Policy'],
     solved: true,
     bestAnswer: {
       author: 'ChinaExpert_Lisa',
-      content: '不可以。144小时免签必须在同一区域内出入境。上海入境必须在上海、江苏或浙江区域内出境。如果想上海进北京出，需要申请普通旅游签证。',
+      content: 'No. The 144-hour visa-free transit requires you to enter and exit within the same region. If you enter through Shanghai, you must exit from Shanghai, Jiangsu, or Zhejiang. If you want to enter Shanghai and exit Beijing, you need to apply for a regular tourist visa.',
       likes: 45
     }
   },
   {
     id: 2,
-    title: '外国人在中国看病需要准备什么材料？',
+    title: 'What documents do foreigners need to prepare for medical treatment in China?',
     author: 'HealthSeeker',
     avatar: 'H',
     date: '2024-03-14',
     replies: 18,
     views: 2345,
-    tags: ['医疗', '材料', '准备'],
+    tags: ['Medical', 'Documents', 'Preparation'],
     solved: true,
     bestAnswer: {
       author: 'MedicalCoordinator_Jane',
-      content: '1) 护照原件及复印件；2) 过往病历和检查报告（英文或中文）；3) 当前服用的药物清单；4) 保险单据；5) 签证/入境章页复印件。建议提前联系医院国际部，他们会发详细清单。',
+      content: '1) Passport original and copy; 2) Past medical records and examination reports (English or Chinese); 3) List of current medications; 4) Insurance documents; 5) Visa/entry stamp page copy. It is recommended to contact the hospital International Department in advance, they will send a detailed checklist.',
       likes: 67
     }
   },
   {
     id: 3,
-    title: '推荐一下适合带父母去的国内旅游目的地',
+    title: 'Recommend domestic travel destinations suitable for traveling with parents',
     author: 'FamilyTraveler',
     avatar: 'F',
     date: '2024-03-12',
     replies: 24,
     views: 3456,
-    tags: ['家庭游', '推荐', '父母'],
+    tags: ['Family Trip', 'Recommendations', 'Parents'],
     solved: false,
     answers: [
-      { author: 'SeniorTravel_Guide', content: '推荐桂林！节奏慢，风景美，竹筏很休闲。', likes: 23 },
-      { author: 'BeijingLocal_Wang', content: '北京不错，景点集中，交通便利，医疗资源丰富。', likes: 18 }
+      { author: 'SeniorTravel_Guide', content: 'Recommend Guilin! Slow pace, beautiful scenery, bamboo rafting is very relaxing.', likes: 23 },
+      { author: 'BeijingLocal_Wang', content: 'Beijing is good, attractions are concentrated, transportation is convenient, medical resources are abundant.', likes: 18 }
     ]
   },
   {
     id: 4,
-    title: '支付宝和微信支付外国人可以用吗？',
+    title: 'Can foreigners use Alipay and WeChat Pay?',
     author: 'PaymentQuestion',
     avatar: 'P',
     date: '2024-03-08',
     replies: 15,
     views: 4567,
-    tags: ['支付', '支付宝', '微信'],
+    tags: ['Payment', 'Alipay', 'WeChat'],
     solved: true,
     bestAnswer: {
       author: 'DigitalNomad_Kevin',
-      content: '可以！现在外国人可以用护照注册支付宝和微信支付。需要：1) 护照实名认证；2) 绑定国际信用卡（Visa/Mastercard）；3) 部分功能可能受限，但日常消费没问题。',
+      content: 'Yes! Foreigners can now register for Alipay and WeChat Pay with a passport. Requirements: 1) Passport real-name verification; 2) Link international credit card (Visa/Mastercard); 3) Some features may be limited, but daily consumption is no problem.',
       likes: 89
     }
   },
   {
     id: 5,
-    title: '上海哪个医院看心脏最好？有国际部吗？',
+    title: 'Which hospital in Shanghai is best for heart conditions? Do they have an international department?',
     author: 'CardiacPatient',
     avatar: 'C',
     date: '2024-03-05',
     replies: 9,
     views: 1234,
-    tags: ['医疗', '上海', '心脏科'],
+    tags: ['Medical', 'Shanghai', 'Cardiology'],
     solved: true,
     bestAnswer: {
       author: 'Dr_Chen_Cardio',
-      content: '推荐上海东方医院心脏中心，有国际医疗中心，英文服务很好。另外中山医院、瑞金医院也很强。建议先通过ChinaGateway预约，可以安排专家号。',
+      content: 'Recommend Shanghai East Hospital Cardiac Center, they have an International Medical Center with excellent English service. Also Zhongshan Hospital and Ruijin Hospital are very strong. It is recommended to book through ChinaGateway, they can arrange specialist appointments.',
       likes: 34
     }
   },
 ]
 
-// 真实结伴信息
+// Real travel buddy content - ALL IN ENGLISH
 const buddies = [
   {
     id: 1,
-    title: '寻找4月一起去云南的旅伴（大理-丽江-香格里拉）',
+    title: 'Looking for travel buddies to Yunnan in April (Dali-Lijiang-Shangri-La)',
     author: 'SoloTraveler_Lisa',
     avatar: 'L',
-    destination: '云南（大理、丽江、香格里拉）',
+    destination: 'Yunnan (Dali, Lijiang, Shangri-La)',
     dates: '2024-04-15 ~ 2024-04-22',
-    people: '2-4人',
-    budget: '中等预算（人均5000-8000元）',
-    tags: ['自由行', '摄影', '美食', '少数民族文化'],
-    description: '计划去大理古城、洱海、丽江古城、玉龙雪山、香格里拉。喜欢拍照和尝试当地美食，希望找到志同道合的朋友一起分摊费用。已有2人（女生），再找2人，男女不限。',
+    people: '2-4 people',
+    budget: 'Mid-range (5,000-8,000 CNY per person)',
+    tags: ['Free Travel', 'Photography', 'Food', 'Ethnic Culture'],
+    description: 'Planning to visit Dali Ancient Town, Erhai Lake, Lijiang Ancient Town, Jade Dragon Snow Mountain, and Shangri-La. Love photography and trying local food, hoping to find like-minded friends to share costs. Already have 2 people (female), looking for 2 more, gender not limited.',
     status: 'open',
     createdAt: '2024-03-10',
     applicants: 5
   },
   {
     id: 2,
-    title: '5月北京-西安文化之旅，求结伴',
+    title: 'May Beijing-Xi\'an Cultural Journey, seeking companions',
     author: 'CultureLover_Tom',
     avatar: 'T',
-    destination: '北京、西安',
+    destination: 'Beijing, Xi\'an',
     dates: '2024-05-01 ~ 2024-05-08',
-    people: '1-2人',
-    budget: '高预算（人均10000+元）',
-    tags: ['文化游', '历史', '深度游', '博物馆'],
-    description: '计划深度游览两个古都，重点看博物馆和历史遗迹。北京：故宫、国博、长城；西安：兵马俑、陕历博、古城墙。希望找到对历史文化感兴趣的朋友，可以一起请导游。',
+    people: '1-2 people',
+    budget: 'High budget (10,000+ CNY per person)',
+    tags: ['Cultural Tour', 'History', 'Deep Dive', 'Museums'],
+    description: 'Planning an in-depth tour of two ancient capitals, focusing on museums and historical sites. Beijing: Forbidden City, National Museum, Great Wall; Xi\'an: Terracotta Warriors, Shaanxi History Museum, Ancient City Wall. Hoping to find friends interested in history and culture, can hire a guide together.',
     status: 'open',
     createdAt: '2024-03-08',
     applicants: 3
   },
   {
     id: 3,
-    title: '6月成都熊猫基地+美食之旅，女生拼房',
+    title: 'June Chengdu Panda Base + Food Tour, female room share',
     author: 'PandaFan_Amy',
     avatar: 'A',
-    destination: '成都',
+    destination: 'Chengdu',
     dates: '2024-06-10 ~ 2024-06-15',
-    people: '1人',
-    budget: '中等预算（人均4000-6000元）',
-    tags: ['熊猫', '美食', '轻松游', '女生'],
-    description: '主要想看大熊猫和吃成都美食，行程比较轻松。希望找到女生一起拼房，可以互相拍照。计划去：熊猫基地、宽窄巷子、锦里、武侯祠、都江堰。',
+    people: '1 person',
+    budget: 'Mid-range (4,000-6,000 CNY per person)',
+    tags: ['Pandas', 'Food', 'Relaxed', 'Female'],
+    description: 'Mainly want to see giant pandas and eat Chengdu food, itinerary is relatively relaxed. Hoping to find a female to share room costs, can take photos of each other. Planned visits: Panda Base, Kuanzhai Alley, Jinli, Wuhou Shrine, Dujiangyan.',
     status: 'open',
     createdAt: '2024-03-05',
     applicants: 2
   },
   {
     id: 4,
-    title: '7月西藏拉萨-林芝深度游，寻找同行者',
+    title: 'July Tibet Lhasa-Linchi deep tour, seeking companions',
     author: 'AdventureSeeker_Mark',
     avatar: 'M',
-    destination: '西藏（拉萨、林芝）',
+    destination: 'Tibet (Lhasa, Linchi)',
     dates: '2024-07-10 ~ 2024-07-20',
-    people: '2-3人',
-    budget: '中等预算（人均8000-12000元）',
-    tags: ['西藏', '高原', '自然风光', '摄影'],
-    description: '计划去布达拉宫、大昭寺、纳木错、林芝桃花（虽然7月没有桃花但风景依然美）。需要找身体健康、能适应高原的伙伴。已有1人（男），再找2-3人。',
+    people: '2-3 people',
+    budget: 'Mid-range (8,000-12,000 CNY per person)',
+    tags: ['Tibet', 'Plateau', 'Nature', 'Photography'],
+    description: 'Planning to visit Potala Palace, Jokhang Temple, Namtso Lake, Linchi (though no peach blossoms in July but scenery is still beautiful). Need to find partners in good health who can adapt to high altitude. Already have 1 person (male), looking for 2-3 more.',
     status: 'open',
     createdAt: '2024-03-01',
     applicants: 7
   },
 ]
 
-// 发帖弹窗组件
+// New Post Modal Component
 function NewPostModal({ isOpen, onClose, type }: { isOpen: boolean; onClose: () => void; type: 'guide' | 'question' | 'buddy' }) {
   const [formData, setFormData] = useState({
     title: '',
@@ -292,7 +292,6 @@ function NewPostModal({ isOpen, onClose, type }: { isOpen: boolean; onClose: () 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // 这里可以添加提交到后端的逻辑
     alert('Post submitted successfully! It will be reviewed before publishing.')
     onClose()
   }
@@ -407,7 +406,7 @@ export function CommunityContent() {
     setIsNewPostOpen(true)
   }
 
-  // 攻略详情页
+  // Guide detail page
   if (selectedGuide) {
     return (
       <div className="min-h-screen bg-white">
@@ -474,7 +473,7 @@ export function CommunityContent() {
     )
   }
 
-  // 问答详情页
+  // Q&A detail page
   if (selectedQuestion) {
     return (
       <div className="min-h-screen bg-white">
@@ -502,7 +501,7 @@ export function CommunityContent() {
             <h1 className="text-2xl font-bold text-slate-800 mb-4">{selectedQuestion.title}</h1>
             
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-medium">
+              <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-sm font-medium text-slate-600 flex-shrink-0">
                 {selectedQuestion.avatar}
               </div>
               <div>

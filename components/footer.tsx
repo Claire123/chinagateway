@@ -70,8 +70,8 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-slate-700 mb-3">Contact</h3>
             <ul className="space-y-2">
-              <li>hello@chinagateway.com</li>
-              <li>+86 21 1234 5678</li>
+              <li>clairezhang2018@163.com</li>
+              <li>+86 159 0063 0236</li>
               <li>Shanghai, China</li>
             </ul>
           </div>

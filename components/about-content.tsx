@@ -124,9 +124,9 @@ export function AboutContent() {
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Coral Zhao', role: 'Medical Director', bio: '20+ years in international healthcare', image: '/images/team/coral.jpg' },
-              { name: 'Claire Zhang', role: 'CEO & Founder', bio: 'Former McKinsey consultant, 10+ years travel planning', image: '/images/team/claire.jpg' },
-              { name: 'Justine Liu', role: 'COO', bio: 'Expert in patient experience', image: '/images/team/justine.jpg' },
+              { name: 'Leon Zhao', role: 'Medical Director', bio: '20+ years in international healthcare', image: '/images/team/leon.jpg' },
+              { name: 'Claire Zhang', role: 'CEO & Founder', bio: 'Former McKinsey consultant, Expert in patient experience', image: '/images/team/claire.jpg' },
+              { name: 'Justine Liu', role: 'COO', bio: '10+ years in travel planning', image: '/images/team/justine.jpg' },
             ].map((person) => (
               <Card key={person.name} className="bg-slate-800/50 border-slate-700/50 rounded-2xl text-center">
                 <CardContent className="p-8">

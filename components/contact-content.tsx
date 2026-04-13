@@ -4,20 +4,26 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react'
 
 const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@chinagateway.com',
-    href: 'mailto:hello@chinagateway.com',
+    value: 'clairezhang2018@163.com',
+    href: 'mailto:clairezhang2018@163.com',
   },
   {
     icon: Phone,
     label: 'Phone',
     value: '+86 21 1234 5678',
     href: 'tel:+862112345678',
+  },
+  {
+    icon: MessageCircle,
+    label: 'WhatsApp/WeChat',
+    value: '+86 159 0063 0236',
+    href: 'https://wa.me/8615900630236',
   },
   {
     icon: MapPin,
@@ -49,14 +55,14 @@ export function ContactContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-900">
       {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-b from-slate-50/50 to-white">
+      <section className="pt-32 pb-20">
         <div className="container-apple text-center">
-          <h1 className="text-headline font-semibold text-slate-800 mb-6">
+          <h1 className="text-headline font-semibold text-white mb-6">
             Get in Touch
           </h1>
-          <p className="text-body text-slate-500 max-w-xl mx-auto">
+          <p className="text-body text-slate-400 max-w-xl mx-auto">
             Have questions about travel or healthcare in China? 
             We&apos;re here to help 24/7.
           </p>
@@ -64,20 +70,20 @@ export function ContactContent() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-12">
+      <section className="py-12 border-t border-slate-800">
         <div className="container-apple">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {contactInfo.map((item) => {
               const Icon = item.icon
               return (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-slate-100 transition-all duration-300"
+                  className="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:bg-slate-800 transition-all duration-300"
                 >
                   <Icon className="w-8 h-8 text-slate-400 mb-4 group-hover:scale-110 transition-transform" />
                   <div className="text-sm text-slate-400 mb-1">{item.label}</div>
-                  <div className="text-slate-800 font-medium">{item.value}</div>
+                  <div className="text-white font-medium text-sm">{item.value}</div>
                 </a>
               )
             })}
@@ -86,44 +92,44 @@ export function ContactContent() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-20 border-t border-slate-800">
         <div className="container-apple">
           <div className="max-w-2xl mx-auto">
             {submitted ? (
-              <Card className="bg-white border-slate-100">
+              <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-12 text-center">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-8 h-8 text-green-400" />
                   </div>
-                  <h2 className="text-title-1 font-semibold text-slate-800 mb-4">Message Sent!</h2>
-                  <p className="text-slate-500">
+                  <h2 className="text-title-1 font-semibold text-white mb-4">Message Sent!</h2>
+                  <p className="text-slate-400">
                     Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                   </p>
                 </CardContent>
               </Card>
             ) : (
-              <Card className="bg-white border-slate-100">
+              <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-8">
-                  <h2 className="text-title-2 font-semibold text-slate-800 mb-6">
+                  <h2 className="text-title-2 font-semibold text-white mb-6">
                     Send us a Message
                   </h2>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">
+                        <label className="text-sm font-medium text-slate-300">
                           Your Name
                         </label>
                         <Input
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="John Smith"
-                          className="h-12 bg-slate-50 border-slate-200"
+                          className="h-12 bg-slate-900/50 border-slate-600 text-white placeholder:text-slate-500"
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">
+                        <label className="text-sm font-medium text-slate-300">
                           Email Address
                         </label>
                         <Input
@@ -131,34 +137,34 @@ export function ContactContent() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="john@example.com"
-                          className="h-12 bg-slate-50 border-slate-200"
+                          className="h-12 bg-slate-900/50 border-slate-600 text-white placeholder:text-slate-500"
                           required
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-slate-700">
+                      <label className="text-sm font-medium text-slate-300">
                         Subject
                       </label>
                       <Input
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder="How can we help?"
-                        className="h-12 bg-slate-50 border-slate-200"
+                        className="h-12 bg-slate-900/50 border-slate-600 text-white placeholder:text-slate-500"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-slate-700">
+                      <label className="text-sm font-medium text-slate-300">
                         Message
                       </label>
                       <textarea
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us more about your inquiry..."
-                        className="w-full h-40 p-4 rounded-xl border border-slate-200 bg-slate-50 focus:border-slate-400 focus:outline-none resize-none"
+                        className="w-full h-40 p-4 rounded-xl border border-slate-600 bg-slate-900/50 text-white placeholder:text-slate-500 focus:border-slate-400 focus:outline-none resize-none"
                         required
                       />
                     </div>
@@ -166,7 +172,7 @@ export function ContactContent() {
                     <Button 
                       type="submit" 
                       size="lg"
-                      className="w-full h-14 bg-slate-700 hover:bg-slate-800 rounded-full font-medium"
+                      className="w-full h-14 bg-white text-slate-900 hover:bg-slate-100 rounded-full font-medium"
                     >
                       <Send className="w-4 h-4 mr-2" />
                       Send Message
@@ -180,9 +186,9 @@ export function ContactContent() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20">
+      <section className="py-20 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-semibold text-slate-800 text-center mb-12">
+          <h2 className="text-title-1 font-semibold text-white text-center mb-12">
             Frequently Asked Questions
           </h2>
           <div className="max-w-3xl mx-auto space-y-4">
@@ -204,9 +210,9 @@ export function ContactContent() {
                 a: 'Yes, we provide invitation letters for medical visas and can guide you through the 144-hour visa-free transit process if applicable.',
               },
             ].map((faq, index) => (
-              <div key={index} className="p-6 rounded-2xl bg-slate-50">
-                <h3 className="font-semibold text-slate-800 mb-2">{faq.q}</h3>
-                <p className="text-slate-500">{faq.a}</p>
+              <div key={index} className="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
+                <h3 className="font-semibold text-white mb-2">{faq.q}</h3>
+                <p className="text-slate-400">{faq.a}</p>
               </div>
             ))}
           </div>
