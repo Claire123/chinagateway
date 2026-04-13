@@ -124,7 +124,7 @@ export function AboutContent() {
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Leon Zhao', role: 'Medical Director', bio: '20+ years in international healthcare', image: '/images/team/Leon.jpg' },
+              { name: 'Leon Zhao', role: 'Medical Director', bio: '30+ years in international healthcare', image: '/images/team/Leon.jpg' },
               { name: 'Claire Zhang', role: 'CEO & Founder', bio: 'Former McKinsey consultant, Expert in patient experience', image: '/images/team/claire.jpg' },
               { name: 'Justine Liu', role: 'COO', bio: '10+ years in travel planning', image: '/images/team/justine.jpg' },
             ].map((person) => (
