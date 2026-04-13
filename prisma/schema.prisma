@@ -1,0 +1,228 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  accounts      Account[]
+  sessions      Session[]
+  bookings      Booking[]
+  trips         Trip[]
+  reviews       Review[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Hospital {
+  id          String   @id @default(cuid())
+  name        String
+  nameCn      String?
+  slug        String   @unique
+  description String?
+  city        String
+  address     String?
+  phone       String?
+  email       String?
+  website     String?
+  image       String?
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  
+  // Certifications
+  jciCertified Boolean @default(false)
+  grade3A      Boolean @default(false)
+  
+  // Features
+  hasEnglishService Boolean @default(false)
+  hasInternational  Boolean @default(false)
+  hasDirectBilling  Boolean @default(false)
+  
+  // Location
+  latitude  Float?
+  longitude Float?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  departments Department[]
+  doctors     Doctor[]
+  reviews     Review[]
+  bookings    Booking[]
+}
+
+model Department {
+  id          String @id @default(cuid())
+  name        String
+  nameCn      String?
+  slug        String
+  description String?
+  icon        String?
+  
+  hospitalId String
+  hospital   Hospital @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  
+  doctors Doctor[]
+  services Service[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([hospitalId, slug])
+}
+
+model Doctor {
+  id          String @id @default(cuid())
+  name        String
+  nameCn      String?
+  title       String
+  specialty   String
+  description String?
+  image       String?
+  languages   String // JSON array
+  experience  Int?   // years
+  
+  hospitalId   String
+  hospital     Hospital     @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  departmentId String
+  department   Department   @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  
+  bookings Booking[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id          String  @id @default(cuid())
+  name        String
+  nameCn      String?
+  description String?
+  duration    Int     // minutes
+  price       Float
+  priceUsd    Float?
+  
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  
+  bookings Booking[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id          String   @id @default(cuid())
+  status      String   @default("pending") // pending, confirmed, completed, cancelled
+  date        DateTime
+  notes       String?
+  
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hospitalId String
+  hospital   Hospital @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  doctorId   String?
+  doctor     Doctor?  @relation(fields: [doctorId], references: [id])
+  serviceId  String?
+  service    Service? @relation(fields: [serviceId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Trip {
+  id          String   @id @default(cuid())
+  name        String
+  destination String
+  startDate   DateTime
+  endDate     DateTime
+  budget      String?
+  interests   String?  // JSON array
+  itinerary   String?  // JSON
+  status      String   @default("planning")
+  
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id      String @id @default(cuid())
+  rating  Int
+  content String
+  
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hospitalId String
+  hospital   Hospital @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VisaCountry {
+  id          String  @id @default(cuid())
+  code        String  @unique
+  name        String
+  nameCn      String?
+  eligible144 Boolean @default(false)
+  eligible72  Boolean @default(false)
+  eligible30  Boolean @default(false)
+  notes       String?
+}
+
+model VisaCity {
+  id          String  @id @default(cuid())
+  code        String  @unique
+  name        String
+  nameCn      String?
+  region      String  // 144-hour valid region
+  airports    String  // JSON array
+  eligible    Boolean @default(true)
+}
