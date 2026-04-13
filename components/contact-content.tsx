@@ -14,12 +14,6 @@ const contactInfo = [
     href: 'mailto:clairezhang2018@163.com',
   },
   {
-    icon: Phone,
-    label: 'Phone',
-    value: '+86 21 1234 5678',
-    href: 'tel:+862112345678',
-  },
-  {
     icon: MessageCircle,
     label: 'WhatsApp/WeChat',
     value: '+86 159 0063 0236',
