@@ -6,16 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Star, MapPin, Phone, Globe, CheckCircle, Search, Filter } from 'lucide-react'
+import Link from 'next/link'
 
 const hospitals = [
   {
-    id: 1,
+    id: 'shanghai-east',
     name: 'Shanghai East Hospital',
     nameCn: '上海市东方医院',
     city: 'Shanghai',
     rating: 4.8,
     reviews: 127,
-    image: '/images/hospital-1.jpg',
+    image: 'https://images.unsplash.com/photo-1587351021759-3e566b9af923?w=400&q=80',
     specialties: ['Cardiology', 'Oncology', 'Orthopedics'],
     certifications: ['JCI', 'Grade 3A'],
     hasEnglish: true,
@@ -24,13 +25,13 @@ const hospitals = [
     priceRange: '$$',
   },
   {
-    id: 2,
+    id: 'peking-union',
     name: 'Peking Union Medical College Hospital',
     nameCn: '北京协和医院',
     city: 'Beijing',
     rating: 4.9,
     reviews: 203,
-    image: '/images/hospital-2.jpg',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80',
     specialties: ['Internal Medicine', 'Surgery', 'Dermatology'],
     certifications: ['Grade 3A'],
     hasEnglish: true,
@@ -39,13 +40,13 @@ const hospitals = [
     priceRange: '$$$',
   },
   {
-    id: 3,
+    id: 'shanghai-9th',
     name: '9th People\'s Hospital Shanghai',
     nameCn: '上海第九人民医院',
     city: 'Shanghai',
     rating: 4.7,
     reviews: 89,
-    image: '/images/hospital-3.jpg',
+    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=400&q=80',
     specialties: ['Dental', 'Plastic Surgery', 'Ophthalmology'],
     certifications: ['Grade 3A'],
     hasEnglish: true,
@@ -54,13 +55,13 @@ const hospitals = [
     priceRange: '$$',
   },
   {
-    id: 4,
+    id: 'guangdong-provincial',
     name: 'Guangdong Provincial People\'s Hospital',
     nameCn: '广东省人民医院',
     city: 'Guangzhou',
     rating: 4.6,
     reviews: 156,
-    image: '/images/hospital-4.jpg',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80',
     specialties: ['Cardiology', 'Neurology', 'Oncology'],
     certifications: ['JCI', 'Grade 3A'],
     hasEnglish: true,
@@ -69,13 +70,13 @@ const hospitals = [
     priceRange: '$$',
   },
   {
-    id: 5,
+    id: 'west-china',
     name: 'West China Hospital',
     nameCn: '四川大学华西医院',
     city: 'Chengdu',
     rating: 4.8,
     reviews: 134,
-    image: '/images/hospital-5.jpg',
+    image: 'https://images.unsplash.com/photo-1587351021759-3e566b9af923?w=400&q=80',
     specialties: ['Neurosurgery', 'Cardiology', 'Traditional Chinese Medicine'],
     certifications: ['Grade 3A'],
     hasEnglish: true,
@@ -84,13 +85,13 @@ const hospitals = [
     priceRange: '$',
   },
   {
-    id: 6,
+    id: 'sir-run-run-shaw',
     name: 'Sir Run Run Shaw Hospital',
     nameCn: '浙江大学医学院附属邵逸夫医院',
     city: 'Hangzhou',
     rating: 4.7,
     reviews: 98,
-    image: '/images/hospital-6.jpg',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80',
     specialties: ['Oncology', 'Gastroenterology', 'Minimally Invasive Surgery'],
     certifications: ['JCI', 'Grade 3A'],
     hasEnglish: true,
@@ -169,7 +170,13 @@ export function HospitalDirectory() {
           <Card key={hospital.id} className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="flex flex-col md:flex-row">
               {/* Image */}
-              <div className="w-full md:w-48 h-48 md:h-auto bg-gradient-to-br from-teal-400 to-blue-500" />
+              <div className="w-full md:w-48 h-48 md:h-auto overflow-hidden">
+                <img 
+                  src={hospital.image} 
+                  alt={hospital.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               
               {/* Content */}
               <div className="flex-1 p-6">
@@ -229,12 +236,16 @@ export function HospitalDirectory() {
 
                   {/* Actions */}
                   <div className="flex md:flex-col gap-2">
-                    <Button className="flex-1 md:w-32">
-                      Book Now
-                    </Button>
-                    <Button variant="outline" className="flex-1 md:w-32">
-                      View Details
-                    </Button>
+                    <Link href={`/healthcare/${hospital.id}/book`}>
+                      <Button className="flex-1 md:w-32 bg-slate-700 hover:bg-slate-800">
+                        Book Now
+                      </Button>
+                    </Link>
+                    <Link href={`/healthcare/${hospital.id}`}>
+                      <Button variant="outline" className="flex-1 md:w-32">
+                        View Details
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -39,72 +39,75 @@ interface Hospital {
 
 export function HospitalDetail({ hospital }: { hospital: Hospital }) {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-slate-900">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-800/50 to-slate-900" />
         
         <div className="container-apple relative">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Info */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                <Badge className="bg-slate-700 text-slate-300 border-slate-600">
                   {hospital.city}
                 </Badge>
                 {hospital.certifications.includes('JCI') && (
-                  <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                  <Badge className="bg-green-900/30 text-green-400 border-green-800">
                     JCI Certified
                   </Badge>
                 )}
               </div>
               
-              <h1 className="text-headline font-verdana text-white mb-2">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
                 {hospital.name}
               </h1>
-              <p className="text-lg text-white/40 mb-6">{hospital.nameCn}</p>
+              <p className="text-lg text-slate-400 mb-6">{hospital.nameCn}</p>
               
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-1">
-                  <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                  <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
                   <span className="text-xl font-bold text-white">{hospital.rating}</span>
-                  <span className="text-white/40">({hospital.reviews} reviews)</span>
+                  <span className="text-slate-400">({hospital.reviews} reviews)</span>
                 </div>
               </div>
               
-              <p className="text-body text-white/60 font-inter leading-relaxed mb-8">
+              <p className="text-lg text-slate-300 leading-relaxed mb-8">
                 {hospital.description}
               </p>
               
               {/* Contact Info */}
               <div className="space-y-3 mb-8">
-                <div className="flex items-center gap-3 text-white/60">
-                  <MapPin className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-slate-300">
+                  <MapPin className="w-5 h-5 text-slate-400" />
                   <span>{hospital.address}</span>
                 </div>
-                <div className="flex items-center gap-3 text-white/60">
-                  <Phone className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-slate-300">
+                  <Phone className="w-5 h-5 text-slate-400" />
                   <span>{hospital.phone}</span>
                 </div>
-                <div className="flex items-center gap-3 text-white/60">
-                  <Mail className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-slate-300">
+                  <Mail className="w-5 h-5 text-slate-400" />
                   <span>{hospital.email}</span>
                 </div>
               </div>
               
               {/* CTA Buttons */}
               <div className="flex gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-black hover:bg-white/95 rounded-full font-verdana font-bold btn-interactive"
-                >
-                  Book Appointment
-                  <ChevronRight className="w-4 h-4 ml-2" />
-                </Button>
+                <Link href={`/healthcare/${hospital.id}/book`}>
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-slate-900 hover:bg-slate-100 rounded-full font-semibold"
+                  >
+                    Book Appointment
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-white/30 text-white hover:bg-white/10 rounded-full"
+                  className="border-slate-600 text-slate-300 hover:bg-slate-800 rounded-full"
+                  onClick={() => window.open(hospital.website, '_blank')}
                 >
                   <Globe className="w-4 h-4 mr-2" />
                   Visit Website
@@ -114,29 +117,35 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
             
             {/* Right Column - Image & Quick Stats */}
             <div className="space-y-6">
-              <div className="aspect-video rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10" />
+              <div className="aspect-video rounded-2xl overflow-hidden bg-slate-800">
+                <img 
+                  src={hospital.image} 
+                  alt={hospital.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               
               {/* Quick Stats */}
               <div className="grid grid-cols-3 gap-4">
-                <Card className="bg-white/5 border-white/10">
+                <Card className="bg-slate-800/50 border-slate-700">
                   <CardContent className="p-4 text-center">
-                    <Award className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                    <Award className="w-6 h-6 text-slate-400 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-white">{hospital.certifications.length}</div>
-                    <div className="text-xs text-white/40">Certifications</div>
+                    <div className="text-xs text-slate-400">Certifications</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-white/5 border-white/10">
+                <Card className="bg-slate-800/50 border-slate-700">
                   <CardContent className="p-4 text-center">
-                    <Users className="w-6 h-6 text-teal-400 mx-auto mb-2" />
+                    <Users className="w-6 h-6 text-slate-400 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-white">{hospital.doctors.length}+</div>
-                    <div className="text-xs text-white/40">Expert Doctors</div>
+                    <div className="text-xs text-slate-400">Expert Doctors</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-white/5 border-white/10">
+                <Card className="bg-slate-800/50 border-slate-700">
                   <CardContent className="p-4 text-center">
-                    <Clock className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+                    <Clock className="w-6 h-6 text-slate-400 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-white">24/7</div>
-                    <div className="text-xs text-white/40">Emergency</div>
+                    <div className="text-xs text-slate-400">Emergency</div>
                   </CardContent>
                 </Card>
               </div>
@@ -146,11 +155,11 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* About Section */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-6">About the Hospital</h2>
-          <div className="prose prose-invert max-w-none">
-            <p className="text-body text-white/60 font-inter leading-relaxed whitespace-pre-line">
+          <h2 className="text-3xl font-bold text-white mb-6">About the Hospital</h2>
+          <div className="max-w-3xl">
+            <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line">
               {hospital.longDescription}
             </p>
           </div>
@@ -158,14 +167,14 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* Specialties */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-8">Medical Specialties</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">Medical Specialties</h2>
           <div className="flex flex-wrap gap-3">
             {hospital.specialties.map((specialty) => (
               <Badge 
                 key={specialty}
-                className="px-4 py-2 text-base bg-white/5 text-white/80 border-white/10 hover:bg-white/10 transition-colors"
+                className="px-4 py-2 text-base bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700 transition-colors"
               >
                 {specialty}
               </Badge>
@@ -175,18 +184,24 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* Doctors */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-8">Expert Doctors</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">Expert Doctors</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {hospital.doctors.map((doctor) => (
-              <Card key={doctor.name} className="bg-white/5 border-white/10">
+            {hospital.doctors.map((doctor, index) => (
+              <Card key={doctor.name} className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-teal-500 mb-4" />
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-600 to-slate-500 mb-4 overflow-hidden">
+                    <img 
+                      src={`https://i.pravatar.cc/150?img=${index + 10}`}
+                      alt={doctor.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-lg font-bold text-white mb-1">{doctor.name}</h3>
-                  <p className="text-blue-400 text-sm mb-2">{doctor.title}</p>
-                  <p className="text-white/40 text-sm">{doctor.experience} years experience</p>
-                  <Badge className="mt-3 bg-white/10 text-white/60">
+                  <p className="text-slate-400 text-sm mb-2">{doctor.title}</p>
+                  <p className="text-slate-500 text-sm">{doctor.experience} years experience</p>
+                  <Badge className="mt-3 bg-slate-700 text-slate-300">
                     {doctor.specialty}
                   </Badge>
                 </CardContent>
@@ -197,19 +212,19 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-4">Sample Pricing</h2>
-          <p className="text-white/40 mb-8">Transparent pricing in CNY and USD</p>
+          <h2 className="text-3xl font-bold text-white mb-4">Sample Pricing</h2>
+          <p className="text-slate-400 mb-8">Transparent pricing in CNY and USD</p>
           
           <div className="grid md:grid-cols-2 gap-4">
             {hospital.priceExamples.map((item) => (
-              <Card key={item.service} className="bg-white/5 border-white/10">
+              <Card key={item.service} className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-6 flex justify-between items-center">
-                  <span className="text-white/80">{item.service}</span>
+                  <span className="text-slate-300">{item.service}</span>
                   <div className="text-right">
                     <div className="text-lg font-bold text-white">¥{item.price.toLocaleString()}</div>
-                    <div className="text-sm text-white/40">~${item.priceUsd}</div>
+                    <div className="text-sm text-slate-400">~${item.priceUsd}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -219,14 +234,14 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* Facilities */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-8">Facilities & Services</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">Facilities & Services</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {hospital.facilities.map((facility) => (
-              <div key={facility} className="flex items-center gap-3 p-4 rounded-xl bg-white/5">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span className="text-white/80">{facility}</span>
+              <div key={facility} className="flex items-center gap-3 p-4 rounded-xl bg-slate-800/50">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-slate-300">{facility}</span>
               </div>
             ))}
           </div>
@@ -234,21 +249,40 @@ export function HospitalDetail({ hospital }: { hospital: Hospital }) {
       </section>
 
       {/* Languages */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-slate-800">
         <div className="container-apple">
-          <h2 className="text-title-1 font-verdana text-white mb-4">Languages Supported</h2>
-          <p className="text-white/40 mb-6">Our international team speaks your language</p>
+          <h2 className="text-3xl font-bold text-white mb-4">Languages Supported</h2>
+          <p className="text-slate-400 mb-6">Our international team speaks your language</p>
           <div className="flex flex-wrap gap-3">
             {hospital.languages.map((language) => (
               <Badge 
                 key={language}
                 variant="outline"
-                className="px-4 py-2 border-white/20 text-white/70"
+                className="px-4 py-2 border-slate-600 text-slate-300"
               >
                 {language}
               </Badge>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 border-t border-slate-800">
+        <div className="container-apple text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">Ready to Book?</h2>
+          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+            Schedule your appointment today. Our team will contact you within 24 hours to confirm.
+          </p>
+          <Link href={`/healthcare/${hospital.id}/book`}>
+            <Button 
+              size="lg" 
+              className="bg-white text-slate-900 hover:bg-slate-100 rounded-full font-semibold px-8"
+            >
+              Book Appointment Now
+              <ChevronRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
