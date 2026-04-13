@@ -38,16 +38,16 @@ const milestones = [
 
 export function AboutContent() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-900">
       {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-b from-slate-50/50 to-white">
+      <section className="pt-24 pb-16 bg-gradient-to-b from-slate-800 to-slate-900">
         <div className="container-apple text-center">
-          <h1 className="text-headline font-semibold text-slate-800 mb-6">
+          <h1 className="text-headline font-semibold text-white mb-6">
             Your Trusted Gateway
             <br />
             <span className="text-slate-400">to China</span>
           </h1>
-          <p className="text-body text-slate-500 max-w-2xl mx-auto">
+          <p className="text-body text-slate-400 max-w-2xl mx-auto">
             We bridge the gap between international visitors and China&apos;s world-class 
             healthcare and travel experiences. Founded in 2020, we&apos;ve helped thousands 
             of patients and travelers discover the best of China.
@@ -56,12 +56,12 @@ export function AboutContent() {
       </section>
 
       {/* Mission */}
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-20 bg-slate-800/50">
         <div className="container-apple">
           <div className="max-w-3xl mx-auto text-center">
-            <Target className="w-12 h-12 text-slate-400 mx-auto mb-6" />
-            <h2 className="text-title-1 font-semibold text-slate-800 mb-6">Our Mission</h2>
-            <p className="text-body text-slate-500 leading-relaxed">
+            <Target className="w-12 h-12 text-slate-500 mx-auto mb-6" />
+            <h2 className="text-title-1 font-semibold text-white mb-6">Our Mission</h2>
+            <p className="text-body text-slate-400 leading-relaxed">
               To make China accessible to everyone. Whether you&apos;re seeking world-class 
               medical care at a fraction of the cost, or planning to explore the rich 
               culture and history of China, we&apos;re here to make your journey seamless, 
@@ -72,18 +72,18 @@ export function AboutContent() {
       </section>
 
       {/* Values */}
-      <section className="py-20">
+      <section className="py-20 bg-slate-900">
         <div className="container-apple">
-          <h2 className="text-title-1 font-semibold text-slate-800 text-center mb-12">Our Values</h2>
+          <h2 className="text-title-1 font-semibold text-white text-center mb-12">Our Values</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {values.map((value) => {
               const Icon = value.icon
               return (
-                <Card key={value.title} className="bg-slate-50/50 border-0 rounded-2xl">
+                <Card key={value.title} className="bg-slate-800/50 border-slate-700/50 rounded-2xl">
                   <CardContent className="p-8">
-                    <Icon className="w-10 h-10 text-slate-400 mb-4" />
-                    <h3 className="text-title-2 font-semibold text-slate-800 mb-3">{value.title}</h3>
-                    <p className="text-body-small text-slate-500">{value.description}</p>
+                    <Icon className="w-10 h-10 text-slate-500 mb-4" />
+                    <h3 className="text-title-2 font-semibold text-white mb-3">{value.title}</h3>
+                    <p className="text-body-small text-slate-400">{value.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -93,21 +93,21 @@ export function AboutContent() {
       </section>
 
       {/* Milestones */}
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-20 bg-slate-800/50">
         <div className="container-apple">
-          <h2 className="text-title-1 font-semibold text-slate-800 text-center mb-12">Our Journey</h2>
+          <h2 className="text-title-1 font-semibold text-white text-center mb-12">Our Journey</h2>
           <div className="max-w-3xl mx-auto">
             {milestones.map((milestone, index) => (
               <div key={milestone.year} className="flex gap-8 mb-8 last:mb-0">
                 <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-slate-400" />
+                  <div className="w-3 h-3 rounded-full bg-slate-500" />
                   {index !== milestones.length - 1 && (
-                    <div className="w-px h-full bg-slate-200 mt-2" />
+                    <div className="w-px h-full bg-slate-700 mt-2" />
                   )}
                 </div>
                 <div className="pb-8">
                   <span className="text-sm font-semibold text-slate-500">{milestone.year}</span>
-                  <h3 className="text-lg font-semibold text-slate-800 mt-1">{milestone.title}</h3>
+                  <h3 className="text-lg font-semibold text-white mt-1">{milestone.title}</h3>
                   <p className="text-slate-400 text-sm mt-1">{milestone.description}</p>
                 </div>
               </div>
@@ -117,20 +117,20 @@ export function AboutContent() {
       </section>
 
       {/* Team */}
-      <section className="py-20">
+      <section className="py-20 bg-slate-900">
         <div className="container-apple">
-          <h2 className="text-title-1 font-semibold text-slate-800 text-center mb-4">Leadership Team</h2>
+          <h2 className="text-title-1 font-semibold text-white text-center mb-4">Leadership Team</h2>
           <p className="text-slate-400 text-center mb-12">Experienced professionals dedicated to your care</p>
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Dr. Sarah Chen', role: 'Medical Director', bio: '20+ years in international healthcare' },
-              { name: 'Claire Zhang', role: 'CEO & Founder', bio: 'Former McKinsey consultant', image: '/images/team/claire.jpg' },
-              { name: 'Emily Wang', role: 'Head of Operations', bio: 'Expert in patient experience' },
+              { name: 'Coral Zhao', role: 'Medical Director', bio: '20+ years in international healthcare', image: '/images/team/coral.jpg' },
+              { name: 'Claire Zhang', role: 'CEO & Founder', bio: 'Former McKinsey consultant, 10+ years travel planning', image: '/images/team/claire.jpg' },
+              { name: 'Justine Liu', role: 'COO', bio: 'Expert in patient experience', image: '/images/team/justine.jpg' },
             ].map((person) => (
-              <Card key={person.name} className="bg-slate-50/50 border-0 rounded-2xl text-center">
+              <Card key={person.name} className="bg-slate-800/50 border-slate-700/50 rounded-2xl text-center">
                 <CardContent className="p-8">
-                  <div className="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-4 overflow-hidden">
+                  <div className="w-20 h-20 rounded-full bg-slate-700 mx-auto mb-4 overflow-hidden">
                     {person.image ? (
                       <img 
                         src={person.image} 
@@ -143,9 +143,9 @@ export function AboutContent() {
                       </div>
                     )}
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-800">{person.name}</h3>
-                  <p className="text-slate-500 text-sm mb-2">{person.role}</p>
-                  <p className="text-slate-400 text-sm">{person.bio}</p>
+                  <h3 className="text-lg font-semibold text-white">{person.name}</h3>
+                  <p className="text-slate-400 text-sm mb-2">{person.role}</p>
+                  <p className="text-slate-500 text-sm">{person.bio}</p>
                 </CardContent>
               </Card>
             ))}
@@ -154,17 +154,17 @@ export function AboutContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-20 bg-slate-800/50">
         <div className="container-apple text-center">
-          <h2 className="text-title-1 font-semibold text-slate-800 mb-6">Ready to Get Started?</h2>
-          <p className="text-slate-500 mb-8 max-w-xl mx-auto">
+          <h2 className="text-title-1 font-semibold text-white mb-6">Ready to Get Started?</h2>
+          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
             Whether you&apos;re planning a trip or seeking medical care, we&apos;re here to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button 
                 size="lg" 
-                className="bg-slate-700 hover:bg-slate-800 text-white rounded-full font-medium"
+                className="bg-white text-slate-900 hover:bg-slate-100 rounded-full font-medium"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Contact Us
@@ -175,7 +175,7 @@ export function AboutContent() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-slate-300 text-slate-600 hover:bg-slate-50 rounded-full"
+                className="border-slate-600 text-slate-300 hover:bg-slate-800 rounded-full"
               >
                 Explore Hospitals
               </Button>

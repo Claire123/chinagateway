@@ -99,86 +99,68 @@ const eligibleCountries = [
 export function VisaGuide() {
   return (
     <div className="max-w-4xl mx-auto mt-16">
-      <h2 className="text-3xl font-bold text-center mb-8">Complete Visa-Free Guide</h2>
+      <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">Complete Visa-Free Guide</h2>
       
       <Tabs defaultValue="how-it-works" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="how-it-works">How It Works</TabsTrigger>
-          <TabsTrigger value="cities">Eligible Cities</TabsTrigger>
-          <TabsTrigger value="countries">Countries</TabsTrigger>
-          <TabsTrigger value="faq">FAQ</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 bg-slate-100">
+          <TabsTrigger value="how-it-works" className="data-[state=active]:bg-white data-[state=active]:text-slate-800">How It Works</TabsTrigger>
+          <TabsTrigger value="cities" className="data-[state=active]:bg-white data-[state=active]:text-slate-800">Eligible Cities</TabsTrigger>
+          <TabsTrigger value="countries" className="data-[state=active]:bg-white data-[state=active]:text-slate-800">Countries</TabsTrigger>
+          <TabsTrigger value="faq" className="data-[state=active]:bg-white data-[state=active]:text-slate-800">FAQ</TabsTrigger>
         </TabsList>
 
         {/* How It Works */}
         <TabsContent value="how-it-works">
-          <Card>
+          <Card className="border-slate-100">
             <CardHeader>
-              <CardTitle>Understanding 144-Hour Visa-Free Transit</CardTitle>
+              <CardTitle className="text-slate-800">Understanding 144-Hour Visa-Free Transit</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center mb-3">
-                    <Plane className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="bg-slate-50 rounded-lg p-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center mb-3">
+                    <Plane className="w-5 h-5 text-slate-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">1. Transit Required</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-2 text-slate-800">1. Transit Required</h3>
+                  <p className="text-sm text-slate-500">
                     You must be traveling from Country A → China → Country B (different from A)
                   </p>
                 </div>
                 
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center mb-3">
-                    <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="bg-slate-50 rounded-lg p-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center mb-3">
+                    <Clock className="w-5 h-5 text-slate-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">2. Time Limit</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-2 text-slate-800">2. Time Limit</h3>
+                  <p className="text-sm text-slate-500">
                     Maximum 144 hours (6 days) from entry. Count starts at 00:00 the day after arrival
                   </p>
                 </div>
                 
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center mb-3">
-                    <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="bg-slate-50 rounded-lg p-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center mb-3">
+                    <MapPin className="w-5 h-5 text-slate-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">3. Stay in Region</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-2 text-slate-800">3. Stay in Region</h3>
+                  <p className="text-sm text-slate-500">
                     You can only travel within the designated region (e.g., Shanghai + Jiangsu + Zhejiang)
                   </p>
                 </div>
               </div>
 
-              <div className="border-t pt-6">
-                <h3 className="font-semibold mb-4 flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5 text-amber-500" />
-                  Important Rules
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                    <span>You must enter and exit through the same region (but can use different airports/ports)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                    <span>You cannot travel to other regions of China (e.g., if entering Shanghai, cannot go to Beijing)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                    <span>The 144 hours includes weekends and holidays</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
-                    <span>You must have confirmed onward tickets (flights, trains, or ferries)</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
-                <h4 className="font-semibold text-amber-800 dark:text-amber-400 mb-2">Example Itinerary</h4>
-                <p className="text-sm text-amber-700 dark:text-amber-300">
-                  <strong>New York → Shanghai (6 days) → Tokyo</strong> ✓ Valid<br/>
-                  <strong>London → Beijing (3 days) → Shanghai → London</strong> ✗ Invalid (must exit same region)
-                </p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-amber-800">Important Notes</h4>
+                    <ul className="text-sm text-amber-700 mt-2 space-y-1">
+                      <li>• You cannot leave the designated region during your stay</li>
+                      <li>• You must exit China from a different city than your entry (within the same region)</li>
+                      <li>• Direct round-trip flights (e.g., USA → China → USA) do not qualify</li>
+                      <li>• You must have confirmed onward tickets</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -186,26 +168,18 @@ export function VisaGuide() {
 
         {/* Eligible Cities */}
         <TabsContent value="cities">
-          <Card>
+          <Card className="border-slate-100">
             <CardHeader>
-              <CardTitle>37 Ports Across 16 Regions</CardTitle>
+              <CardTitle className="text-slate-800">20 Regions with 144-Hour Visa-Free Transit</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 max-h-[500px] overflow-y-auto">
                 {eligibleCities.map((region) => (
-                  <div key={region.region} className="border rounded-lg p-4">
-                    <h3 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">
-                      {region.region}
-                    </h3>
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <span className="text-muted-foreground">Cities: </span>
-                        {region.cities.join(', ')}
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Airports: </span>
-                        {region.airports.join(', ')}
-                      </div>
+                  <div key={region.region} className="border border-slate-100 rounded-lg p-4">
+                    <h3 className="font-semibold text-slate-800 mb-2">{region.region}</h3>
+                    <div className="text-sm text-slate-500">
+                      <p className="mb-1"><span className="font-medium text-slate-600">Cities:</span> {region.cities.join(', ')}</p>
+                      <p><span className="font-medium text-slate-600">Airports:</span> {region.airports.join(', ')}</p>
                     </div>
                   </div>
                 ))}
@@ -216,14 +190,14 @@ export function VisaGuide() {
 
         {/* Eligible Countries */}
         <TabsContent value="countries">
-          <Card>
+          <Card className="border-slate-100">
             <CardHeader>
-              <CardTitle>54 Eligible Countries & Regions</CardTitle>
+              <CardTitle className="text-slate-800">54 Eligible Countries & Regions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {eligibleCountries.map((country) => (
-                  <div key={country} className="flex items-center gap-2 p-2 rounded hover:bg-muted">
+                  <div key={country} className="flex items-center gap-2 text-slate-600">
                     <CheckCircle className="w-4 h-4 text-green-500" />
                     <span className="text-sm">{country}</span>
                   </div>
@@ -235,43 +209,39 @@ export function VisaGuide() {
 
         {/* FAQ */}
         <TabsContent value="faq">
-          <Card>
+          <Card className="border-slate-100">
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
+              <CardTitle className="text-slate-800">Frequently Asked Questions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {[
                 {
+                  q: 'Can I work during the 144-hour visa-free period?',
+                  a: 'No, you cannot engage in any employment or work activities. This policy is strictly for transit and tourism purposes.',
+                },
+                {
+                  q: 'What happens if I overstay the 144 hours?',
+                  a: 'Overstaying will result in fines and potential entry bans. Make sure to exit before the 144-hour limit.',
+                },
+                {
                   q: 'Can I extend my stay beyond 144 hours?',
-                  a: 'No, you cannot extend the 144-hour visa-free period. If you need to stay longer, you must apply for a proper visa before arrival.'
+                  a: 'No, the 144-hour visa-free transit cannot be extended. If you need a longer stay, apply for a regular visa before arrival.',
                 },
                 {
-                  q: 'What if my flight is delayed and I overstay?',
-                  a: 'Contact the immigration office immediately. Flight delays are usually understood, but you should have documentation from the airline.'
-                },
-                {
-                  q: 'Can I work or study during the 144 hours?',
-                  a: 'No, the visa-free transit is strictly for tourism and transit purposes. Working or studying is not permitted.'
-                },
-                {
-                  q: 'Do I need to register with police?',
-                  a: 'If staying at a hotel, they will register you automatically. If staying at a private residence, you must register at the local police station within 24 hours.'
+                  q: 'Do I need to register with the police?',
+                  a: 'If staying at a hotel, they will register for you. If staying at a private residence, you must register at the local police station within 24 hours.',
                 },
                 {
                   q: 'Can I visit multiple cities within the region?',
-                  a: 'Yes, you can travel freely within the designated region. For example, entering Shanghai, you can visit Suzhou, Hangzhou, and Nanjing.'
+                  a: 'Yes, you can travel freely within the designated region. For example, in the Shanghai region, you can visit Shanghai, Hangzhou, Suzhou, etc.',
                 },
-                {
-                  q: 'What happens if I\'m not eligible upon arrival?',
-                  a: 'You may be denied entry and required to take the next flight out. Always verify eligibility before traveling.'
-                },
-              ].map((item, index) => (
-                <div key={index} className="border-b last:border-0 pb-4 last:pb-0">
-                  <h4 className="font-semibold flex items-start gap-2">
-                    <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5" />
-                    {item.q}
+              ].map((faq, index) => (
+                <div key={index} className="border-b border-slate-100 pb-4 last:border-0">
+                  <h4 className="font-semibold text-slate-800 flex items-center gap-2">
+                    <HelpCircle className="w-4 h-4 text-slate-400" />
+                    {faq.q}
                   </h4>
-                  <p className="mt-2 text-muted-foreground pl-7">{item.a}</p>
+                  <p className="text-slate-500 mt-2 text-sm">{faq.a}</p>
                 </div>
               ))}
             </CardContent>

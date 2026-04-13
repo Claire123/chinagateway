@@ -9,24 +9,19 @@ export const metadata: Metadata = {
 
 export default function VisaPage() {
   return (
-    <div className="min-h-screen bg-black">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px]" />
-        </div>
-        
+    <div className="min-h-screen bg-white">
+      {/* Hero Section - 改为浅灰色背景 */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-slate-50/50 to-white">
         <div className="container-apple relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-white mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-slate-800 mb-6 tracking-tight">
               144-Hour
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="text-slate-500">
                 Visa-Free Transit
               </span>
             </h1>
-            <p className="text-xl text-white/50 font-light">
+            <p className="text-xl text-slate-500 font-light">
               Check your eligibility instantly and explore China without a visa
             </p>
           </div>
@@ -39,8 +34,10 @@ export default function VisaPage() {
       </section>
 
       {/* Guide Section */}
-      <section className="pb-32">
-        <VisaGuide />
+      <section className="pb-32 bg-slate-50/50">
+        <div className="container-apple pt-16">
+          <VisaGuide />
+        </div>
       </section>
     </div>
   )

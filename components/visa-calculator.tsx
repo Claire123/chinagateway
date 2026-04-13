@@ -67,28 +67,28 @@ export function VisaCalculator() {
 
   return (
     <div className="container-apple max-w-3xl">
-      <Card className="bg-white/5 border-white/10 backdrop-blur-sm overflow-hidden">
+      <Card className="bg-white border-slate-100 overflow-hidden">
         <div className="p-8 md:p-12">
           {/* Steps */}
           <div className="space-y-8">
             {/* Step 1 */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-white/70 flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-semibold">
+              <label className="text-sm font-medium text-slate-600 flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-semibold">
                   1
                 </span>
                 What is your nationality?
               </label>
               <Select value={nationality} onValueChange={setNationality}>
-                <SelectTrigger className="h-14 bg-white/5 border-white/10 text-white text-lg rounded-xl">
+                <SelectTrigger className="h-14 bg-slate-50 border-slate-200 text-slate-800 text-lg rounded-xl">
                   <SelectValue placeholder="Select your country" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-900 border-white/10">
+                <SelectContent className="bg-white border-slate-200">
                   {countries.map((country) => (
                     <SelectItem 
                       key={country.code} 
                       value={country.code}
-                      className="text-white focus:bg-white/10"
+                      className="text-slate-800 focus:bg-slate-100"
                     >
                       {country.name}
                     </SelectItem>
@@ -99,22 +99,22 @@ export function VisaCalculator() {
 
             {/* Step 2 */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-white/70 flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-semibold">
+              <label className="text-sm font-medium text-slate-600 flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-semibold">
                   2
                 </span>
                 Which city will you enter?
               </label>
               <Select value={entryCity} onValueChange={setEntryCity}>
-                <SelectTrigger className="h-14 bg-white/5 border-white/10 text-white text-lg rounded-xl">
+                <SelectTrigger className="h-14 bg-slate-50 border-slate-200 text-slate-800 text-lg rounded-xl">
                   <SelectValue placeholder="Select entry city" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-900 border-white/10">
+                <SelectContent className="bg-white border-slate-200">
                   {cities.map((city) => (
                     <SelectItem 
                       key={city.code} 
                       value={city.code}
-                      className="text-white focus:bg-white/10"
+                      className="text-slate-800 focus:bg-slate-100"
                     >
                       {city.name}
                     </SelectItem>
@@ -122,7 +122,7 @@ export function VisaCalculator() {
                 </SelectContent>
               </Select>
               {selectedCity && (
-                <p className="text-sm text-white/40 flex items-center gap-2">
+                <p className="text-sm text-slate-400 flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
                   Valid region: {selectedCity.region}
                 </p>
@@ -131,29 +131,29 @@ export function VisaCalculator() {
 
             {/* Step 3 */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-white/70 flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-semibold">
+              <label className="text-sm font-medium text-slate-600 flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-semibold">
                   3
                 </span>
                 Where are you traveling to after China?
               </label>
               <Select value={thirdCountry} onValueChange={setThirdCountry}>
-                <SelectTrigger className="h-14 bg-white/5 border-white/10 text-white text-lg rounded-xl">
+                <SelectTrigger className="h-14 bg-slate-50 border-slate-200 text-slate-800 text-lg rounded-xl">
                   <SelectValue placeholder="Select destination" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-900 border-white/10">
+                <SelectContent className="bg-white border-slate-200">
                   {thirdCountries.map((country) => (
                     <SelectItem 
                       key={country.code} 
                       value={country.code}
-                      className="text-white focus:bg-white/10"
+                      className="text-slate-800 focus:bg-slate-100"
                     >
                       {country.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-xs text-white/30">
+              <p className="text-xs text-slate-400">
                 Must be a different country/region than your origin
               </p>
             </div>
@@ -162,7 +162,7 @@ export function VisaCalculator() {
             <Button 
               onClick={handleCalculate}
               disabled={!nationality || !entryCity || !thirdCountry}
-              className="w-full h-14 text-lg bg-white text-black hover:bg-white/90 rounded-full font-medium disabled:opacity-50"
+              className="w-full h-14 text-lg bg-slate-700 text-white hover:bg-slate-800 rounded-full font-medium disabled:opacity-50"
               size="lg"
             >
               Check My Eligibility
@@ -174,104 +174,101 @@ export function VisaCalculator() {
           {showResult && result && (
             <div className={`mt-8 rounded-2xl p-8 ${
               result === 'eligible' 
-                ? 'bg-green-500/10 border border-green-500/20' 
-                : 'bg-red-500/10 border border-red-500/20'
+                ? 'bg-green-50 border border-green-200' 
+                : 'bg-red-50 border border-red-200'
             }`}>
               {result === 'eligible' ? (
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center">
-                      <CheckCircle className="w-8 h-8 text-green-400" />
+                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                      <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-semibold text-white">You are eligible!</h3>
-                      <p className="text-white/50">
+                      <h3 className="text-2xl font-semibold text-slate-800">You are eligible!</h3>
+                      <p className="text-slate-500">
                         You can visit China without a visa for up to 144 hours
                       </p>
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="bg-black/30 rounded-xl p-5">
-                      <div className="flex items-center gap-2 text-green-400 mb-2">
+                    <div className="bg-white rounded-xl p-5 border border-slate-100">
+                      <div className="flex items-center gap-2 text-green-600 mb-2">
                         <Clock className="w-5 h-5" />
                         <span className="font-medium">Max Stay</span>
                       </div>
-                      <p className="text-3xl font-bold text-white">144 hours</p>
-                      <p className="text-sm text-white/40">6 days from entry</p>
+                      <p className="text-3xl font-bold text-slate-800">144 hours</p>
+                      <p className="text-sm text-slate-500">6 days maximum</p>
                     </div>
                     
-                    <div className="bg-black/30 rounded-xl p-5">
-                      <div className="flex items-center gap-2 text-green-400 mb-2">
+                    <div className="bg-white rounded-xl p-5 border border-slate-100">
+                      <div className="flex items-center gap-2 text-slate-600 mb-2">
                         <MapPin className="w-5 h-5" />
                         <span className="font-medium">Valid Region</span>
                       </div>
-                      <p className="text-lg font-bold text-white">{selectedCity?.region}</p>
+                      <p className="text-lg font-bold text-slate-800">{selectedCity?.region}</p>
+                      <p className="text-sm text-slate-500">Stay within this area</p>
                     </div>
                   </div>
 
-                  <div className="bg-black/30 rounded-xl p-5">
-                    <div className="flex items-center gap-2 text-white/70 mb-4">
+                  <div className="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                    <h4 className="font-semibold text-amber-800 mb-2 flex items-center gap-2">
                       <FileText className="w-5 h-5" />
-                      <span className="font-medium">Required Documents</span>
-                    </div>
-                    <ul className="space-y-3">
-                      {[
-                        'Valid passport (6+ months validity)',
-                        'Confirmed onward ticket to third country/region',
-                        'Hotel booking (recommended)',
-                        'Completed arrival/departure card',
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-white/70">
-                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
+                      Required Documents
+                    </h4>
+                    <ul className="text-sm text-amber-700 space-y-1">
+                      <li>• Valid passport (6+ months validity)</li>
+                      <li>• Confirmed onward ticket to third country</li>
+                      <li>• Hotel booking or accommodation proof</li>
+                      <li>• Completed arrival/departure card</li>
                     </ul>
                   </div>
 
-                  <div className="flex gap-3">
-                    <Button variant="outline" className="flex-1 border-white/20 text-white hover:bg-white/10 rounded-full h-12">
-                      <FileText className="w-4 h-4 mr-2" />
-                      Download Checklist
-                    </Button>
-                    <Button className="flex-1 bg-white text-black hover:bg-white/90 rounded-full h-12">
-                      <Plane className="w-4 h-4 mr-2" />
-                      Plan My Trip
-                    </Button>
-                  </div>
+                  <Button className="w-full h-12 bg-slate-700 hover:bg-slate-800 text-white rounded-full">
+                    <Plane className="w-5 h-5 mr-2" />
+                    Start Planning My Trip
+                  </Button>
                 </div>
               ) : (
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center">
-                      <XCircle className="w-8 h-8 text-red-400" />
+                    <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
+                      <XCircle className="w-8 h-8 text-red-600" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-semibold text-white">You may need a visa</h3>
-                      <p className="text-white/50">
-                        Based on your selections, visa-free transit may not apply
+                      <h3 className="text-2xl font-semibold text-slate-800">Not eligible for visa-free</h3>
+                      <p className="text-slate-500">
+                        You will need to apply for a regular visa
                       </p>
                     </div>
                   </div>
 
-                  <div className="bg-black/30 rounded-xl p-5">
-                    <p className="text-white/70 mb-4">Possible reasons:</p>
-                    <ul className="space-y-2 text-white/50">
-                      <li>• Your nationality is not on the visa-free list</li>
-                      <li>• Your destination is the same as your origin</li>
-                      <li>• You plan to stay longer than 144 hours</li>
+                  <div className="bg-white rounded-xl p-5 border border-slate-100">
+                    <h4 className="font-semibold text-slate-800 mb-3">Why?</h4>
+                    <ul className="text-slate-600 space-y-2">
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-500">•</span>
+                        Your nationality is not on the eligible countries list, OR
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-500">•</span>
+                        Your third country destination is the same as your origin
+                      </li>
                     </ul>
                   </div>
 
-                  <div className="flex gap-3">
-                    <Button variant="outline" className="flex-1 border-white/20 text-white hover:bg-white/10 rounded-full h-12">
-                      Check Visa Requirements
-                    </Button>
-                    <Button className="flex-1 bg-white text-black hover:bg-white/90 rounded-full h-12">
-                      Contact Support
-                    </Button>
+                  <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                    <h4 className="font-semibold text-slate-800 mb-2">Alternative Options</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• Apply for a tourist visa (L visa) - typically valid for 30-90 days</li>
+                      <li>• Consider the 72-hour visa-free transit if applicable</li>
+                      <li>• Contact the Chinese embassy for guidance</li>
+                    </ul>
                   </div>
+
+                  <Button variant="outline" className="w-full h-12 border-slate-300 text-slate-700 rounded-full">
+                    Learn About Visa Application
+                  </Button>
                 </div>
               )}
             </div>
