@@ -14,7 +14,7 @@ const features = [
     link: '/travel',
     linkText: 'Plan your trip',
     bgGradient: 'from-slate-50 to-stone-50',
-    image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80',
+    image: '/images/city-placeholder.svg',
   },
   {
     icon: Stethoscope,
@@ -23,7 +23,7 @@ const features = [
     link: '/healthcare',
     linkText: 'Learn more',
     bgGradient: 'from-gray-50 to-slate-50',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
   },
   {
     icon: Clock,
@@ -32,7 +32,7 @@ const features = [
     link: '/visa',
     linkText: 'Check now',
     bgGradient: 'from-stone-50 to-gray-50',
-    image: 'https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80',
+    image: '/images/city-placeholder.svg',
   },
   {
     icon: Shield,
@@ -41,7 +41,7 @@ const features = [
     link: '/healthcare',
     linkText: 'View hospitals',
     bgGradient: 'from-slate-50 to-gray-50',
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
   },
 ]
 

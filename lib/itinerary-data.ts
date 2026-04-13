@@ -54,7 +54,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'shanghai',
     name: 'Shanghai',
     description: 'The Paris of the East - A perfect blend of East and West',
-    image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['The Bund', 'Oriental Pearl Tower', 'Yu Garden', 'French Concession', 'Nanjing Road'],
     bestAreas: {
       budget: { name: 'People\'s Square Area', description: 'Central location, near subway, many hostels' },
@@ -200,7 +200,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'beijing',
     name: 'Beijing',
     description: 'Ancient capital with 3000 years of history',
-    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs', 'Summer Palace'],
     bestAreas: {
       budget: { name: 'Qianmen/Dashilan', description: 'Near Forbidden City, traditional area' },
@@ -342,7 +342,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'xian',
     name: 'Xi\'an',
     description: 'Ancient capital of 13 dynasties - Home of the Terracotta Warriors',
-    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Big Wild Goose Pagoda', 'Shaanxi History Museum'],
     bestAreas: {
       budget: { name: 'Near Bell Tower', description: 'Central location, many hostels and budget hotels' },
@@ -463,7 +463,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'chengdu',
     name: 'Chengdu',
     description: 'Home of giant pandas and the capital of Sichuan cuisine',
-    image: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['Giant Panda Base', 'Jinli Street', 'Wide and Narrow Alleys', 'Leshan Giant Buddha', 'Sichuan Opera'],
     bestAreas: {
       budget: { name: 'Chunxi Road Area', description: 'Central, many budget options' },
@@ -587,7 +587,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'guilin',
     name: 'Guilin',
     description: 'World-famous karst mountains and Li River scenery',
-    image: 'https://images.unsplash.com/photo-1537531383496-f4749b8032cf?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['Li River Cruise', 'Reed Flute Cave', 'Elephant Trunk Hill', 'Yangshuo', 'Longji Rice Terraces'],
     bestAreas: {
       budget: { name: 'Near Train Station', description: 'Budget hotels and hostels' },
@@ -709,7 +709,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'hangzhou',
     name: 'Hangzhou',
     description: 'Heaven on Earth - Famous for West Lake and Longjing tea',
-    image: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800&q=80',
+    image: '/images/city-placeholder.svg',
     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Fields', 'Xixi Wetland', 'Leifeng Pagoda'],
     bestAreas: {
       budget: { name: 'Near West Lake', description: 'Many budget hotels near attractions' },

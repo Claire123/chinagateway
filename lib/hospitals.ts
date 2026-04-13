@@ -6,7 +6,7 @@ export const hospitalsData = [
     city: 'Shanghai',
     rating: 4.8,
     reviews: 127,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'One of Shanghai\'s top hospitals with a dedicated International Medical Center serving expats and medical tourists since 2005.',
     longDescription: `Shanghai East Hospital is a comprehensive tertiary hospital directly under the Shanghai Municipal Health Commission. Established in 1920, it has grown to become one of the leading medical institutions in China.
 
@@ -45,7 +45,7 @@ The hospital features a state-of-the-art International Medical Center that provi
     city: 'Beijing',
     rating: 4.9,
     reviews: 203,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'Consistently ranked #1 in China, with over 90 years of history and world-class medical expertise.',
     longDescription: `Peking Union Medical College Hospital (PUMCH) is one of the most prestigious hospitals in China. Founded in 1921, it has consistently been ranked as the top hospital in China for over a decade.
 
@@ -83,7 +83,7 @@ The hospital is renowned for its exceptional medical care, research, and educati
     city: 'Shanghai',
     rating: 4.7,
     reviews: 89,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'Renowned for dental and cosmetic surgery, offering significant cost savings compared to Western countries.',
     longDescription: `The 9th People\'s Hospital of Shanghai is world-famous for its dental and plastic surgery departments. It is affiliated with Shanghai Jiao Tong University School of Medicine.
 
@@ -120,7 +120,7 @@ The hospital attracts thousands of medical tourists annually seeking high-qualit
     city: 'Guangzhou',
     rating: 4.6,
     reviews: 156,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'Leading hospital in South China with comprehensive international patient services.',
     longDescription: `Guangdong Provincial People's Hospital is one of the largest and most comprehensive hospitals in South China. Established in 1946, it has a long history of providing excellent medical care.
 
@@ -155,7 +155,7 @@ The hospital is particularly strong in cardiology and cardiovascular surgery, wi
     city: 'Chengdu',
     rating: 4.8,
     reviews: 134,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'The largest single-site hospital in the world, combining Western medicine with Traditional Chinese Medicine.',
     longDescription: `West China Hospital of Sichuan University is the largest single-site hospital in the world. It is consistently ranked among the top hospitals in China.
 
@@ -190,7 +190,7 @@ The hospital is famous for integrating modern Western medicine with Traditional 
     city: 'Hangzhou',
     rating: 4.7,
     reviews: 98,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/hospital-placeholder.svg',
     description: 'Joint venture hospital with US management, offering international standards at local prices.',
     longDescription: `Sir Run Run Shaw Hospital is a unique joint venture between China and the United States. It was established with support from the Sir Run Run Shaw Foundation and features American-style hospital management.
 

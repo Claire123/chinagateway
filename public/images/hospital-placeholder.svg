@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f1f5f9"/>
+  <rect x="200" y="150" width="400" height="300" rx="20" fill="#e2e8f0"/>
+  <rect x="250" y="200" width="100" height="100" rx="10" fill="#cbd5e1"/>
+  <rect x="450" y="200" width="100" height="100" rx="10" fill="#cbd5e1"/>
+  <rect x="350" y="350" width="100" height="100" rx="10" fill="#94a3b8"/>
+  <text x="400" y="500" text-anchor="middle" font-family="system-ui" font-size="24" fill="#64748b">Hospital</text>
+  <path d="M400 100 L400 80 M400 60 L400 40" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="400" cy="70" r="15" fill="#fbbf24" opacity="0.5"/>
+</svg>
