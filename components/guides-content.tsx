@@ -70,7 +70,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '2-3 days',
     climate: 'Humid subtropical',
-    image: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800&q=80',
   },
 ]
 

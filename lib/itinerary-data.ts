@@ -709,7 +709,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'hangzhou',
     name: 'Hangzhou',
     description: 'Heaven on Earth - Famous for West Lake and Longjing tea',
-    image: 'https://images.unsplash.com/photo-1565378435245-2528d587e524?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800&q=80',
     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Fields', 'Xixi Wetland', 'Leifeng Pagoda'],
     bestAreas: {
       budget: { name: 'Near West Lake', description: 'Many budget hotels near attractions' },
