@@ -99,10 +99,10 @@ export function GuidesContent() {
       <section className="pt-24 pb-16 bg-gradient-to-b from-slate-50/50 to-white">
         <div className="container-apple">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-headline font-semibold text-slate-800 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 tracking-tight">
               City Guides
             </h1>
-            <p className="text-body text-slate-500">
+            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
               Discover China&apos;s most fascinating destinations. From ancient capitals 
               to modern metropolises, each city offers unique experiences.
             </p>

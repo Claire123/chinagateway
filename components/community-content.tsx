@@ -557,10 +557,10 @@ export function CommunityContent() {
       {/* Hero */}
       <section className="pt-24 pb-12 bg-gradient-to-b from-slate-50/50 to-white">
         <div className="container-apple text-center">
-          <h1 className="text-headline font-semibold text-slate-800 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 tracking-tight">
             Community
           </h1>
-          <p className="text-body text-slate-500 max-w-xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Connect with fellow travelers, share your experiences, ask questions, 
             and find travel companions for your China journey.
           </p>

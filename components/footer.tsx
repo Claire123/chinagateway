@@ -20,13 +20,13 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50/50 text-xs text-slate-500">
-      <div className="container-wide py-10">
+    <footer className="bg-slate-50 text-sm text-slate-500">
+      <div className="container-apple py-12">
         {/* Main Footer */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10">
           {/* Explore */}
           <div>
-            <h3 className="font-semibold text-slate-700 mb-3">Explore</h3>
+            <h3 className="font-semibold text-slate-700 mb-4 text-base">Explore</h3>
             <ul className="space-y-2">
               {footerLinks.explore.map((link) => (
                 <li key={link.label}>
@@ -40,7 +40,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold text-slate-700 mb-3">Company</h3>
+            <h3 className="font-semibold text-slate-700 mb-4 text-base">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -54,7 +54,7 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold text-slate-700 mb-3">Legal</h3>
+            <h3 className="font-semibold text-slate-700 mb-4 text-base">Legal</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-slate-700 mb-3">Contact</h3>
+            <h3 className="font-semibold text-slate-700 mb-4 text-base">Contact</h3>
             <ul className="space-y-2">
               <li>clairezhang2018@163.com</li>
               <li>WhatsApp/WeChat: +86 159 0063 0236</li>
@@ -78,9 +78,9 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-6 border-t border-slate-200">
+        <div className="pt-8 border-t border-slate-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400">Copyright © {new Date().getFullYear()} ChinaGateway. All rights reserved.</p>
+            <p className="text-slate-400 text-sm">Copyright © {new Date().getFullYear()} ChinaGateway. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="#" className="text-slate-400 hover:text-slate-600 transition-colors">Privacy</Link>
               <Link href="#" className="text-slate-400 hover:text-slate-600 transition-colors">Terms</Link>
