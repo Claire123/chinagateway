@@ -1,38 +1,25 @@
 @echo off
-echo ==========================================
-echo Git Push with Auto-Retry
-echo ==========================================
-echo.
+setlocal enabledelayedexpansion
 
-set retry_count=0
-set max_retries=5
+echo Pushing to GitHub with retry...
+set count=0
+set max=10
 
 :retry
-echo Attempt %retry_count% of %max_retries%...
-git push
+set /a count+=1
+echo Attempt %count% of %max%...
 
+git push
 if %errorlevel% == 0 (
-    echo.
-    echo ==========================================
-    echo Push successful!
-    echo ==========================================
-    pause
+    echo Success!
     exit /b 0
 )
 
-set /a retry_count+=1
-
-if %retry_count% lss %max_retries% (
-    echo Push failed. Retrying in 10 seconds...
-    timeout /t 10 /nobreak >nul
-    goto retry
+if %count% == %max% (
+    echo Failed after %max% attempts
+    exit /b 1
 )
 
-echo.
-echo ==========================================
-echo Max retries reached. Push failed.
-echo Please try again later or use:
-echo   npx vercel --prod
-echo ==========================================
-pause
-exit /b 1
+echo Failed, waiting 10 seconds before retry...
+timeout /t 10 /nobreak >nul
+goto retry

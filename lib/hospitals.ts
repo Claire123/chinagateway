@@ -6,7 +6,7 @@ export const hospitalsData = [
     city: 'Shanghai',
     rating: 4.8,
     reviews: 127,
-    image: 'https://images.unsplash.com/photo-1587351021759-3e566b9af923?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
     description: 'One of Shanghai\'s top hospitals with a dedicated International Medical Center serving expats and medical tourists since 2005.',
     longDescription: `Shanghai East Hospital is a comprehensive tertiary hospital directly under the Shanghai Municipal Health Commission. Established in 1920, it has grown to become one of the leading medical institutions in China.
 
@@ -83,7 +83,7 @@ The hospital is renowned for its exceptional medical care, research, and educati
     city: 'Shanghai',
     rating: 4.7,
     reviews: 89,
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
     description: 'Renowned for dental and cosmetic surgery, offering significant cost savings compared to Western countries.',
     longDescription: `The 9th People\'s Hospital of Shanghai is world-famous for its dental and plastic surgery departments. It is affiliated with Shanghai Jiao Tong University School of Medicine.
 
@@ -155,7 +155,7 @@ The hospital is particularly strong in cardiology and cardiovascular surgery, wi
     city: 'Chengdu',
     rating: 4.8,
     reviews: 134,
-    image: 'https://images.unsplash.com/photo-1587351021759-3e566b9af923?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
     description: 'The largest single-site hospital in the world, combining Western medicine with Traditional Chinese Medicine.',
     longDescription: `West China Hospital of Sichuan University is the largest single-site hospital in the world. It is consistently ranked among the top hospitals in China.
 
