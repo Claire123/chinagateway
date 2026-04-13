@@ -18,36 +18,7 @@ import {
   Stethoscope
 } from 'lucide-react'
 import Link from 'next/link'
-
-const hospitals = [
-  {
-    id: 'shanghai-east',
-    name: 'Shanghai East Hospital',
-    nameCn: '上海市东方医院',
-    city: 'Shanghai',
-    image: 'https://images.unsplash.com/photo-1587351021759-3e566b9af923?w=800&q=80',
-  },
-  {
-    id: 'peking-union',
-    name: 'Peking Union Medical College Hospital',
-    nameCn: '北京协和医院',
-    city: 'Beijing',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
-  },
-  {
-    id: 'shanghai-9th',
-    name: '9th People\'s Hospital Shanghai',
-    nameCn: '上海第九人民医院',
-    city: 'Shanghai',
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80',
-  },
-]
-
-const specialties = [
-  'Cardiology', 'Oncology', 'Orthopedics', 'Internal Medicine', 
-  'Surgery', 'Dermatology', 'Dental', 'Plastic Surgery',
-  'Ophthalmology', 'Neurology', 'Gastroenterology'
-]
+import { hospitalsData, specialtiesList } from '@/lib/hospitals'
 
 const timeSlots = [
   '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
@@ -58,7 +29,7 @@ export default function BookAppointmentPage() {
   const params = useParams()
   const hospitalId = params.id as string
   
-  const hospital = hospitals.find(h => h.id === hospitalId) || hospitals[0]
+  const hospital = hospitalsData.find(h => h.id === hospitalId) || hospitalsData[0]
   
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -238,7 +209,7 @@ export default function BookAppointmentPage() {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Select Specialty *</label>
                     <div className="flex flex-wrap gap-2">
-                      {specialties.map((specialty) => (
+                      {hospital.specialties.map((specialty) => (
                         <button
                           key={specialty}
                           onClick={() => handleInputChange('specialty', specialty)}
@@ -256,12 +227,22 @@ export default function BookAppointmentPage() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Preferred Doctor (Optional)</label>
-                    <Input 
-                      placeholder="Any available doctor"
-                      value={formData.preferredDoctor}
-                      onChange={(e) => handleInputChange('preferredDoctor', e.target.value)}
-                      className="h-12"
-                    />
+                    <div className="grid md:grid-cols-2 gap-2">
+                      {hospital.doctors.map((doctor) => (
+                        <button
+                          key={doctor.name}
+                          onClick={() => handleInputChange('preferredDoctor', doctor.name)}
+                          className={`p-3 rounded-xl border text-left transition-all ${
+                            formData.preferredDoctor === doctor.name
+                              ? 'bg-slate-700 text-white border-slate-700'
+                              : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
+                          }`}
+                        >
+                          <div className="font-medium">{doctor.name}</div>
+                          <div className="text-sm opacity-80">{doctor.title}</div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="space-y-2">
