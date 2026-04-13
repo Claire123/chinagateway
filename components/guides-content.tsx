@@ -15,7 +15,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '3-5 days',
     climate: 'Humid subtropical',
-    image: '/images/shanghai.jpg',
+    image: '/images/cities/shanghai.jpg',
   },
   {
     id: 'beijing',
@@ -26,7 +26,7 @@ const cities = [
     bestTime: 'April-May, September-October',
     duration: '4-6 days',
     climate: 'Continental monsoon',
-    image: '/images/beijing.jpg',
+    image: '/images/cities/beijing.jpg',
   },
   {
     id: 'xian',
@@ -37,7 +37,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '2-3 days',
     climate: 'Semi-humid continental',
-    image: '/images/xian.jpg',
+    image: '/images/cities/xian.jpg',
   },
   {
     id: 'chengdu',
@@ -48,7 +48,7 @@ const cities = [
     bestTime: 'March-June, September-November',
     duration: '3-4 days',
     climate: 'Humid subtropical',
-    image: '/images/chengdu.jpg',
+    image: '/images/cities/chengdu.jpg',
   },
   {
     id: 'guilin',
@@ -59,7 +59,7 @@ const cities = [
     bestTime: 'April-October',
     duration: '3-4 days',
     climate: 'Humid subtropical',
-    image: '/images/guilin.jpg',
+    image: '/images/cities/guilin.jpg',
   },
   {
     id: 'hangzhou',
@@ -70,7 +70,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '2-3 days',
     climate: 'Humid subtropical',
-    image: '/images/hangzhou.jpg',
+    image: '/images/cities/hangzhou.jpg',
   },
 ]
 

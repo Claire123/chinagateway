@@ -14,7 +14,7 @@ const features = [
     link: '/travel',
     linkText: 'Plan your trip',
     bgGradient: 'from-slate-50 to-stone-50',
-    image: '/images/shanghai.jpg',
+    image: '/images/cities/shanghai.jpg',
   },
   {
     icon: Stethoscope,
@@ -23,7 +23,7 @@ const features = [
     link: '/healthcare',
     linkText: 'Learn more',
     bgGradient: 'from-gray-50 to-slate-50',
-    image: '/images/hospital.jpg',
+    image: '/images/hospitals/exterior-modern-01.jpg',
   },
   {
     icon: Clock,
@@ -32,7 +32,7 @@ const features = [
     link: '/visa',
     linkText: 'Check now',
     bgGradient: 'from-stone-50 to-gray-50',
-    image: '/images/beijing.jpg',
+    image: '/images/cities/beijing.jpg',
   },
   {
     icon: Shield,
@@ -41,7 +41,7 @@ const features = [
     link: '/healthcare',
     linkText: 'View hospitals',
     bgGradient: 'from-slate-50 to-gray-50',
-    image: '/images/hospital.jpg',
+    image: '/images/hospitals/interior-reception-01.jpg',
   },
 ]
 
