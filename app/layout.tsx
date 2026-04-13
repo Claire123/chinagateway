@@ -58,7 +58,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#667eea" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className="font-sf antialiased bg-white text-gray-900">
+      <body className="antialiased bg-white text-slate-700">
         <Providers>
           <div className="relative flex flex-col min-h-screen">
             <Navbar />
