@@ -14,7 +14,7 @@ const features = [
     link: '/travel',
     linkText: 'Plan your trip',
     bgGradient: 'from-slate-50 to-stone-50',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Shanghai_skyline_from_the_bund.jpg/800px-Shanghai_skyline_from_the_bund.jpg',
+    image: '/images/shanghai.jpg',
   },
   {
     icon: Stethoscope,
@@ -23,7 +23,7 @@ const features = [
     link: '/healthcare',
     linkText: 'Learn more',
     bgGradient: 'from-gray-50 to-slate-50',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hospital_building.jpg/800px-Hospital_building.jpg',
+    image: '/images/hospital.jpg',
   },
   {
     icon: Clock,
@@ -32,7 +32,7 @@ const features = [
     link: '/visa',
     linkText: 'Check now',
     bgGradient: 'from-stone-50 to-gray-50',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling.jpg/800px-The_Great_Wall_of_China_at_Jinshanling.jpg',
+    image: '/images/beijing.jpg',
   },
   {
     icon: Shield,
@@ -41,7 +41,7 @@ const features = [
     link: '/healthcare',
     linkText: 'View hospitals',
     bgGradient: 'from-slate-50 to-gray-50',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hospital_building.jpg/800px-Hospital_building.jpg',
+    image: '/images/hospital.jpg',
   },
 ]
 

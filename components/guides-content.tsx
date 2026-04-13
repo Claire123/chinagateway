@@ -15,7 +15,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '3-5 days',
     climate: 'Humid subtropical',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Shanghai_skyline_from_the_bund.jpg/800px-Shanghai_skyline_from_the_bund.jpg',
+    image: '/images/shanghai.jpg',
   },
   {
     id: 'beijing',
@@ -26,7 +26,7 @@ const cities = [
     bestTime: 'April-May, September-October',
     duration: '4-6 days',
     climate: 'Continental monsoon',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling.jpg/800px-The_Great_Wall_of_China_at_Jinshanling.jpg',
+    image: '/images/beijing.jpg',
   },
   {
     id: 'xian',
@@ -37,7 +37,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '2-3 days',
     climate: 'Semi-humid continental',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Xi%27an_City_Wall.jpg/800px-Xi%27an_City_Wall.jpg',
+    image: '/images/xian.jpg',
   },
   {
     id: 'chengdu',
@@ -48,7 +48,7 @@ const cities = [
     bestTime: 'March-June, September-November',
     duration: '3-4 days',
     climate: 'Humid subtropical',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_Panda_in_Chengdu.jpg/800px-Giant_Panda_in_Chengdu.jpg',
+    image: '/images/chengdu.jpg',
   },
   {
     id: 'guilin',
@@ -59,7 +59,7 @@ const cities = [
     bestTime: 'April-October',
     duration: '3-4 days',
     climate: 'Humid subtropical',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Li_River_Guilin.jpg/800px-Li_River_Guilin.jpg',
+    image: '/images/guilin.jpg',
   },
   {
     id: 'hangzhou',
@@ -70,7 +70,7 @@ const cities = [
     bestTime: 'March-May, September-November',
     duration: '2-3 days',
     climate: 'Humid subtropical',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/West_Lake_Hangzhou.jpg/800px-West_Lake_Hangzhou.jpg',
+    image: '/images/hangzhou.jpg',
   },
 ]
 
