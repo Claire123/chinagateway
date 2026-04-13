@@ -14,6 +14,7 @@ const features = [
     link: '/travel',
     linkText: 'Plan your trip',
     bgGradient: 'from-slate-50 to-stone-50',
+    image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80',
   },
   {
     icon: Stethoscope,
@@ -22,6 +23,7 @@ const features = [
     link: '/healthcare',
     linkText: 'Learn more',
     bgGradient: 'from-gray-50 to-slate-50',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
   },
   {
     icon: Clock,
@@ -30,6 +32,7 @@ const features = [
     link: '/visa',
     linkText: 'Check now',
     bgGradient: 'from-stone-50 to-gray-50',
+    image: 'https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80',
   },
   {
     icon: Shield,
@@ -38,6 +41,7 @@ const features = [
     link: '/healthcare',
     linkText: 'View hospitals',
     bgGradient: 'from-slate-50 to-gray-50',
+    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80',
   },
 ]
 
@@ -121,9 +125,13 @@ export function FeatureCards() {
                     </Link>
                   </div>
                   
-                  {/* Image Placeholder - 柔和 */}
-                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-100/50 to-stone-100/50 flex items-center justify-center">
-                    <span className="text-slate-300 text-sm">Feature Image</span>
+                  {/* Feature Image */}
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={feature.image} 
+                      alt={feature.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
                 </Card>
               </div>

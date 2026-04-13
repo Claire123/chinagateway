@@ -66,18 +66,18 @@ export function ContactContent() {
       {/* Contact Info Cards */}
       <section className="py-12 border-t border-slate-800">
         <div className="container-apple">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {contactInfo.map((item) => {
               const Icon = item.icon
               return (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:bg-slate-800 transition-all duration-300"
+                  className="group p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:bg-slate-800 transition-all duration-300 w-[200px] text-center"
                 >
-                  <Icon className="w-8 h-8 text-slate-400 mb-4 group-hover:scale-110 transition-transform" />
+                  <Icon className="w-8 h-8 text-slate-400 mb-4 mx-auto group-hover:scale-110 transition-transform" />
                   <div className="text-sm text-slate-400 mb-1">{item.label}</div>
-                  <div className="text-white font-medium text-sm">{item.value}</div>
+                  <div className="text-white font-medium text-sm break-words">{item.value}</div>
                 </a>
               )
             })}
