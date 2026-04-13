@@ -54,7 +54,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'shanghai',
     name: 'Shanghai',
     description: 'The Paris of the East - A perfect blend of East and West',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Shanghai_skyline_from_the_bund.jpg/800px-Shanghai_skyline_from_the_bund.jpg',
     highlights: ['The Bund', 'Oriental Pearl Tower', 'Yu Garden', 'French Concession', 'Nanjing Road'],
     bestAreas: {
       budget: { name: 'People\'s Square Area', description: 'Central location, near subway, many hostels' },
@@ -200,7 +200,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'beijing',
     name: 'Beijing',
     description: 'Ancient capital with 3000 years of history',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling.jpg/800px-The_Great_Wall_of_China_at_Jinshanling.jpg',
     highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs', 'Summer Palace'],
     bestAreas: {
       budget: { name: 'Qianmen/Dashilan', description: 'Near Forbidden City, traditional area' },
@@ -342,7 +342,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'xian',
     name: 'Xi\'an',
     description: 'Ancient capital of 13 dynasties - Home of the Terracotta Warriors',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Xi%27an_City_Wall.jpg/800px-Xi%27an_City_Wall.jpg',
     highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Big Wild Goose Pagoda', 'Shaanxi History Museum'],
     bestAreas: {
       budget: { name: 'Near Bell Tower', description: 'Central location, many hostels and budget hotels' },
@@ -463,7 +463,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'chengdu',
     name: 'Chengdu',
     description: 'Home of giant pandas and the capital of Sichuan cuisine',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_Panda_in_Chengdu.jpg/800px-Giant_Panda_in_Chengdu.jpg',
     highlights: ['Giant Panda Base', 'Jinli Street', 'Wide and Narrow Alleys', 'Leshan Giant Buddha', 'Sichuan Opera'],
     bestAreas: {
       budget: { name: 'Chunxi Road Area', description: 'Central, many budget options' },
@@ -587,7 +587,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'guilin',
     name: 'Guilin',
     description: 'World-famous karst mountains and Li River scenery',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Li_River_Guilin.jpg/800px-Li_River_Guilin.jpg',
     highlights: ['Li River Cruise', 'Reed Flute Cave', 'Elephant Trunk Hill', 'Yangshuo', 'Longji Rice Terraces'],
     bestAreas: {
       budget: { name: 'Near Train Station', description: 'Budget hotels and hostels' },
@@ -709,7 +709,7 @@ export const citiesData: Record<string, CityData> = {
     id: 'hangzhou',
     name: 'Hangzhou',
     description: 'Heaven on Earth - Famous for West Lake and Longjing tea',
-    image: '/images/city-placeholder.svg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/West_Lake_Hangzhou.jpg/800px-West_Lake_Hangzhou.jpg',
     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Fields', 'Xixi Wetland', 'Leifeng Pagoda'],
     bestAreas: {
       budget: { name: 'Near West Lake', description: 'Many budget hotels near attractions' },
