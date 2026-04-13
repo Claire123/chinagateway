@@ -2,59 +2,46 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Calendar, Users, Wallet, Sparkles, MapPin, Clock, Plus, X } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-
-const cities = [
-  { 
-    id: 'shanghai',
-    name: 'Shanghai', 
-    image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=400&q=80', 
-    description: 'The Paris of the East' 
-  },
-  { 
-    id: 'beijing',
-    name: 'Beijing', 
-    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&q=80', 
-    description: 'Ancient capital, modern metropolis' 
-  },
-  { 
-    id: 'xian',
-    name: 'Xi\'an', 
-    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=400&q=80', 
-    description: 'Home of the Terracotta Warriors' 
-  },
-  { 
-    id: 'chengdu',
-    name: 'Chengdu', 
-    image: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&q=80', 
-    description: 'Pandas and spicy food' 
-  },
-  { 
-    id: 'guilin',
-    name: 'Guilin', 
-    image: 'https://images.unsplash.com/photo-1537531383496-f4749b8032cf?w=400&q=80', 
-    description: 'Karst mountains and rivers' 
-  },
-  { 
-    id: 'hangzhou',
-    name: 'Hangzhou', 
-    image: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&q=80', 
-    description: 'Heaven on Earth' 
-  },
-]
+import { 
+  Calendar, 
+  MapPin, 
+  Clock, 
+  Sparkles, 
+  Plus, 
+  X, 
+  Bed, 
+  Utensils, 
+  Lightbulb,
+  ChevronLeft,
+  Navigation,
+  Home
+} from 'lucide-react'
+import { 
+  citiesData, 
+  generateItinerary, 
+  getBudgetDescription,
+  DayPlan 
+} from '@/lib/itinerary-data'
 
 const interests = [
-  'History', 'Food', 'Nature', 'Modern', 'Art', 'Shopping', 'Nightlife', 'Local Life'
+  { id: 'history', label: 'History', icon: '🏛️' },
+  { id: 'food', label: 'Food', icon: '🍜' },
+  { id: 'nature', label: 'Nature', icon: '🌿' },
+  { id: 'modern', label: 'Modern', icon: '🏙️' },
+  { id: 'art', label: 'Art', icon: '🎨' },
+  { id: 'shopping', label: 'Shopping', icon: '🛍️' },
+  { id: 'nightlife', label: 'Nightlife', icon: '🌃' },
+  { id: 'local', label: 'Local Life', icon: '🏮' },
 ]
 
 const durations = [
-  { id: '1-3', label: '1-3 days', days: '3 days' },
-  { id: '4-6', label: '4-6 days', days: '6 days' },
-  { id: '1week', label: '1 week', days: '7 days' },
-  { id: '2weeks', label: '2 weeks', days: '14 days' },
+  { id: '1-3', label: '1-3 days', days: 3 },
+  { id: '4-6', label: '4-6 days', days: 6 },
+  { id: '1week', label: '1 week', days: 7 },
+  { id: '2weeks', label: '2 weeks', days: 14 },
 ]
 
 const budgets = [
@@ -71,6 +58,7 @@ export function TripPlanner() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([])
   const [selectedDuration, setSelectedDuration] = useState('')
   const [selectedBudget, setSelectedBudget] = useState('')
+  const [generatedItinerary, setGeneratedItinerary] = useState<DayPlan[]>([])
 
   const toggleCity = (cityId: string) => {
     setSelectedCities(prev => 
@@ -101,19 +89,16 @@ export function TripPlanner() {
 
   const allSelectedCities = [...selectedCities, ...customCities]
 
-  const generateItinerary = () => {
-    // In real app, this would call an API
+  const handleGenerate = () => {
+    const itinerary = generateItinerary(
+      selectedCities,
+      customCities,
+      selectedInterests,
+      durations.find(d => d.id === selectedDuration)?.days.toString() || '6',
+      selectedBudget
+    )
+    setGeneratedItinerary(itinerary)
     setStep(3)
-  }
-
-  const getItineraryDays = () => {
-    const duration = durations.find(d => d.id === selectedDuration)
-    const days = duration ? parseInt(duration.days) : 6
-    return Array.from({ length: Math.min(days, 7) }, (_, i) => i + 1)
-  }
-
-  const getBudgetDescription = () => {
-    return budgets.find(b => b.id === selectedBudget)?.description || ''
   }
 
   return (
@@ -125,7 +110,7 @@ export function TripPlanner() {
             Plan Your China Adventure
           </h1>
           <p className="text-body text-slate-500 max-w-2xl mx-auto">
-            From ancient wonders to modern marvels, discover the real China with personalized itineraries
+            Select your destinations and preferences, and we&apos;ll create a personalized itinerary just for you
           </p>
         </div>
       </section>
@@ -152,7 +137,7 @@ export function TripPlanner() {
           <div className="flex justify-between mt-2 text-sm text-slate-400">
             <span>Select Cities</span>
             <span>Preferences</span>
-            <span>Itinerary</span>
+            <span>Your Itinerary</span>
           </div>
         </div>
 
@@ -164,7 +149,7 @@ export function TripPlanner() {
             
             {/* Popular Cities */}
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {cities.map((city) => (
+              {Object.values(citiesData).map((city) => (
                 <Card 
                   key={city.id}
                   className={`cursor-pointer transition-all hover:shadow-lg overflow-hidden ${
@@ -213,7 +198,6 @@ export function TripPlanner() {
                 </Button>
               </div>
               
-              {/* Selected Custom Cities */}
               {customCities.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {customCities.map((city) => (
@@ -228,15 +212,11 @@ export function TripPlanner() {
               )}
             </div>
 
-            {/* Selected Summary */}
             {allSelectedCities.length > 0 && (
               <div className="bg-slate-100 rounded-xl p-4 mb-8">
                 <p className="text-sm text-slate-600 mb-2">Selected cities:</p>
                 <p className="font-medium text-slate-800">
-                  {allSelectedCities.map(id => {
-                    const city = cities.find(c => c.id === id)
-                    return city ? city.name : id
-                  }).join(', ')}
+                  {allSelectedCities.map(id => citiesData[id]?.name || id).join(' → ')}
                 </p>
               </div>
             )}
@@ -265,21 +245,22 @@ export function TripPlanner() {
               <div className="flex flex-wrap gap-2">
                 {interests.map((interest) => (
                   <button
-                    key={interest}
-                    onClick={() => toggleInterest(interest)}
+                    key={interest.id}
+                    onClick={() => toggleInterest(interest.id)}
                     className={`px-4 py-2 rounded-full border transition-all ${
-                      selectedInterests.includes(interest)
+                      selectedInterests.includes(interest.id)
                         ? 'bg-slate-700 text-white border-slate-700'
                         : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
                     }`}
                   >
-                    {interest}
+                    <span className="mr-1">{interest.icon}</span>
+                    {interest.label}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Duration - Fixed */}
+            {/* Duration */}
             <div className="mb-8">
               <h3 className="font-semibold mb-3 text-slate-700">Duration</h3>
               <div className="grid grid-cols-4 gap-2">
@@ -299,7 +280,7 @@ export function TripPlanner() {
               </div>
             </div>
 
-            {/* Budget - Fixed */}
+            {/* Budget */}
             <div className="mb-8">
               <h3 className="font-semibold mb-3 text-slate-700">Budget</h3>
               <div className="space-y-2">
@@ -331,76 +312,106 @@ export function TripPlanner() {
                 Back
               </Button>
               <Button 
-                onClick={generateItinerary}
+                onClick={handleGenerate}
                 disabled={selectedInterests.length === 0 || !selectedDuration || !selectedBudget}
                 size="lg"
                 className="bg-slate-700 hover:bg-slate-800"
               >
-                Generate Itinerary
+                Generate My Itinerary
               </Button>
             </div>
           </div>
         )}
 
         {/* Step 3: Generated Itinerary */}
-        {step === 3 && (
-          <div className="max-w-3xl mx-auto">
+        {step === 3 && generatedItinerary.length > 0 && (
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
             <div className="text-center mb-8">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                 <Sparkles className="w-8 h-8 text-slate-600" />
               </div>
               <h2 className="text-2xl font-bold text-slate-800">Your Personalized Itinerary</h2>
               <p className="text-slate-500 mt-2">
-                {allSelectedCities.map(id => {
-                  const city = cities.find(c => c.id === id)
-                  return city ? city.name : id
-                }).join(' → ')} • {selectedInterests.join(', ')} • {durations.find(d => d.id === selectedDuration)?.label}
+                {allSelectedCities.map(id => citiesData[id]?.name || id).join(' → ')} • {selectedInterests.join(', ')} • {durations.find(d => d.id === selectedDuration)?.label}
               </p>
-              <p className="text-sm text-slate-400 mt-1">{getBudgetDescription()}</p>
+              <p className="text-sm text-slate-400 mt-1">{getBudgetDescription(selectedBudget)}</p>
             </div>
 
-            <div className="space-y-4">
-              {getItineraryDays().map((day) => (
-                <Card key={day} className="border-slate-100">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-slate-800">Day {day}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 text-slate-400 mt-0.5" />
+            {/* Itinerary Days */}
+            <div className="space-y-6">
+              {generatedItinerary.map((day) => (
+                <Card key={day.day} className="border-slate-100 overflow-hidden">
+                  {/* Day Header */}
+                  <div className="bg-slate-50 p-4 border-b border-slate-100">
+                    <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-slate-700">Morning</p>
-                        <p className="text-sm text-slate-500">
-                          {day === 1 ? 'Arrival and hotel check-in' : 
-                           selectedInterests.includes('History') ? 'Visit historical sites and museums' :
-                           selectedInterests.includes('Food') ? 'Local breakfast and food market tour' :
-                           selectedInterests.includes('Nature') ? 'Nature walk or park visit' :
-                           'City exploration and sightseeing'}
-                        </p>
+                        <h3 className="text-xl font-bold text-slate-800">Day {day.day}: {day.city}</h3>
+                        <p className="text-slate-500">{day.theme}</p>
+                      </div>
+                      <Badge className="bg-slate-200 text-slate-700">
+                        {day.city}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-6">
+                    {/* Activities */}
+                    <div className="space-y-4 mb-6">
+                      {day.activities.map((activity, idx) => (
+                        <div key={idx} className="flex gap-4">
+                          <div className="flex-shrink-0 w-16 text-sm font-medium text-slate-600">
+                            {activity.time}
+                          </div>
+                          <div className="flex-1 pb-4 border-l-2 border-slate-200 pl-4 relative">
+                            <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-slate-300" />
+                            <h4 className="font-semibold text-slate-800">{activity.title}</h4>
+                            <p className="text-slate-600 text-sm">{activity.description}</p>
+                            <div className="flex items-center gap-4 mt-1 text-xs text-slate-400">
+                              <span className="flex items-center gap-1">
+                                <MapPin className="w-3 h-3" />
+                                {activity.location}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                {activity.duration}
+                              </span>
+                            </div>
+                            {activity.tips && (
+                              <div className="mt-2 flex items-start gap-1 text-xs text-amber-600 bg-amber-50 p-2 rounded">
+                                <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                                {activity.tips}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Accommodation */}
+                    <div className="bg-slate-50 rounded-xl p-4 mb-4">
+                      <div className="flex items-start gap-3">
+                        <Bed className="w-5 h-5 text-slate-400 mt-0.5" />
+                        <div>
+                          <h4 className="font-medium text-slate-800">Recommended Stay</h4>
+                          <p className="text-slate-600">{day.accommodation.name}</p>
+                          <p className="text-sm text-slate-500">{day.accommodation.area} - {day.accommodation.description}</p>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-slate-400 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-slate-700">Afternoon</p>
-                        <p className="text-sm text-slate-500">
-                          {selectedInterests.includes('Shopping') ? 'Shopping districts and local markets' :
-                           selectedInterests.includes('Art') ? 'Art galleries and cultural exhibits' :
-                           selectedInterests.includes('Modern') ? 'Modern architecture and business districts' :
-                           'Local attractions and cultural sites'}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Sparkles className="w-5 h-5 text-slate-400 mt-0.5" />
-                      <div>
-                        <p className="font-medium text-slate-700">Evening</p>
-                        <p className="text-sm text-slate-500">
-                          {selectedInterests.includes('Food') ? 'Dinner at recommended local restaurant' :
-                           selectedInterests.includes('Nightlife') ? 'Evening entertainment and nightlife' :
-                           selectedInterests.includes('Local Life') ? 'Experience local evening activities' :
-                           'Dinner and evening stroll'}
-                        </p>
+
+                    {/* Meals */}
+                    <div className="bg-slate-50 rounded-xl p-4">
+                      <div className="flex items-start gap-3">
+                        <Utensils className="w-5 h-5 text-slate-400 mt-0.5" />
+                        <div>
+                          <h4 className="font-medium text-slate-800">Recommended Meals</h4>
+                          <div className="text-sm text-slate-600 space-y-1">
+                            {day.meals.breakfast && <p>Breakfast: {day.meals.breakfast}</p>}
+                            {day.meals.lunch && <p>Lunch: {day.meals.lunch}</p>}
+                            {day.meals.dinner && <p>Dinner: {day.meals.dinner}</p>}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -408,26 +419,31 @@ export function TripPlanner() {
               ))}
             </div>
 
+            {/* Action Buttons */}
             <div className="mt-8 flex justify-between">
               <Button 
                 variant="outline" 
                 onClick={() => setStep(2)}
                 size="lg"
               >
+                <ChevronLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
               <div className="flex gap-2">
                 <Button 
                   variant="outline"
                   size="lg"
+                  onClick={() => alert('Itinerary saved to your account!')}
                 >
-                  Save
+                  Save Itinerary
                 </Button>
                 <Button 
                   size="lg"
                   className="bg-slate-700 hover:bg-slate-800"
+                  onClick={() => alert('Booking feature coming soon!')}
                 >
-                  Book Now
+                  <Navigation className="w-4 h-4 mr-2" />
+                  Book This Trip
                 </Button>
               </div>
             </div>
