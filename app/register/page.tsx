@@ -1,19 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Mail, User, CheckCircle, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
-export default function RegisterPage() {
+function RegisterForm() {
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  
   const [step, setStep] = useState<'form' | 'success'>('form')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   })
   const [isLoading, setIsLoading] = useState(false)
+  const [oauthLoading, setOauthLoading] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -154,16 +159,27 @@ export default function RegisterPage() {
             {/* Social Login Options */}
             <div className="space-y-3">
               <Button
-                className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 rounded-full"
-                onClick={() => alert('WeChat login coming soon!')}
+                className="w-full h-12 bg-[#07C160] text-white hover:bg-[#06AD56] rounded-full"
+                onClick={() => {
+                  setOauthLoading('wechat')
+                  // WeChat OAuth URL
+                  const appId = process.env.NEXT_PUBLIC_WECHAT_APP_ID || ''
+                  const redirectUri = encodeURIComponent(`${window.location.origin}/api/auth/wechat/callback`)
+                  window.location.href = `https://open.weixin.qq.com/connect/qrconnect?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_login&state=${callbackUrl}#wechat_redirect`
+                }}
+                disabled={oauthLoading !== null}
               >
-                Continue with WeChat
+                {oauthLoading === 'wechat' ? 'Connecting...' : 'Continue with WeChat'}
               </Button>
               <Button
-                className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 rounded-full"
-                onClick={() => alert('Google login coming soon!')}
+                className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 rounded-full border border-slate-300"
+                onClick={() => {
+                  setOauthLoading('google')
+                  window.location.href = `/api/auth/signin/google?callbackUrl=${encodeURIComponent(callbackUrl)}`
+                }}
+                disabled={oauthLoading !== null}
               >
-                Continue with Google
+                {oauthLoading === 'google' ? 'Connecting...' : 'Continue with Google'}
               </Button>
             </div>
 
@@ -182,5 +198,17 @@ export default function RegisterPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    }>
+      <RegisterForm />
+    </Suspense>
   )
 }
