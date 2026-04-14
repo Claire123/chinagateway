@@ -19,11 +19,28 @@ export default function RegisterPage() {
     e.preventDefault()
     setIsLoading(true)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsLoading(false)
-    setStep('success')
+    try {
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Registration failed')
+      }
+
+      setStep('success')
+    } catch (error) {
+      console.error('Registration error:', error)
+      alert('Registration failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (step === 'success') {
@@ -93,7 +110,7 @@ export default function RegisterPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Enter your full name"
-                  className="h-12 bg-slate-900/50 border-slate-600 text-white placeholder:text-slate-500"
+                  className="h-12 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400"
                   required
                 />
               </div>
@@ -109,7 +126,7 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="Enter your email"
-                  className="h-12 bg-slate-900/50 border-slate-600 text-white placeholder:text-slate-500"
+                  className="h-12 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400"
                   required
                 />
               </div>
