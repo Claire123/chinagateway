@@ -15,7 +15,9 @@ import {
   Clock,
   Search,
   Trash2,
-  Eye
+  Eye,
+  Stethoscope,
+  Phone
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -36,6 +38,22 @@ interface UserRegistration {
   createdAt: string
 }
 
+interface Booking {
+  id: string
+  name: string
+  email: string
+  phone: string
+  hospitalId: string
+  hospitalName: string
+  specialty: string
+  preferredDoctor: string
+  symptoms: string
+  date: string
+  time: string
+  status: 'pending' | 'notified' | 'email_failed'
+  createdAt: string
+}
+
 // In-memory storage (will be replaced with database in production)
 let contactMessages: ContactMessage[] = []
 let userRegistrations: UserRegistration[] = []
@@ -44,6 +62,7 @@ export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('contacts')
   const [contacts, setContacts] = useState<ContactMessage[]>([])
   const [users, setUsers] = useState<UserRegistration[]>([])
+  const [bookings, setBookings] = useState<Booking[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -68,6 +87,13 @@ export function AdminDashboard() {
         const userData = await userRes.json()
         setUsers(userData.users || [])
       }
+
+      // Fetch bookings
+      const bookingRes = await fetch('/api/bookings')
+      if (bookingRes.ok) {
+        const bookingData = await bookingRes.json()
+        setBookings(bookingData.bookings || [])
+      }
     } catch (error) {
       console.error('Failed to fetch data:', error)
     } finally {
@@ -84,6 +110,12 @@ export function AdminDashboard() {
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const filteredBookings = bookings.filter(booking => 
+    booking.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.hospitalName.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getStatusBadge = (status: string) => {
@@ -172,12 +204,10 @@ export function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-500">Pending</p>
-                  <p className="text-3xl font-bold text-slate-800">
-                    {contacts.filter(c => c.status === 'pending').length}
-                  </p>
+                  <p className="text-sm text-slate-500">Bookings</p>
+                  <p className="text-3xl font-bold text-slate-800">{bookings.length}</p>
                 </div>
-                <Clock className="w-8 h-8 text-amber-500" />
+                <Stethoscope className="w-8 h-8 text-amber-500" />
               </div>
             </CardContent>
           </Card>
@@ -203,14 +233,18 @@ export function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-6">
+          <TabsList className="mb-6 flex-wrap">
             <TabsTrigger value="contacts" className="px-6">
               <Mail className="w-4 h-4 mr-2" />
               Contact Messages ({filteredContacts.length})
             </TabsTrigger>
+            <TabsTrigger value="bookings" className="px-6">
+              <Stethoscope className="w-4 h-4 mr-2" />
+              Appointments ({filteredBookings.length})
+            </TabsTrigger>
             <TabsTrigger value="users" className="px-6">
               <Users className="w-4 h-4 mr-2" />
-              User Registrations ({filteredUsers.length})
+              Users ({filteredUsers.length})
             </TabsTrigger>
           </TabsList>
 
@@ -244,6 +278,74 @@ export function AdminDashboard() {
                           <p className="font-medium text-slate-700">{contact.subject}</p>
                           <p className="text-sm text-slate-600 mt-1 line-clamp-2">{contact.message}</p>
                         </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline">
+                            <Eye className="w-4 h-4 mr-1" />
+                            View
+                          </Button>
+                          <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50">
+                            <Trash2 className="w-4 h-4 mr-1" />
+                            Delete
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Appointments */}
+          <TabsContent value="bookings">
+            <Card>
+              <CardHeader>
+                <CardTitle>Medical Appointments</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {filteredBookings.length === 0 ? (
+                  <div className="text-center py-12 text-slate-500">
+                    <Stethoscope className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                    <p>No appointments yet</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {filteredBookings.map((booking) => (
+                      <div key={booking.id} className="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h4 className="font-bold text-slate-800">{booking.name}</h4>
+                            <p className="text-sm text-slate-500">{booking.email} | {booking.phone}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {getStatusBadge(booking.status)}
+                            <span className="text-xs text-slate-400">{formatDate(booking.createdAt)}</span>
+                          </div>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-4 mb-3 bg-slate-50 rounded-lg p-3">
+                          <div>
+                            <p className="text-xs text-slate-400">Hospital</p>
+                            <p className="font-medium text-slate-800">{booking.hospitalName}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">Specialty</p>
+                            <p className="font-medium text-slate-800">{booking.specialty}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">Date & Time</p>
+                            <p className="font-medium text-slate-800">{booking.date} at {booking.time}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">Doctor</p>
+                            <p className="font-medium text-slate-800">{booking.preferredDoctor}</p>
+                          </div>
+                        </div>
+                        {booking.symptoms && booking.symptoms !== 'Not specified' && (
+                          <div className="mb-3">
+                            <p className="text-xs text-slate-400">Symptoms:</p>
+                            <p className="text-sm text-slate-600">{booking.symptoms}</p>
+                          </div>
+                        )}
                         <div className="flex gap-2">
                           <Button size="sm" variant="outline">
                             <Eye className="w-4 h-4 mr-1" />

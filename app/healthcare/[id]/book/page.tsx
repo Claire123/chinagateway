@@ -43,13 +43,44 @@ export default function BookAppointmentPage() {
     preferredDoctor: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+    setError('')
   }
 
-  const handleSubmit = () => {
-    setSubmitted(true)
+  const handleSubmit = async () => {
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          hospitalId,
+          hospitalName: hospital.name,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit booking')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      console.error('Booking error:', err)
+      setError('Failed to submit booking. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (submitted) {
