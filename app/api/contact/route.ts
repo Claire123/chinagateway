@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
-import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+// Simple in-memory storage for demo (will reset on server restart)
+const messages: any[] = []
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,46 +17,42 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 1. Save to database
-    let savedMessage
-    try {
-      savedMessage = await prisma.contactMessage.create({
-        data: {
-          name,
-          email,
-          subject,
-          message,
-          status: 'pending',
-        },
-      })
-      console.log('Message saved to database:', savedMessage.id)
-    } catch (dbError) {
-      console.error('Database save error:', dbError)
-      // Continue even if DB fails - email is more important
+    // 1. Save to in-memory storage (with timestamp)
+    const messageData = {
+      id: Date.now().toString(),
+      name,
+      email,
+      subject,
+      message,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
     }
+    messages.push(messageData)
+    console.log('Message saved:', messageData)
 
     // 2. Send email via 163 SMTP
     const smtpHost = process.env.SMTP_HOST || 'smtp.163.com'
     const smtpPort = parseInt(process.env.SMTP_PORT || '465')
-    const smtpUser = process.env.SMTP_USER // 你的163邮箱
-    const smtpPass = process.env.SMTP_PASS // 你的163授权码
+    const smtpUser = process.env.SMTP_USER
+    const smtpPass = process.env.SMTP_PASS
 
     if (smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: true, // use SSL
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      })
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: true,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        })
 
-      const mailOptions = {
-        from: `"ChinaGateway" <${smtpUser}>`,
-        to: 'clairezhang2018@163.com', // 你的接收邮箱
-        subject: `[ChinaGateway] New message from ${name}`,
-        text: `
+        const mailOptions = {
+          from: `"ChinaGateway" <${smtpUser}>`,
+          to: 'clairezhang2018@163.com',
+          subject: `[ChinaGateway] New message from ${name}`,
+          text: `
 Name: ${name}
 Email: ${email}
 Subject: ${subject}
@@ -66,8 +62,8 @@ ${message}
 
 ---
 Sent from ChinaGateway contact form
-        `,
-        html: `
+          `,
+          html: `
 <h2>New Contact Form Submission</h2>
 <p><strong>Name:</strong> ${name}</p>
 <p><strong>Email:</strong> ${email}</p>
@@ -77,20 +73,14 @@ Sent from ChinaGateway contact form
 <p>${message.replace(/\n/g, '<br/>')}</p>
 <hr/>
 <p><em>Sent from ChinaGateway contact form</em></p>
-        `,
-      }
+          `,
+        }
 
-      try {
         const info = await transporter.sendMail(mailOptions)
         console.log('Email sent:', info.messageId)
         
-        // Update database status if save was successful
-        if (savedMessage) {
-          await prisma.contactMessage.update({
-            where: { id: savedMessage.id },
-            data: { status: 'sent' },
-          })
-        }
+        // Update status
+        messageData.status = 'sent'
 
         return NextResponse.json(
           { success: true, message: 'Message sent successfully' },
@@ -98,40 +88,26 @@ Sent from ChinaGateway contact form
         )
       } catch (emailError) {
         console.error('Email send error:', emailError)
+        messageData.status = 'email_failed'
         
-        // Update database status
-        if (savedMessage) {
-          await prisma.contactMessage.update({
-            where: { id: savedMessage.id },
-            data: { status: 'email_failed' },
-          })
-        }
-
-        // Still return success if saved to DB, but warn about email
-        if (savedMessage) {
-          return NextResponse.json(
-            { 
-              success: true, 
-              warning: 'Message saved but email delivery failed. Please check database.',
-              id: savedMessage.id 
-            },
-            { status: 200 }
-          )
-        }
-        
+        // Return success but with warning (data is saved)
         return NextResponse.json(
-          { error: 'Failed to send message. Please try again later.' },
-          { status: 500 }
+          { 
+            success: true, 
+            warning: 'Message saved but email delivery failed. Please check logs.',
+            id: messageData.id 
+          },
+          { status: 200 }
         )
       }
     } else {
-      // SMTP not configured, just save to DB
-      console.log('SMTP not configured, message saved to database only')
+      // SMTP not configured, just save
+      console.log('SMTP not configured, message saved only')
       return NextResponse.json(
         { 
           success: true, 
           warning: 'Message saved. Email not configured yet.',
-          id: savedMessage?.id 
+          id: messageData.id 
         },
         { status: 200 }
       )
@@ -143,4 +119,10 @@ Sent from ChinaGateway contact form
       { status: 500 }
     )
   }
+}
+
+// GET endpoint to retrieve messages (for admin)
+export async function GET(request: NextRequest) {
+  // In production, add authentication here
+  return NextResponse.json({ messages }, { status: 200 })
 }
