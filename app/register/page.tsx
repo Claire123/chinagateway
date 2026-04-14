@@ -156,13 +156,18 @@ function RegisterForm() {
               </div>
             </div>
 
-            {/* Social Login Options */}
+            {/* Social Login Options - Temporarily disabled until OAuth is configured */}
             <div className="space-y-3">
+              <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                <p className="text-sm text-slate-400 text-center">
+                  Social login coming soon. Please use email registration above.
+                </p>
+              </div>
+              {/* 
               <Button
                 className="w-full h-12 bg-[#07C160] text-white hover:bg-[#06AD56] rounded-full"
                 onClick={() => {
                   setOauthLoading('wechat')
-                  // WeChat OAuth URL
                   const appId = process.env.NEXT_PUBLIC_WECHAT_APP_ID || ''
                   const redirectUri = encodeURIComponent(`${window.location.origin}/api/auth/wechat/callback`)
                   window.location.href = `https://open.weixin.qq.com/connect/qrconnect?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_login&state=${callbackUrl}#wechat_redirect`
@@ -181,6 +186,7 @@ function RegisterForm() {
               >
                 {oauthLoading === 'google' ? 'Connecting...' : 'Continue with Google'}
               </Button>
+              */}
             </div>
 
             {/* Terms */}
