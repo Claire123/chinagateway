@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
+import { PrismaClient } from '@prisma/client'
 
-// Using a simple webhook approach - send data to a reliable endpoint
-// You can replace this with your preferred email service
+const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,12 +17,46 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Prepare email content
-    const emailContent = {
-      to: 'clairezhang2018@163.com',
-      from: 'noreply@chinagateway.vercel.app',
-      subject: `[ChinaGateway] New message from ${name}`,
-      text: `
+    // 1. Save to database
+    let savedMessage
+    try {
+      savedMessage = await prisma.contactMessage.create({
+        data: {
+          name,
+          email,
+          subject,
+          message,
+          status: 'pending',
+        },
+      })
+      console.log('Message saved to database:', savedMessage.id)
+    } catch (dbError) {
+      console.error('Database save error:', dbError)
+      // Continue even if DB fails - email is more important
+    }
+
+    // 2. Send email via 163 SMTP
+    const smtpHost = process.env.SMTP_HOST || 'smtp.163.com'
+    const smtpPort = parseInt(process.env.SMTP_PORT || '465')
+    const smtpUser = process.env.SMTP_USER // 你的163邮箱
+    const smtpPass = process.env.SMTP_PASS // 你的163授权码
+
+    if (smtpUser && smtpPass) {
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: true, // use SSL
+        auth: {
+          user: smtpUser,
+          pass: smtpPass,
+        },
+      })
+
+      const mailOptions = {
+        from: `"ChinaGateway" <${smtpUser}>`,
+        to: 'clairezhang2018@163.com', // 你的接收邮箱
+        subject: `[ChinaGateway] New message from ${name}`,
+        text: `
 Name: ${name}
 Email: ${email}
 Subject: ${subject}
@@ -31,8 +66,8 @@ ${message}
 
 ---
 Sent from ChinaGateway contact form
-      `,
-      html: `
+        `,
+        html: `
 <h2>New Contact Form Submission</h2>
 <p><strong>Name:</strong> ${name}</p>
 <p><strong>Email:</strong> ${email}</p>
@@ -42,43 +77,69 @@ Sent from ChinaGateway contact form
 <p>${message.replace(/\n/g, '<br/>')}</p>
 <hr/>
 <p><em>Sent from ChinaGateway contact form</em></p>
-      `,
-    }
-
-    // Option 1: Use Resend (recommended, free tier: 100 emails/day)
-    // Get API key from https://resend.com
-    if (process.env.RESEND_API_KEY) {
-      const resendResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailContent),
-      })
-
-      if (!resendResponse.ok) {
-        throw new Error('Failed to send via Resend')
+        `,
       }
-    }
-    // Option 2: Use SendGrid
-    // else if (process.env.SENDGRID_API_KEY) { ... }
-    
-    // Option 3: For now, just log and return success
-    // This ensures the form works while you set up email service
-    console.log('Contact Form Submission:', {
-      ...emailContent,
-      timestamp: new Date().toISOString(),
-    })
 
-    return NextResponse.json(
-      { success: true, message: 'Message sent successfully' },
-      { status: 200 }
-    )
+      try {
+        const info = await transporter.sendMail(mailOptions)
+        console.log('Email sent:', info.messageId)
+        
+        // Update database status if save was successful
+        if (savedMessage) {
+          await prisma.contactMessage.update({
+            where: { id: savedMessage.id },
+            data: { status: 'sent' },
+          })
+        }
+
+        return NextResponse.json(
+          { success: true, message: 'Message sent successfully' },
+          { status: 200 }
+        )
+      } catch (emailError) {
+        console.error('Email send error:', emailError)
+        
+        // Update database status
+        if (savedMessage) {
+          await prisma.contactMessage.update({
+            where: { id: savedMessage.id },
+            data: { status: 'email_failed' },
+          })
+        }
+
+        // Still return success if saved to DB, but warn about email
+        if (savedMessage) {
+          return NextResponse.json(
+            { 
+              success: true, 
+              warning: 'Message saved but email delivery failed. Please check database.',
+              id: savedMessage.id 
+            },
+            { status: 200 }
+          )
+        }
+        
+        return NextResponse.json(
+          { error: 'Failed to send message. Please try again later.' },
+          { status: 500 }
+        )
+      }
+    } else {
+      // SMTP not configured, just save to DB
+      console.log('SMTP not configured, message saved to database only')
+      return NextResponse.json(
+        { 
+          success: true, 
+          warning: 'Message saved. Email not configured yet.',
+          id: savedMessage?.id 
+        },
+        { status: 200 }
+      )
+    }
   } catch (error) {
     console.error('Contact API Error:', error)
     return NextResponse.json(
-      { error: 'Failed to send message. Please try again later.' },
+      { error: 'Failed to process message. Please try again later.' },
       { status: 500 }
     )
   }
