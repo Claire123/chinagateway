@@ -17,7 +17,10 @@ import {
   Trash2,
   Eye,
   Stethoscope,
-  Phone
+  Phone,
+  HeartPulse,
+  Smile,
+  Building2
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -54,6 +57,21 @@ interface Booking {
   createdAt: string
 }
 
+interface HealthcareBooking {
+  id: string
+  name: string
+  phone: string
+  email: string
+  serviceType: string
+  institution: string
+  doctor: string
+  date: string
+  notes: string
+  isCustom: boolean
+  status: 'pending' | 'notified' | 'email_failed'
+  createdAt: string
+}
+
 // In-memory storage (will be replaced with database in production)
 let contactMessages: ContactMessage[] = []
 let userRegistrations: UserRegistration[] = []
@@ -63,6 +81,7 @@ export function AdminDashboard() {
   const [contacts, setContacts] = useState<ContactMessage[]>([])
   const [users, setUsers] = useState<UserRegistration[]>([])
   const [bookings, setBookings] = useState<Booking[]>([])
+  const [healthcareBookings, setHealthcareBookings] = useState<HealthcareBooking[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -94,6 +113,13 @@ export function AdminDashboard() {
         const bookingData = await bookingRes.json()
         setBookings(bookingData.bookings || [])
       }
+
+      // Fetch healthcare bookings
+      const healthcareRes = await fetch('/api/healthcare-booking')
+      if (healthcareRes.ok) {
+        const healthcareData = await healthcareRes.json()
+        setHealthcareBookings(healthcareData.bookings || [])
+      }
     } catch (error) {
       console.error('Failed to fetch data:', error)
     } finally {
@@ -116,6 +142,13 @@ export function AdminDashboard() {
     booking.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     booking.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     booking.hospitalName.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const filteredHealthcareBookings = healthcareBookings.filter(booking => 
+    booking.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.serviceType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.institution.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getStatusBadge = (status: string) => {
@@ -204,10 +237,10 @@ export function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-500">Bookings</p>
-                  <p className="text-3xl font-bold text-slate-800">{bookings.length}</p>
+                  <p className="text-sm text-slate-500">医疗预约</p>
+                  <p className="text-3xl font-bold text-slate-800">{healthcareBookings.length}</p>
                 </div>
-                <Stethoscope className="w-8 h-8 text-amber-500" />
+                <HeartPulse className="w-8 h-8 text-rose-500" />
               </div>
             </CardContent>
           </Card>
@@ -236,15 +269,19 @@ export function AdminDashboard() {
           <TabsList className="mb-6 flex-wrap">
             <TabsTrigger value="contacts" className="px-6">
               <Mail className="w-4 h-4 mr-2" />
-              Contact Messages ({filteredContacts.length})
+              联系消息 ({filteredContacts.length})
+            </TabsTrigger>
+            <TabsTrigger value="healthcare" className="px-6">
+              <HeartPulse className="w-4 h-4 mr-2" />
+              医疗预约 ({filteredHealthcareBookings.length})
             </TabsTrigger>
             <TabsTrigger value="bookings" className="px-6">
               <Stethoscope className="w-4 h-4 mr-2" />
-              Appointments ({filteredBookings.length})
+              医院预约 ({filteredBookings.length})
             </TabsTrigger>
             <TabsTrigger value="users" className="px-6">
               <Users className="w-4 h-4 mr-2" />
-              Users ({filteredUsers.length})
+              注册用户 ({filteredUsers.length})
             </TabsTrigger>
           </TabsList>
 
@@ -296,11 +333,84 @@ export function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Appointments */}
+          {/* Healthcare Bookings */}
+          <TabsContent value="healthcare">
+            <Card>
+              <CardHeader>
+                <CardTitle>医疗服务预约</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {filteredHealthcareBookings.length === 0 ? (
+                  <div className="text-center py-12 text-slate-500">
+                    <HeartPulse className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                    <p>暂无医疗预约</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {filteredHealthcareBookings.map((booking) => (
+                      <div key={booking.id} className="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <h4 className="font-bold text-slate-800">{booking.name}</h4>
+                              {booking.isCustom && (
+                                <Badge className="bg-amber-100 text-amber-800">自定义</Badge>
+                              )}
+                            </div>
+                            <p className="text-sm text-slate-500">{booking.phone}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {getStatusBadge(booking.status)}
+                            <span className="text-xs text-slate-400">{formatDate(booking.createdAt)}</span>
+                          </div>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-4 mb-3 bg-slate-50 rounded-lg p-3">
+                          <div>
+                            <p className="text-xs text-slate-400">服务类型</p>
+                            <p className="font-medium text-slate-800">{booking.serviceType}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">预约机构</p>
+                            <p className="font-medium text-slate-800">{booking.institution}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">期望日期</p>
+                            <p className="font-medium text-slate-800">{booking.date}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-slate-400">指定医生</p>
+                            <p className="font-medium text-slate-800">{booking.doctor || '未指定'}</p>
+                          </div>
+                        </div>
+                        {booking.notes && (
+                          <div className="mb-3">
+                            <p className="text-xs text-slate-400">备注需求:</p>
+                            <p className="text-sm text-slate-600">{booking.notes}</p>
+                          </div>
+                        )}
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline">
+                            <Eye className="w-4 h-4 mr-1" />
+                            查看
+                          </Button>
+                          <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50">
+                            <Trash2 className="w-4 h-4 mr-1" />
+                            删除
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Hospital Bookings */}
           <TabsContent value="bookings">
             <Card>
               <CardHeader>
-                <CardTitle>Medical Appointments</CardTitle>
+                <CardTitle>医院预约 (旧版)</CardTitle>
               </CardHeader>
               <CardContent>
                 {filteredBookings.length === 0 ? (
