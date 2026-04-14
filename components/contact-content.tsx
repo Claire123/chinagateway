@@ -44,40 +44,29 @@ export function ContactContent() {
     message: '',
   })
 
-  // Initialize EmailJS
-  useEffect(() => {
-    const initEmailJS = async () => {
-      const emailjs = await import('@emailjs/browser')
-      emailjs.default.init('trW64GDPJIAYQeBUi')
-    }
-    initEmailJS()
-  }, [])
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError('')
 
     try {
-      const emailjs = await import('@emailjs/browser')
-      
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'clairezhang2018@163.com',
-      }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-      await emailjs.default.send(
-        'service_bxcjngp',
-        'template_z13v9eg',
-        templateParams
-      )
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
 
       setSubmitted(true)
     } catch (err) {
-      console.error('EmailJS Error:', err)
+      console.error('Contact Form Error:', err)
       setError('Failed to send message. Please try again or contact us directly via email/WhatsApp.')
     } finally {
       setIsLoading(false)
