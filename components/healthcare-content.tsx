@@ -322,10 +322,15 @@ export function HealthcareContent() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentService?.items.map((item) => (
                 <Card key={item.id} className="overflow-hidden border-slate-200 hover:shadow-lg transition-shadow flex flex-col">
-                  <div className="h-48 bg-slate-200 relative">
-                    <div className="absolute inset-0 flex items-center justify-center text-slate-400">
-                      <Building2 className="w-16 h-16" />
+                  <div className="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <Building2 className="w-16 h-16 text-slate-300 mx-auto mb-2" />
+                        <span className="text-xs text-slate-400 uppercase tracking-wider">{item.nameCn}</span>
+                      </div>
                     </div>
+                    {/* Image placeholder - replace with actual image later */}
+                    {/* <Image src={item.image} alt={item.name} fill className="object-cover" /> */}
                     {(item as any).tier && (
                       <Badge className="absolute top-4 left-4 bg-red-500 text-white">
                         {(item as any).tier}
