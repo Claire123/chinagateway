@@ -294,7 +294,7 @@ export function CityGuideDetail({ city }: CityGuideProps) {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
                 Book a Tour
               </Button>
             </Link>

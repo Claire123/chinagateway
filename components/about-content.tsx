@@ -174,8 +174,7 @@ export function AboutContent() {
             <Link href="/healthcare">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-slate-600 text-slate-300 hover:bg-slate-800 rounded-full"
+                className="bg-white text-slate-900 hover:bg-slate-100 rounded-full"
               >
                 Explore Hospitals
               </Button>

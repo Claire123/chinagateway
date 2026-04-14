@@ -154,15 +154,13 @@ export default function RegisterPage() {
             {/* Social Login Options */}
             <div className="space-y-3">
               <Button
-                variant="outline"
-                className="w-full h-12 border-slate-600 text-white hover:bg-slate-700 rounded-full"
+                className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 rounded-full"
                 onClick={() => alert('WeChat login coming soon!')}
               >
                 Continue with WeChat
               </Button>
               <Button
-                variant="outline"
-                className="w-full h-12 border-slate-600 text-white hover:bg-slate-700 rounded-full"
+                className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 rounded-full"
                 onClick={() => alert('Google login coming soon!')}
               >
                 Continue with Google
