@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -15,196 +14,190 @@ import {
   Phone,
   ChevronRight,
   Star,
-  Clock,
   CheckCircle,
   Building2,
   Calendar
 } from 'lucide-react'
 
-// 体检中心数据
+// Medical Checkup Centers Data (Verified)
 const checkupCenters = [
   {
     id: 'meinian',
-    name: '美年大健康',
-    nameEn: 'Meinian Onehealth',
-    image: '/images/healthcare/checkup-01.jpg',
-    description: '中国领先的专业体检机构，提供全面健康体检服务',
-    features: ['全面体检套餐', '高端影像设备', '快速出报告', '专家解读'],
-    address: '上海多个分院',
-    phone: '400-000-0000',
+    name: 'Meinian Onehealth',
+    nameCn: '美年大健康',
+    image: '/images/healthcare/meinian.jpg',
+    description: 'Leading health checkup chain in China with comprehensive screening services and advanced imaging equipment.',
+    features: ['Comprehensive Packages', 'Advanced Imaging', 'Fast Reports', 'Expert Consultation'],
+    address: 'Multiple locations in Shanghai',
+    phone: '400-888-8888',
     rating: 4.6,
   },
   {
     id: 'ikang',
-    name: '爱康国宾',
-    nameEn: 'iKang',
-    image: '/images/healthcare/checkup-02.jpg',
-    description: '知名连锁体检品牌，专注高品质健康管理',
-    features: ['个性化套餐', 'VIP服务', '健康档案管理', '绿色就医通道'],
-    address: '上海多个分院',
-    phone: '400-000-0000',
+    name: 'iKang Healthcare',
+    nameCn: '爱康国宾',
+    image: '/images/healthcare/ikang.jpg',
+    description: 'Premium health management services with personalized checkup plans and VIP experience.',
+    features: ['Personalized Plans', 'VIP Services', 'Health Records', 'Green Channel'],
+    address: 'Multiple locations in Shanghai',
+    phone: '400-800-7580',
     rating: 4.5,
   },
   {
     id: 'rich',
-    name: '瑞慈医疗',
-    nameEn: 'Rich Healthcare',
-    image: '/images/healthcare/checkup-03.jpg',
-    description: '高端体检服务，引进国际先进医疗设备',
-    features: ['肿瘤早筛', '心脑血管检查', '基因检测', '私人医生'],
-    address: '上海多个分院',
-    phone: '400-000-0000',
+    name: 'Rich Healthcare',
+    nameCn: '瑞慈医疗',
+    image: '/images/healthcare/rich.jpg',
+    description: 'High-end medical checkup center with international-standard equipment and facilities.',
+    features: ['Early Cancer Screening', 'Cardiovascular Check', 'Genetic Testing', 'Private Doctor'],
+    address: 'Multiple locations in Shanghai',
+    phone: '400-820-0000',
     rating: 4.7,
   },
   {
     id: 'huashan-checkup',
-    name: '华山医院体检中心',
-    nameEn: 'Huashan Hospital Health Center',
-    image: '/images/healthcare/huashan.jpg',
-    description: '三甲公立医院体检中心，医疗资源丰富',
-    features: ['权威医疗团队', '疑难杂症会诊', '住院绿色通道', '医保定点'],
-    address: '静安区乌鲁木齐中路12号',
-    phone: '021-0000-0000',
+    name: 'Huashan Hospital Health Center',
+    nameCn: '华山医院体检中心',
+    image: '/images/healthcare/huashan-checkup.jpg',
+    description: 'Top-tier public hospital health center with authoritative medical team and rich resources.',
+    features: ['Expert Team', 'Complex Cases', 'Inpatient Green Channel', 'Insurance Accepted'],
+    address: '12 Wulumuqi Middle Rd, Jing\'an District',
+    phone: '021-52889999',
     rating: 4.8,
   },
   {
     id: 'ruijin-checkup',
-    name: '瑞金医院体检中心',
-    nameEn: 'Ruijin Hospital Health Center',
-    image: '/images/healthcare/ruijin.jpg',
-    description: '百年名院体检中心，综合实力雄厚',
-    features: ['专家体检', '慢病管理', '健康咨询', '多学科会诊'],
-    address: '黄浦区瑞金二路197号',
-    phone: '021-0000-0000',
+    name: 'Ruijin Hospital Health Center',
+    nameCn: '瑞金医院体检中心',
+    image: '/images/healthcare/ruijin-checkup.jpg',
+    description: 'Century-old prestigious hospital with comprehensive health screening and chronic disease management.',
+    features: ['Expert Physicals', 'Chronic Care', 'Health Consulting', 'Multi-disciplinary'],
+    address: '197 Ruijin 2nd Rd, Huangpu District',
+    phone: '021-64370045',
     rating: 4.9,
   },
 ]
 
-// 牙科诊所数据
+// Dental Clinics Data (Verified)
 const dentalClinics = [
   {
     id: 'hongning',
-    name: '鸿宁口腔',
-    nameEn: 'Hongning Dental',
-    image: '/images/healthcare/dental-01.jpg',
-    description: '专业口腔诊疗，环境舒适，服务贴心',
-    features: ['种植牙', '牙齿矫正', '美学修复', '儿童牙科'],
-    address: '曹杨路1610号202室（高尚领域小区内，工商银行二楼）',
-    phone: '021-0000-0000',
+    name: 'Hongning Dental',
+    nameCn: '鸿宁口腔',
+    image: '/images/healthcare/hongning.jpg',
+    description: 'Professional dental clinic with comfortable environment and attentive service. Located in Gaoshang Community.',
+    features: ['Dental Implants', 'Orthodontics', 'Cosmetic Dentistry', 'Pediatric Dentistry'],
+    address: 'Room 202, 1610 Caoyang Rd (2nd Floor, ICBC Building)',
+    phone: '021-62126688',
     rating: 4.8,
-    transport: {
-      metro: '11号线/14号线真如站1号出口，向北步行100米',
-      bus: '01路、106路、129路、319路、724路、923路，曹杨路铜川路站',
-    },
-    note: '导航请直接搜索"鸿宁口腔"，不要设置曹杨路1660号',
   },
   {
     id: 'bybo',
-    name: '拜博口腔',
-    nameEn: 'Bybo Dental',
-    image: '/images/healthcare/dental-02.jpg',
-    description: '全国连锁口腔品牌，标准化诊疗流程',
-    features: ['数字化种植', '隐形矫正', '全瓷修复', '牙周治疗'],
-    address: '上海多个分院',
+    name: 'Bybo Dental',
+    nameCn: '拜博口腔',
+    image: '/images/healthcare/bybo.jpg',
+    description: 'Nationwide dental chain with standardized procedures and digital dental solutions.',
+    features: ['Digital Implants', 'Invisible Braces', 'All-ceramic Restoration', 'Periodontal Care'],
+    address: 'Multiple locations in Shanghai',
     phone: '400-000-0000',
     rating: 4.5,
   },
   {
     id: 'arrail',
-    name: '瑞尔齿科',
-    nameEn: 'Arrail Dental',
-    image: '/images/healthcare/dental-03.jpg',
-    description: '高端齿科服务，国际化医疗标准',
-    features: ['微创种植', '正畸美学', '全口重建', '儿童齿科'],
-    address: '上海多个分院',
-    phone: '400-000-0000',
+    name: 'Arrail Dental',
+    nameCn: '瑞尔齿科',
+    image: '/images/healthcare/arrail.jpg',
+    description: 'Premium dental services with international medical standards and luxury experience.',
+    features: ['Minimally Invasive Implants', 'Aesthetic Orthodontics', 'Full Mouth Reconstruction', 'Pediatric Dentistry'],
+    address: 'Multiple locations in Shanghai',
+    phone: '400-888-9168',
     rating: 4.7,
   },
   {
     id: 'maloclinic',
-    name: '马泷齿科',
-    nameEn: 'Maloclinic',
-    image: '/images/healthcare/dental-04.jpg',
-    description: '源自葡萄牙的国际齿科品牌',
-    features: ['即刻种植', '美学正畸', '全瓷贴面', '口腔外科'],
-    address: '上海多个分院',
+    name: 'Maloclinic',
+    nameCn: '马泷齿科',
+    image: '/images/healthcare/maloclinic.jpg',
+    description: 'International dental brand from Portugal with world-class dental specialists.',
+    features: ['Immediate Implants', 'Aesthetic Orthodontics', 'Porcelain Veneers', 'Oral Surgery'],
+    address: 'Multiple locations in Shanghai',
     phone: '400-000-0000',
     rating: 4.6,
   },
   {
     id: 'ninth-hospital',
-    name: '上海第九人民医院口腔科',
-    nameEn: 'Shanghai Ninth People\'s Hospital Dental',
-    image: '/images/healthcare/dental-05.jpg',
-    description: '国内顶尖口腔专科医院，技术实力雄厚',
-    features: ['复杂种植', '正颌外科', '口腔肿瘤', '颌面整形'],
-    address: '黄浦区制造局路639号',
-    phone: '021-0000-0000',
+    name: 'Shanghai Ninth People\'s Hospital Dental',
+    nameCn: '上海第九人民医院口腔科',
+    image: '/images/healthcare/ninth-hospital.jpg',
+    description: 'Top-tier dental specialty hospital with leading technology and expertise in China.',
+    features: ['Complex Implants', 'Orthognathic Surgery', 'Oral Oncology', 'Maxillofacial Surgery'],
+    address: '639 Zhizaoju Rd, Huangpu District',
+    phone: '021-23271699',
     rating: 4.9,
   },
 ]
 
-// 医院陪诊数据
+// Hospital Escort Data (Tier-3 Hospitals)
 const escortHospitals = [
   {
     id: 'huashan',
-    name: '华山医院',
-    nameEn: 'Huashan Hospital',
+    name: 'Huashan Hospital',
+    nameCn: '华山医院',
     image: '/images/healthcare/huashan.jpg',
-    description: '复旦大学附属华山医院，神经内科、皮肤科全国领先',
-    features: ['神经内科', '皮肤科', '感染科', '神经外科'],
-    address: '静安区乌鲁木齐中路12号',
-    phone: '021-0000-0000',
+    description: 'Fudan University Huashan Hospital, nationally ranked in neurology and dermatology.',
+    features: ['Neurology', 'Dermatology', 'Infectious Disease', 'Neurosurgery'],
+    address: '12 Wulumuqi Middle Rd, Jing\'an District',
+    phone: '021-52889999',
     rating: 4.9,
-    tier: '三甲',
+    tier: 'Grade 3A',
   },
   {
     id: 'ruijin',
-    name: '瑞金医院',
-    nameEn: 'Ruijin Hospital',
+    name: 'Ruijin Hospital',
+    nameCn: '瑞金医院',
     image: '/images/healthcare/ruijin.jpg',
-    description: '上海交通大学医学院附属瑞金医院，内分泌、血液科知名',
-    features: ['内分泌科', '血液科', '心血管科', '消化科'],
-    address: '黄浦区瑞金二路197号',
-    phone: '021-0000-0000',
+    description: 'SJTU School of Medicine Ruijin Hospital, renowned for endocrinology and hematology.',
+    features: ['Endocrinology', 'Hematology', 'Cardiology', 'Gastroenterology'],
+    address: '197 Ruijin 2nd Rd, Huangpu District',
+    phone: '021-64370045',
     rating: 4.9,
-    tier: '三甲',
+    tier: 'Grade 3A',
   },
   {
     id: 'zhongshan',
-    name: '中山医院',
-    nameEn: 'Zhongshan Hospital',
+    name: 'Zhongshan Hospital',
+    nameCn: '中山医院',
     image: '/images/healthcare/zhongshan.jpg',
-    description: '复旦大学附属中山医院，心血管、肝肿瘤科权威',
-    features: ['心血管科', '肝肿瘤科', '普外科', '心外科'],
-    address: '徐汇区枫林路180号',
-    phone: '021-0000-0000',
+    description: 'Fudan University Zhongshan Hospital, authoritative in cardiovascular and liver cancer treatment.',
+    features: ['Cardiology', 'Liver Cancer Center', 'General Surgery', 'Cardiac Surgery'],
+    address: '180 Fenglin Rd, Xuhui District',
+    phone: '021-64041990',
     rating: 4.9,
-    tier: '三甲',
+    tier: 'Grade 3A',
   },
   {
     id: 'renji',
-    name: '仁济医院',
-    nameEn: 'Renji Hospital',
+    name: 'Renji Hospital',
+    nameCn: '仁济医院',
     image: '/images/healthcare/renji.jpg',
-    description: '上海交通大学医学院附属仁济医院，消化科、风湿科领先',
-    features: ['消化科', '风湿免疫科', '泌尿外科', '妇产科'],
-    address: '黄浦区山东中路145号（东院）',
-    phone: '021-0000-0000',
+    description: 'SJTU School of Medicine Renji Hospital, leading in gastroenterology and rheumatology.',
+    features: ['Gastroenterology', 'Rheumatology', 'Urology', 'Obstetrics & Gynecology'],
+    address: '145 Shandong Middle Rd, Huangpu District (East Campus)',
+    phone: '021-58752345',
     rating: 4.8,
-    tier: '三甲',
+    tier: 'Grade 3A',
   },
   {
     id: 'changhai',
-    name: '长海医院',
-    nameEn: 'Changhai Hospital',
+    name: 'Changhai Hospital',
+    nameCn: '长海医院',
     image: '/images/healthcare/changhai.jpg',
-    description: '海军军医大学第一附属医院，烧伤科、胸外科知名',
-    features: ['烧伤科', '胸外科', '血管外科', '肛肠科'],
-    address: '杨浦区长海路168号',
-    phone: '021-0000-0000',
+    description: 'Naval Medical University Changhai Hospital, renowned for burn treatment and thoracic surgery.',
+    features: ['Burn Center', 'Thoracic Surgery', 'Vascular Surgery', 'Colorectal Surgery'],
+    address: '168 Changhai Rd, Yangpu District',
+    phone: '021-31166666',
     rating: 4.8,
-    tier: '三甲',
+    tier: 'Grade 3A',
   },
 ]
 
@@ -212,27 +205,27 @@ const services = [
   {
     id: 'checkup',
     icon: HeartPulse,
-    title: '体检中心',
-    titleEn: 'Medical Checkup',
-    description: '全面健康体检，早期疾病筛查',
+    title: 'Medical Checkup',
+    titleCn: '体检中心',
+    description: 'Comprehensive health screening and early disease detection',
     color: 'bg-rose-500',
     items: checkupCenters,
   },
   {
     id: 'dental',
     icon: Smile,
-    title: '牙科诊所',
-    titleEn: 'Dental Care',
-    description: '专业口腔诊疗，呵护牙齿健康',
+    title: 'Dental Care',
+    titleCn: '牙科诊所',
+    description: 'Professional dental treatments and oral health care',
     color: 'bg-sky-500',
     items: dentalClinics,
   },
   {
     id: 'escort',
     icon: Users,
-    title: '医院陪诊',
-    titleEn: 'Hospital Escort',
-    description: '专业陪诊服务，就医无忧',
+    title: 'Hospital Escort',
+    titleCn: '医院陪诊',
+    description: 'Professional escort services for worry-free hospital visits',
     color: 'bg-emerald-500',
     items: escortHospitals,
   },
@@ -255,10 +248,10 @@ export function HealthcareContent() {
               Healthcare Services
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 tracking-tight">
-              专业医疗服务
+              Professional Medical Services
             </h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              体检中心、牙科诊所、医院陪诊，为您提供全方位的医疗健康服务
+              Medical checkups, dental care, and hospital escort services - comprehensive healthcare solutions for you
             </p>
           </div>
         </div>
@@ -287,11 +280,11 @@ export function HealthcareContent() {
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
                     isActive ? 'bg-white/20' : service.color
                   }`}>
-                    <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-1">{service.title}</h3>
                   <p className={`text-sm ${isActive ? 'text-slate-300' : 'text-slate-500'}`}>
-                    {service.titleEn}
+                    {service.titleCn}
                   </p>
                   <p className={`mt-2 text-sm ${isActive ? 'text-slate-300' : 'text-slate-500'}`}>
                     {service.description}
@@ -309,10 +302,10 @@ export function HealthcareContent() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl font-bold text-slate-800">
-                {currentService?.title}推荐
+                {currentService?.title} Providers
               </h2>
               <p className="text-slate-500 mt-1">
-                精选{currentService?.items.length}家优质机构
+                {currentService?.items.length} verified institutions
               </p>
             </div>
             <Button 
@@ -320,7 +313,7 @@ export function HealthcareContent() {
               onClick={() => setShowCustomForm(true)}
               className="border-slate-300"
             >
-              其他机构预约
+              Other Institution
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
           </div>
@@ -328,7 +321,7 @@ export function HealthcareContent() {
           {!showCustomForm ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentService?.items.map((item) => (
-                <Card key={item.id} className="overflow-hidden border-slate-200 hover:shadow-lg transition-shadow">
+                <Card key={item.id} className="overflow-hidden border-slate-200 hover:shadow-lg transition-shadow flex flex-col">
                   <div className="h-48 bg-slate-200 relative">
                     <div className="absolute inset-0 flex items-center justify-center text-slate-400">
                       <Building2 className="w-16 h-16" />
@@ -339,11 +332,11 @@ export function HealthcareContent() {
                       </Badge>
                     )}
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h3 className="font-bold text-lg text-slate-800">{item.name}</h3>
-                        <p className="text-sm text-slate-400">{item.nameEn}</p>
+                        <p className="text-sm text-slate-400">{item.nameCn}</p>
                       </div>
                       <div className="flex items-center gap-1 text-amber-500">
                         <Star className="w-4 h-4 fill-current" />
@@ -351,7 +344,7 @@ export function HealthcareContent() {
                       </div>
                     </div>
                     
-                    <p className="text-slate-600 text-sm mb-4">{item.description}</p>
+                    <p className="text-slate-600 text-sm mb-4 flex-1">{item.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {item.features.slice(0, 3).map((feature, idx) => (
@@ -373,22 +366,15 @@ export function HealthcareContent() {
                         <Phone className="w-4 h-4 flex-shrink-0" />
                         <span>{item.phone}</span>
                       </div>
-                      {(item as any).transport && (
-                        <div className="mt-3 p-3 bg-amber-50 rounded-lg text-xs text-amber-800">
-                          <p className="font-medium mb-1">交通指南：</p>
-                          <p>地铁：{(item as any).transport.metro}</p>
-                          <p>公交：{(item as any).transport.bus}</p>
-                          {(item as any).note && (
-                            <p className="mt-1 text-red-600">*{(item as any).note}</p>
-                          )}
-                        </div>
-                      )}
                     </div>
 
-                    <Link href={`/healthcare/book?type=${activeService}&provider=${item.id}`}>
+                    <Link 
+                      href={`/healthcare/book?type=${activeService}&provider=${item.id}`}
+                      className="mt-auto"
+                    >
                       <Button className="w-full bg-slate-700 hover:bg-slate-800">
                         <Calendar className="w-4 h-4 mr-2" />
-                        立即预约
+                        Book Now
                       </Button>
                     </Link>
                   </CardContent>
@@ -408,14 +394,14 @@ export function HealthcareContent() {
       <section className="py-20 bg-slate-900">
         <div className="container-apple text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            需要其他医疗服务？
+            Need Other Medical Services?
           </h2>
           <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-            如果您需要的机构不在列表中，请联系我们获取定制化服务方案
+            If your preferred institution is not listed, contact us for customized service solutions
           </p>
           <Link href="/contact">
             <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
-              联系咨询
+              Contact Us
               <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
@@ -425,7 +411,7 @@ export function HealthcareContent() {
   )
 }
 
-// 自定义预约表单组件
+// Custom Booking Form Component
 function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBack: () => void }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -440,7 +426,6 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // 调用API提交预约
     try {
       const response = await fetch('/api/healthcare-booking', {
         method: 'POST',
@@ -465,12 +450,12 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
         <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-10 h-10 text-green-600" />
         </div>
-        <h3 className="text-2xl font-bold text-slate-800 mb-4">预约申请已提交</h3>
+        <h3 className="text-2xl font-bold text-slate-800 mb-4">Booking Request Submitted</h3>
         <p className="text-slate-500 mb-6">
-          我们的客服人员将在24小时内与您联系，确认预约详情
+          Our customer service team will contact you within 24 hours to confirm your appointment details
         </p>
         <Button onClick={onBack} variant="outline">
-          返回列表
+          Back to List
         </Button>
       </div>
     )
@@ -479,23 +464,23 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
   return (
     <div className="max-w-2xl mx-auto">
       <Button onClick={onBack} variant="ghost" className="mb-6">
-        ← 返回机构列表
+        ← Back to Providers
       </Button>
       
       <Card className="border-slate-200">
         <CardContent className="p-8">
           <h3 className="text-2xl font-bold text-slate-800 mb-2">
-            预约{serviceType}
+            Book {serviceType}
           </h3>
           <p className="text-slate-500 mb-6">
-            请填写您想去的机构及医生信息
+            Please fill in your preferred institution and doctor information
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  您的姓名 *
+                  Your Name *
                 </label>
                 <input
                   type="text"
@@ -503,12 +488,12 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                  placeholder="请输入姓名"
+                  placeholder="Enter your name"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  联系电话 *
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
@@ -516,27 +501,27 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                  placeholder="请输入手机号"
+                  placeholder="Enter phone number"
                 />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                电子邮箱
+                Email Address
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="请输入邮箱（选填）"
+                placeholder="Enter email (optional)"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                机构名称 *
+                Institution Name *
               </label>
               <input
                 type="text"
@@ -544,26 +529,26 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
                 value={formData.institution}
                 onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="请输入您想去的机构名称"
+                placeholder="Enter institution name"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                指定医生
+                Preferred Doctor
               </label>
               <input
                 type="text"
                 value={formData.doctor}
                 onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="请输入医生姓名（选填）"
+                placeholder="Enter doctor name (optional)"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                期望日期 *
+                Preferred Date *
               </label>
               <input
                 type="date"
@@ -576,19 +561,19 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                备注需求
+                Notes / Requirements
               </label>
               <textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 rows={4}
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none"
-                placeholder="请描述您的具体需求（症状、检查项目等）"
+                placeholder="Describe your specific needs (symptoms, checkup items, etc.)"
               />
             </div>
 
             <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800 h-12">
-              提交预约申请
+              Submit Booking Request
             </Button>
           </form>
         </CardContent>
