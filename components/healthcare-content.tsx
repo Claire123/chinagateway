@@ -51,7 +51,7 @@ const checkupCenters = [
     description: 'High-end medical checkup center with international-standard equipment and facilities.',
     features: ['Early Cancer Screening', 'Cardiovascular Check', 'Genetic Testing', 'Private Doctor'],
     address: 'Multiple locations in Shanghai',
-    phone: '400-820-0000',
+    phone: '400-168-8188',
     rating: 4.7,
   },
   {
@@ -110,7 +110,7 @@ const dentalClinics = [
     description: 'Nationwide dental chain with standardized procedures and digital dental solutions.',
     features: ['Digital Implants', 'Invisible Braces', 'All-ceramic Restoration', 'Periodontal Care'],
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '400-968-3508',
     rating: 4.5,
   },
   {

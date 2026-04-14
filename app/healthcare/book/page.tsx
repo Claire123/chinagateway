@@ -42,7 +42,7 @@ const allProviders: Record<string, any> = {
     nameCn: '瑞慈医疗',
     type: 'Medical Checkup',
     address: 'Multiple locations in Shanghai',
-    phone: '400-820-0000',
+    phone: '400-168-8188',
     rating: 4.7,
   },
   'huashan-checkup': {
@@ -83,7 +83,7 @@ const allProviders: Record<string, any> = {
     nameCn: '拜博口腔',
     type: 'Dental Care',
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '400-968-3508',
     rating: 4.5,
   },
   arrail: {
