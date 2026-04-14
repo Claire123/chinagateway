@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, Loader2 } from 'lucide-react'
 
 const contactInfo = [
   {
@@ -35,6 +35,8 @@ const contactInfo = [
 
 export function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,10 +44,44 @@ export function ContactContent() {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Initialize EmailJS
+  useEffect(() => {
+    const initEmailJS = async () => {
+      const emailjs = await import('@emailjs/browser')
+      emailjs.default.init('trW64GDPJIAYQeBUi')
+    }
+    initEmailJS()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setSubmitted(true)
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const emailjs = await import('@emailjs/browser')
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'clairezhang2018@163.com',
+      }
+
+      await emailjs.default.send(
+        'service_bxcjngp',
+        'template_z13v9eg',
+        templateParams
+      )
+
+      setSubmitted(true)
+    } catch (err) {
+      console.error('EmailJS Error:', err)
+      setError('Failed to send message. Please try again or contact us directly via email/WhatsApp.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -163,13 +199,29 @@ export function ContactContent() {
                       />
                     </div>
 
+                    {error && (
+                      <div className="p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 text-sm">
+                        {error}
+                      </div>
+                    )}
+
                     <Button 
                       type="submit" 
                       size="lg"
-                      className="w-full h-14 bg-white text-slate-900 hover:bg-slate-100 rounded-full font-medium"
+                      disabled={isLoading}
+                      className="w-full h-14 bg-white text-slate-900 hover:bg-slate-100 rounded-full font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4 mr-2" />
-                      Send Message
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
