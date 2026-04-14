@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -283,11 +284,13 @@ function BookingForm() {
           {/* Provider Info Card */}
           <div className="md:col-span-1">
             <Card className="sticky top-24">
-              <div className="h-40 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                <div className="text-center">
-                  <Building2 className="w-16 h-16 text-slate-300 mx-auto mb-2" />
-                  <span className="text-xs text-slate-400 uppercase tracking-wider">{provider.nameCn}</span>
-                </div>
+              <div className="h-40 relative overflow-hidden">
+                <Image 
+                  src={`/images/healthcare/${providerId}.jpg`}
+                  alt={provider.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <CardContent className="p-6">
                 <Badge className="mb-3">{provider.type}</Badge>
