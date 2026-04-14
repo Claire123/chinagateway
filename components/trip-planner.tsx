@@ -17,8 +17,10 @@ import {
   Lightbulb,
   ChevronLeft,
   Navigation,
-  Home
+  Home,
+  ArrowRight
 } from 'lucide-react'
+import Link from 'next/link'
 import { 
   citiesData, 
   generateItinerary, 
@@ -150,34 +152,44 @@ export function TripPlanner() {
             {/* Popular Cities */}
             <div className="grid md:grid-cols-3 gap-4 mb-8">
               {Object.values(citiesData).map((city) => (
-                <Card 
-                  key={city.id}
-                  className={`cursor-pointer transition-all hover:shadow-lg overflow-hidden ${
-                    selectedCities.includes(city.id) ? 'ring-2 ring-slate-500' : ''
-                  }`}
-                  onClick={() => toggleCity(city.id)}
-                >
-                  <div className="h-40 overflow-hidden">
-                    <img 
-                      src={city.image} 
-                      alt={city.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-800">{city.name}</h3>
-                        <p className="text-sm text-slate-500">{city.description}</p>
-                      </div>
-                      {selectedCities.includes(city.id) && (
-                        <div className="w-6 h-6 rounded-full bg-slate-600 text-white flex items-center justify-center text-sm">
-                          ✓
-                        </div>
-                      )}
+                <div key={city.id} className="relative">
+                  <Card 
+                    className={`cursor-pointer transition-all hover:shadow-lg overflow-hidden ${
+                      selectedCities.includes(city.id) ? 'ring-2 ring-slate-500' : ''
+                    }`}
+                    onClick={() => toggleCity(city.id)}
+                  >
+                    <div className="h-40 overflow-hidden relative">
+                      <img 
+                        src={city.image} 
+                        alt={city.name}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* View Details Link */}
+                      <Link 
+                        href={`/cities/${city.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute top-2 right-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-700 hover:bg-white transition-colors flex items-center gap-1"
+                      >
+                        View Details
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
                     </div>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="font-bold text-lg text-slate-800">{city.name}</h3>
+                          <p className="text-sm text-slate-500">{city.description}</p>
+                        </div>
+                        {selectedCities.includes(city.id) && (
+                          <div className="w-6 h-6 rounded-full bg-slate-600 text-white flex items-center justify-center text-sm">
+                            ✓
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               ))}
             </div>
 
