@@ -31,6 +31,10 @@
 **Prompt:**
 "Century-old prestigious hospital exterior, classic European-style architecture, Ruijin Hospital Shanghai, historic medical institution, grand building facade, tree-lined entrance, established healthcare facility, daytime architectural photography"
 
+### 6. zhongshan-checkup.jpg - Zhongshan Hospital Health Center (中山医院体检中心)
+**Prompt:**
+"Modern hospital health center interior, Zhongshan Hospital Shanghai, cardiovascular and digestive health screening facility, clean white interior, professional medical environment, advanced diagnostic equipment, bright natural lighting, contemporary healthcare architecture"
+
 ---
 
 ## Dental Clinics (牙科诊所)
@@ -54,6 +58,10 @@
 ### 10. ninth-hospital.jpg - Shanghai Ninth People's Hospital Dental (上海第九人民医院口腔科)
 **Prompt:**
 "Major public hospital dental department, busy hospital exterior, Shanghai Ninth People's Hospital building, large medical institution facade, crowds of people, urban hospital setting, daytime photography, established public healthcare facility"
+
+### 11. yashida.jpg - Yashida Dental (雅仕达口腔)
+**Prompt:**
+"Modern dental clinic interior, clean minimalist design, comfortable patient chairs, bright lighting, professional dental equipment, welcoming reception area, contemporary dental practice, Shanghai dental clinic, photorealistic interior photography"
 
 ---
 
@@ -79,6 +87,10 @@
 **Prompt:**
 "Military hospital exterior, Changhai Hospital Shanghai, large medical complex, modern hospital buildings, organized campus layout, major medical institution in Yangpu district, daytime architectural photography"
 
+### 16. xinhua.jpg - Xinhua Hospital (新华医院)
+**Prompt:**
+"Large comprehensive hospital exterior, Xinhua Hospital Shanghai, modern hospital complex with pediatric specialty, busy entrance with families, major medical center in Yangpu district, daytime architectural photography"
+
 ---
 
 ## Image File Mapping
@@ -100,6 +112,9 @@
 | zhongshan.jpg | Zhongshan Hospital | Escort |
 | renji.jpg | Renji Hospital | Escort |
 | changhai.jpg | Changhai Hospital | Escort |
+| xinhua.jpg | Xinhua Hospital | Escort |
+| zhongshan-checkup.jpg | Zhongshan Hospital Health Center | Checkup |
+| yashida.jpg | Yashida Dental | Dental |
 
 ---
 

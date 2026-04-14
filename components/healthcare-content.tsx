@@ -76,6 +76,17 @@ const checkupCenters = [
     phone: '021-64370045',
     rating: 4.9,
   },
+  {
+    id: 'zhongshan-checkup',
+    name: 'Zhongshan Hospital Health Center',
+    nameCn: '中山医院体检中心',
+    image: '/images/healthcare/zhongshan-checkup.jpg',
+    description: 'Fudan University Zhongshan Hospital health center, renowned for cardiovascular and digestive health screening.',
+    features: ['Cardio Screening', 'Digestive Health', 'Executive Physicals', 'Multi-specialty'],
+    address: '180 Fenglin Rd, Xuhui District',
+    phone: '021-64041990',
+    rating: 4.8,
+  },
 ]
 
 // Dental Clinics Data (Verified)
@@ -134,6 +145,17 @@ const dentalClinics = [
     address: '639 Zhizaoju Rd, Huangpu District',
     phone: '021-23271699',
     rating: 4.9,
+  },
+  {
+    id: 'yashida',
+    name: 'Yashida Dental',
+    nameCn: '雅仕达口腔',
+    image: '/images/healthcare/yashida.jpg',
+    description: 'Professional dental clinic offering comprehensive oral care with modern facilities and experienced dentists.',
+    features: ['General Dentistry', 'Teeth Whitening', 'Root Canal', 'Dental Crowns'],
+    address: 'Multiple locations in Shanghai',
+    phone: '400-000-0000',
+    rating: 4.5,
   },
 ]
 
@@ -196,6 +218,18 @@ const escortHospitals = [
     features: ['Burn Center', 'Thoracic Surgery', 'Vascular Surgery', 'Colorectal Surgery'],
     address: '168 Changhai Rd, Yangpu District',
     phone: '021-31166666',
+    rating: 4.8,
+    tier: 'Grade 3A',
+  },
+  {
+    id: 'xinhua',
+    name: 'Xinhua Hospital',
+    nameCn: '新华医院',
+    image: '/images/healthcare/xinhua.jpg',
+    description: 'SJTU School of Medicine Xinhua Hospital, nationally recognized for pediatrics and general surgery.',
+    features: ['Pediatrics', 'General Surgery', 'Otorhinolaryngology', 'Orthopedics'],
+    address: '1665 Kongjiang Rd, Yangpu District',
+    phone: '021-25078999',
     rating: 4.8,
     tier: 'Grade 3A',
   },

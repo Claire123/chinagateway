@@ -61,6 +61,14 @@ const allProviders: Record<string, any> = {
     phone: '021-64370045',
     rating: 4.9,
   },
+  'zhongshan-checkup': {
+    name: 'Zhongshan Hospital Health Center',
+    nameCn: '中山医院体检中心',
+    type: 'Medical Checkup',
+    address: '180 Fenglin Rd, Xuhui District',
+    phone: '021-64041990',
+    rating: 4.8,
+  },
   // Dental
   hongning: {
     name: 'Hongning Dental',
@@ -101,6 +109,14 @@ const allProviders: Record<string, any> = {
     address: '639 Zhizaoju Rd, Huangpu District',
     phone: '021-23271699',
     rating: 4.9,
+  },
+  yashida: {
+    name: 'Yashida Dental',
+    nameCn: '雅仕达口腔',
+    type: 'Dental Care',
+    address: 'Multiple locations in Shanghai',
+    phone: '400-000-0000',
+    rating: 4.5,
   },
   // Escort
   huashan: {
@@ -145,6 +161,15 @@ const allProviders: Record<string, any> = {
     type: 'Hospital Escort',
     address: '168 Changhai Rd, Yangpu District',
     phone: '021-31166666',
+    rating: 4.8,
+    tier: 'Grade 3A',
+  },
+  xinhua: {
+    name: 'Xinhua Hospital',
+    nameCn: '新华医院',
+    type: 'Hospital Escort',
+    address: '1665 Kongjiang Rd, Yangpu District',
+    phone: '021-25078999',
     rating: 4.8,
     tier: 'Grade 3A',
   },
