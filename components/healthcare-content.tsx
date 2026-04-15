@@ -100,7 +100,7 @@ const dentalClinics = [
     description: 'Professional dental clinic with comfortable environment and attentive service. Located in Gaoshang Community.',
     features: ['Dental Implants', 'Orthodontics', 'Cosmetic Dentistry', 'Pediatric Dentistry'],
     address: 'Room 202, 1610 Caoyang Rd (2nd Floor, ICBC Building)',
-    phone: '021-62126688',
+    phone: '021-52802953',
     rating: 4.8,
   },
   {
@@ -133,7 +133,7 @@ const dentalClinics = [
     description: 'International dental brand from Portugal with world-class dental specialists.',
     features: ['Immediate Implants', 'Aesthetic Orthodontics', 'Porcelain Veneers', 'Oral Surgery'],
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '4008-820-506',
     rating: 4.6,
   },
   {
@@ -155,7 +155,7 @@ const dentalClinics = [
     description: 'Professional dental clinic offering comprehensive oral care with modern facilities and experienced dentists.',
     features: ['General Dentistry', 'Teeth Whitening', 'Root Canal', 'Dental Crowns'],
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '400-839-2968',
     rating: 4.5,
   },
 ]
