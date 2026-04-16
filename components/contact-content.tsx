@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, Loader2 } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, Loader2, MapPinned, Calendar, Wallet, X } from 'lucide-react'
 
 const contactInfo = [
   {
@@ -33,16 +35,57 @@ const contactInfo = [
   },
 ]
 
-export function ContactContent() {
+function ContactForm() {
+  const searchParams = useSearchParams()
+  const subjectParam = searchParams.get('subject')
+  const itineraryParam = searchParams.get('itinerary')
+  
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [itineraryData, setItineraryData] = useState<any>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    subject: subjectParam || '',
     message: '',
   })
+
+  // Parse itinerary data from URL
+  useEffect(() => {
+    if (itineraryParam) {
+      try {
+        const parsed = JSON.parse(decodeURIComponent(itineraryParam))
+        setItineraryData(parsed)
+        
+        // Auto-populate message with itinerary details
+        const itinerarySummary = parsed.itinerary?.map((day: any) => 
+          `Day ${day.day}: ${day.city} - ${day.theme}\nActivities: ${day.activities}`
+        ).join('\n\n')
+        
+        setFormData(prev => ({
+          ...prev,
+          message: `Hi, I'm interested in booking a trip to China.\n\n` +
+            `Destinations: ${parsed.cities?.join(' → ')}\n` +
+            `Duration: ${parsed.duration}\n` +
+            `Budget: ${parsed.budget}\n` +
+            `Interests: ${parsed.interests?.join(', ')}\n\n` +
+            `Itinerary Summary:\n${itinerarySummary}\n\n` +
+            `Please contact me to discuss further details.`
+        }))
+      } catch (e) {
+        console.error('Failed to parse itinerary:', e)
+      }
+    }
+  }, [itineraryParam])
+
+  const clearItinerary = () => {
+    setItineraryData(null)
+    setFormData(prev => ({
+      ...prev,
+      message: ''
+    }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,6 +157,57 @@ export function ContactContent() {
       <section className="py-20 border-t border-slate-800">
         <div className="container-apple">
           <div className="max-w-2xl mx-auto">
+            {/* Itinerary Summary Card */}
+            {itineraryData && (
+              <Card className="bg-slate-800/50 border-slate-700 mb-6">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <MapPinned className="w-5 h-5 text-slate-400" />
+                      <h3 className="font-semibold text-white">Your Itinerary</h3>
+                    </div>
+                    <button 
+                      onClick={clearItinerary}
+                      className="text-slate-400 hover:text-slate-300"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-slate-700 text-slate-200">
+                        {itineraryData.cities?.join(' → ')}
+                      </Badge>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-4 text-sm">
+                      <span className="flex items-center gap-1 text-slate-400">
+                        <Calendar className="w-4 h-4" />
+                        {itineraryData.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-slate-400">
+                        <Wallet className="w-4 h-4" />
+                        {itineraryData.budget}
+                      </span>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-1">
+                      {itineraryData.interests?.map((interest: string) => (
+                        <Badge key={interest} variant="outline" className="border-slate-600 text-slate-400 text-xs">
+                          {interest}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <div className="text-xs text-slate-500">
+                      {itineraryData.itinerary?.length} days planned
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
             {submitted ? (
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-12 text-center">
@@ -208,7 +302,7 @@ export function ContactContent() {
                       ) : (
                         <>
                           <Send className="w-4 h-4 mr-2" />
-                          Send Message
+                          {itineraryData ? 'Submit Booking Request' : 'Send Message'}
                         </>
                       )}
                     </Button>
@@ -254,5 +348,17 @@ export function ContactContent() {
         </div>
       </section>
     </div>
+  )
+}
+
+export function ContactContent() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    }>
+      <ContactForm />
+    </Suspense>
   )
 }

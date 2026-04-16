@@ -235,6 +235,231 @@ const citiesData: Record<string, any> = {
       },
     },
   },
+  chengdu: {
+    id: 'chengdu',
+    name: 'Chengdu',
+    tagline: 'Pandas and Spicy Food',
+    description: 'Relaxed city famous for giant pandas, hot pot, and tea house culture.',
+    image: '/images/cities/chengdu.jpg',
+    sections: {
+      overview: {
+        title: 'Overview',
+        content: `Chengdu is the capital of Sichuan province and one of China's most livable cities. Famous for being the home of giant pandas, its laid-back lifestyle, and mouth-numbing spicy cuisine, Chengdu offers a unique blend of nature, culture, and gastronomy.`,
+      },
+      attractions: {
+        title: 'Top Attractions',
+        items: [
+          {
+            name: 'Giant Panda Base',
+            description: 'Research base dedicated to panda conservation and breeding.',
+            tips: 'Go early (8-9am) when pandas are most active. Allow 3-4 hours.',
+          },
+          {
+            name: 'Jinli Ancient Street',
+            description: 'Traditional street with Qing Dynasty architecture and local snacks.',
+            tips: 'Beautiful at night with lanterns. Try local street food.',
+          },
+          {
+            name: 'Wuhou Shrine',
+            description: 'Temple dedicated to Zhuge Liang and Liu Bei from Three Kingdoms.',
+            tips: 'Combine with Jinli Street nearby. Beautiful gardens.',
+          },
+          {
+            name: 'Leshan Giant Buddha',
+            description: 'World\'s largest stone Buddha statue, 71 meters tall.',
+            tips: 'Day trip from Chengdu. Take boat for best view.',
+          },
+        ],
+      },
+      food: {
+        title: 'Food & Dining',
+        description: 'Chengdu is UNESCO City of Gastronomy, famous for bold flavors and Sichuan peppercorns.',
+        mustTry: [
+          'Sichuan Hot Pot',
+          'Mapo Tofu',
+          'Kung Pao Chicken',
+          'Dan Dan Noodles',
+          'Rabbit Heads (Local specialty)',
+        ],
+        areas: [
+          { name: 'Wide and Narrow Alleys', description: 'Traditional area with restaurants and teahouses' },
+          { name: 'Jinli Street', description: 'Street food and local snacks' },
+          { name: 'Chunxi Road', description: 'Modern dining and shopping district' },
+        ],
+      },
+      transport: {
+        title: 'Getting Around',
+        metro: 'Modern metro system covering major attractions.',
+        taxi: 'Inexpensive and plentiful. Use Didi app for rides.',
+        tips: [
+          'Metro is clean, efficient, and English-friendly',
+          'Biking is popular - many shared bikes available',
+          'Airport is connected by metro line 10',
+        ],
+      },
+      practical: {
+        title: 'Practical Information',
+        bestTime: 'March-June, September-November',
+        language: 'Sichuan dialect of Mandarin. English limited outside tourist areas.',
+        currency: 'Chinese Yuan (CNY). Mobile payments widely used.',
+        tips: [
+          'Try the local teahouse culture - People\'s Park is famous',
+          'Sichuan food is spicy - ask for less spice if needed',
+          'Book panda base tickets in advance during holidays',
+        ],
+      },
+    },
+  },
+  guilin: {
+    id: 'guilin',
+    name: 'Guilin',
+    tagline: 'Karst Mountains and Rivers',
+    description: 'Breathtaking natural scenery with limestone peaks and the Li River.',
+    image: '/images/cities/guilin.jpg',
+    sections: {
+      overview: {
+        title: 'Overview',
+        content: `Guilin is world-renowned for its dramatic karst landscape - thousands of limestone peaks rising from the plains along the Li River. The city has inspired countless Chinese paintings and poems with its ethereal beauty.`,
+      },
+      attractions: {
+        title: 'Top Attractions',
+        items: [
+          {
+            name: 'Li River Cruise',
+            description: 'Scenic boat ride from Guilin to Yangshuo through karst mountains.',
+            tips: 'Book in advance. 4-hour cruise. Best in morning for photos.',
+          },
+          {
+            name: 'Yangshuo',
+            description: 'Picturesque town surrounded by karst peaks, popular with backpackers.',
+            tips: 'Stay overnight. Rent bikes to explore countryside.',
+          },
+          {
+            name: 'Reed Flute Cave',
+            description: 'Natural limestone cave with colorful lighting.',
+            tips: '1-hour visit. Located in city. Cool inside even in summer.',
+          },
+          {
+            name: 'Longji Rice Terraces',
+            description: 'Spectacular terraced fields built into mountainsides.',
+            tips: '2-3 hours from Guilin. Stay overnight for sunrise.',
+          },
+        ],
+      },
+      food: {
+        title: 'Food & Dining',
+        description: 'Guilin cuisine features rice noodles and local specialties with lighter flavors than Sichuan.',
+        mustTry: [
+          'Guilin Rice Noodles',
+          'Beer Fish (Yangshuo specialty)',
+          'Stuffed Li River Snails',
+          'Lotus Leaf Rice',
+          'Osmanthus Cake',
+        ],
+        areas: [
+          { name: 'West Street (Yangshuo)', description: 'Tourist street with international restaurants' },
+          { name: 'Zhengyang Pedestrian Street', description: 'Central Guilin dining area' },
+          { name: 'Night Market', description: 'Street food and local snacks' },
+        ],
+      },
+      transport: {
+        title: 'Getting Around',
+        metro: 'No metro system. City buses available.',
+        taxi: 'Taxis are affordable. Negotiate price for long distances.',
+        tips: [
+          'Li River cruise is one-way to Yangshuo',
+          'Rent electric scooters in Yangshuo to explore',
+          'Airport is 30km from city center',
+        ],
+      },
+      practical: {
+        title: 'Practical Information',
+        bestTime: 'April-October (avoid summer floods)',
+        language: 'Guilin dialect. English spoken in tourist areas.',
+        currency: 'Chinese Yuan (CNY).',
+        tips: [
+          'Bring rain gear - sudden showers are common',
+          'Mosquito repellent essential',
+          'Book Li River cruise in advance during peak season',
+        ],
+      },
+    },
+  },
+  hangzhou: {
+    id: 'hangzhou',
+    name: 'Hangzhou',
+    tagline: 'Heaven on Earth',
+    description: 'Famous for West Lake, tea plantations, and silk production.',
+    image: '/images/cities/hangzhou.jpg',
+    sections: {
+      overview: {
+        title: 'Overview',
+        content: `Hangzhou has been celebrated for centuries as one of China's most beautiful cities. Marco Polo called it the finest and most splendid city in the world. West Lake, a UNESCO World Heritage site, remains the crown jewel of this elegant city.`,
+      },
+      attractions: {
+        title: 'Top Attractions',
+        items: [
+          {
+            name: 'West Lake',
+            description: 'UNESCO site with temples, pagodas, gardens, and artificial islands.',
+            tips: 'Rent bikes to circle the lake. Sunset at Leifeng Pagoda is magical.',
+          },
+          {
+            name: 'Lingyin Temple',
+            description: 'Ancient Buddhist temple with rock carvings in forested hills.',
+            tips: 'One of China\'s wealthiest temples. Allow 2-3 hours.',
+          },
+          {
+            name: 'Longjing Tea Villages',
+            description: 'Famous Dragon Well tea plantations in scenic hills.',
+            tips: 'Visit in spring for tea harvest. Buy tea directly from farmers.',
+          },
+          {
+            name: 'Xixi Wetland',
+            description: 'Urban wetland park with waterways and traditional villages.',
+            tips: 'Boat rides available. Less crowded than West Lake.',
+          },
+        ],
+      },
+      food: {
+        title: 'Food & Dining',
+        description: 'Hangzhou cuisine is refined and delicate, focusing on fresh ingredients and subtle flavors.',
+        mustTry: [
+          'Dongpo Pork (Braised Pork Belly)',
+          'West Lake Fish in Vinegar Gravy',
+          'Longjing Shrimp',
+          'Beggar\'s Chicken',
+          'Hangzhou Xiaolongbao',
+        ],
+        areas: [
+          { name: 'Hubin Road', description: 'Lakeside dining with views' },
+          { name: 'Hefang Street', description: 'Traditional snacks and teahouses' },
+          { name: 'Longjing Village', description: 'Tea houses and farm-to-table dining' },
+        ],
+      },
+      transport: {
+        title: 'Getting Around',
+        metro: 'Modern metro system. Line 1 connects main areas.',
+        taxi: 'Readily available and inexpensive.',
+        tips: [
+          'Biking around West Lake is very popular',
+          'Water buses available on West Lake and canals',
+          'High-speed rail connects to Shanghai in 1 hour',
+        ],
+      },
+      practical: {
+        title: 'Practical Information',
+        bestTime: 'March-May, September-November',
+        language: 'Hangzhou dialect. English spoken in tourist areas.',
+        currency: 'Chinese Yuan (CNY).',
+        tips: [
+          'West Lake area gets crowded on weekends - visit early',
+          'Spring is best for tea culture experience',
+          'Bring umbrella - frequent light rain',
+        ],
+      },
+    },
+  },
 }
 
 export function generateMetadata({ params }: GuidePageProps): Metadata {

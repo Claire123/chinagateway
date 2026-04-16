@@ -461,9 +461,13 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
     notes: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError('')
     try {
       const response = await fetch('/api/healthcare-booking', {
         method: 'POST',
@@ -474,11 +478,17 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
           isCustom: true,
         }),
       })
+      const data = await response.json()
       if (response.ok) {
         setSubmitted(true)
+      } else {
+        setError(data.error || 'Failed to submit booking. Please try again.')
       }
-    } catch (error) {
-      console.error('Booking error:', error)
+    } catch (err) {
+      console.error('Booking error:', err)
+      setError('Network error. Please check your connection and try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -610,8 +620,14 @@ function CustomBookingForm({ serviceType, onBack }: { serviceType: string; onBac
               />
             </div>
 
-            <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800 h-12">
-              Submit Booking Request
+            {error && (
+              <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+                {error}
+              </div>
+            )}
+
+            <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800 h-12" disabled={isLoading}>
+              {isLoading ? 'Submitting...' : 'Submit Booking Request'}
             </Button>
           </form>
         </CardContent>

@@ -10,11 +10,10 @@ const footerLinks = {
   company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Careers', href: '#' },
   ],
   legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
   ],
 }
 
@@ -82,8 +81,8 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm">Copyright © {new Date().getFullYear()} ChinaGateway. All rights reserved.</p>
             <div className="flex gap-6">
-              <Link href="#" className="text-slate-400 hover:text-slate-600 transition-colors">Privacy</Link>
-              <Link href="#" className="text-slate-400 hover:text-slate-600 transition-colors">Terms</Link>
+              <Link href="/privacy" className="text-slate-400 hover:text-slate-600 transition-colors">Privacy</Link>
+              <Link href="/terms" className="text-slate-400 hover:text-slate-600 transition-colors">Terms</Link>
             </div>
           </div>
         </div>

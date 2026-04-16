@@ -76,7 +76,7 @@ const allProviders: Record<string, any> = {
     nameCn: '鸿宁口腔',
     type: 'Dental Care',
     address: 'Room 202, 1610 Caoyang Rd (2nd Floor, ICBC Building)',
-    phone: '021-62126688',
+    phone: '021-52802953',
     rating: 4.8,
   },
   bybo: {
@@ -100,7 +100,7 @@ const allProviders: Record<string, any> = {
     nameCn: '马泷齿科',
     type: 'Dental Care',
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '4008-820-506',
     rating: 4.6,
   },
   'ninth-hospital': {
@@ -116,7 +116,7 @@ const allProviders: Record<string, any> = {
     nameCn: '雅仕达口腔',
     type: 'Dental Care',
     address: 'Multiple locations in Shanghai',
-    phone: '400-000-0000',
+    phone: '400-839-2968',
     rating: 4.5,
   },
   // Escort
@@ -195,10 +195,12 @@ function BookingForm() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError('')
     
     try {
       const response = await fetch('/api/healthcare-booking', {
@@ -212,11 +214,16 @@ function BookingForm() {
         }),
       })
       
+      const data = await response.json()
+      
       if (response.ok) {
         setSubmitted(true)
+      } else {
+        setError(data.error || 'Failed to submit booking. Please try again.')
       }
-    } catch (error) {
-      console.error('Booking error:', error)
+    } catch (err) {
+      console.error('Booking error:', err)
+      setError('Network error. Please check your connection and try again.')
     } finally {
       setIsLoading(false)
     }
@@ -456,6 +463,12 @@ function BookingForm() {
                       placeholder="Any special requirements or additional information"
                     />
                   </div>
+
+                  {error && (
+                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+                      {error}
+                    </div>
+                  )}
 
                   <Button 
                     type="submit" 

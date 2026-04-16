@@ -20,7 +20,9 @@ import {
   Phone,
   HeartPulse,
   Smile,
-  Building2
+  Building2,
+  Download,
+  FileSpreadsheet
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -172,6 +174,49 @@ export function AdminDashboard() {
     })
   }
 
+  // Export data to CSV
+  const exportToCSV = (data: any[], filename: string) => {
+    if (data.length === 0) {
+      alert('No data to export')
+      return
+    }
+    
+    const headers = Object.keys(data[0]).join(',')
+    const rows = data.map(item => 
+      Object.values(item).map(val => {
+        // Handle values that might contain commas or quotes
+        const str = String(val)
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+          return `"${str.replace(/"/g, '""')}"`
+        }
+        return str
+      }).join(',')
+    )
+    
+    const csv = [headers, ...rows].join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `${filename}_${new Date().toISOString().split('T')[0]}.csv`
+    link.click()
+  }
+
+  // Export all data
+  const exportAllData = () => {
+    const allData = {
+      contacts: filteredContacts,
+      healthcareBookings: filteredHealthcareBookings,
+      bookings: filteredBookings,
+      users: filteredUsers,
+    }
+    
+    const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `chinagateway_all_data_${new Date().toISOString().split('T')[0]}.json`
+    link.click()
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -246,8 +291,8 @@ export function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Search and Refresh */}
-        <div className="flex gap-4 mb-6">
+        {/* Search, Refresh, and Export */}
+        <div className="flex flex-wrap gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
             <input
@@ -261,6 +306,10 @@ export function AdminDashboard() {
           <Button onClick={fetchData} disabled={isLoading} variant="outline">
             <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
+          </Button>
+          <Button onClick={exportAllData} variant="outline" className="bg-slate-100">
+            <Download className="w-4 h-4 mr-2" />
+            Export All Data
           </Button>
         </div>
 
@@ -288,8 +337,17 @@ export function AdminDashboard() {
           {/* Contact Messages */}
           <TabsContent value="contacts">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>Contact Messages</CardTitle>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={() => exportToCSV(filteredContacts, 'contact_messages')}
+                  disabled={filteredContacts.length === 0}
+                >
+                  <FileSpreadsheet className="w-4 h-4 mr-2" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 {filteredContacts.length === 0 ? (
@@ -336,8 +394,17 @@ export function AdminDashboard() {
           {/* Healthcare Bookings */}
           <TabsContent value="healthcare">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>医疗服务预约</CardTitle>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={() => exportToCSV(filteredHealthcareBookings, 'healthcare_bookings')}
+                  disabled={filteredHealthcareBookings.length === 0}
+                >
+                  <FileSpreadsheet className="w-4 h-4 mr-2" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 {filteredHealthcareBookings.length === 0 ? (
@@ -409,8 +476,17 @@ export function AdminDashboard() {
           {/* Hospital Bookings */}
           <TabsContent value="bookings">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>医院预约 (旧版)</CardTitle>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={() => exportToCSV(filteredBookings, 'hospital_bookings')}
+                  disabled={filteredBookings.length === 0}
+                >
+                  <FileSpreadsheet className="w-4 h-4 mr-2" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 {filteredBookings.length === 0 ? (
@@ -477,8 +553,17 @@ export function AdminDashboard() {
           {/* User Registrations */}
           <TabsContent value="users">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>User Registrations</CardTitle>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={() => exportToCSV(filteredUsers, 'user_registrations')}
+                  disabled={filteredUsers.length === 0}
+                >
+                  <FileSpreadsheet className="w-4 h-4 mr-2" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 {filteredUsers.length === 0 ? (

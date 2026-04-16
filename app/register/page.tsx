@@ -192,11 +192,11 @@ function RegisterForm() {
             {/* Terms */}
             <p className="text-xs text-slate-500 text-center mt-6">
               By creating an account, you agree to our{' '}
-              <Link href="#" className="text-slate-400 hover:text-white underline">
+              <Link href="/terms" className="text-slate-400 hover:text-white underline">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link href="#" className="text-slate-400 hover:text-white underline">
+              <Link href="/privacy" className="text-slate-400 hover:text-white underline">
                 Privacy Policy
               </Link>
             </p>

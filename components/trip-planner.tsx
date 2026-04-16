@@ -442,21 +442,28 @@ export function TripPlanner() {
                 Back
               </Button>
               <div className="flex gap-2">
-                <Button 
-                  variant="outline"
-                  size="lg"
-                  onClick={() => alert('Itinerary saved to your account!')}
+                <Link 
+                  href={`/contact?subject=Trip%20Booking%20Request&itinerary=${encodeURIComponent(JSON.stringify({
+                    cities: allSelectedCities.map(id => citiesData[id]?.name || id),
+                    interests: selectedInterests,
+                    duration: durations.find(d => d.id === selectedDuration)?.label,
+                    budget: selectedBudget,
+                    itinerary: generatedItinerary.map(day => ({
+                      day: day.day,
+                      city: day.city,
+                      theme: day.theme,
+                      activities: day.activities.map(a => a.title).join(', ')
+                    }))
+                  }))}`}
                 >
-                  Save Itinerary
-                </Button>
-                <Button 
-                  size="lg"
-                  className="bg-slate-700 hover:bg-slate-800"
-                  onClick={() => alert('Booking feature coming soon!')}
-                >
-                  <Navigation className="w-4 h-4 mr-2" />
-                  Book This Trip
-                </Button>
+                  <Button 
+                    size="lg"
+                    className="bg-slate-700 hover:bg-slate-800"
+                  >
+                    <Navigation className="w-4 h-4 mr-2" />
+                    Book This Trip
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
