@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { Logo, LogoIcon } from './logo'
 
 const navItems = [
   { href: '/travel', label: 'Travel' },
@@ -42,11 +43,7 @@ export function Navbar() {
       >
         <nav className="container-apple flex h-14 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-[15px] font-semibold text-[#1D1D1F] tracking-tight">
-              ChinaGateway
-            </span>
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
@@ -77,7 +74,11 @@ export function Navbar() {
             </Link>
             <Link 
               href="/register" 
-              className="ml-2 px-4 py-2 text-[13px] font-medium text-white bg-[#007AFF] hover:bg-[#0051D5] rounded-full transition-colors active:scale-95"
+              className="ml-2 px-4 py-2 text-[13px] font-medium text-white rounded-full transition-all duration-200 active:scale-95"
+              style={{ 
+                background: 'linear-gradient(135deg, #0052FF, #4D7CFF)',
+                boxShadow: '0 2px 8px rgba(0, 82, 255, 0.25)'
+              }}
             >
               Sign Up
             </Link>
@@ -119,7 +120,11 @@ export function Navbar() {
             </Link>
             <Link 
               href="/register" 
-              className="block py-3 px-4 mt-2 text-[15px] font-medium text-white bg-[#007AFF] hover:bg-[#0051D5] rounded-full text-center"
+              className="block py-3 px-4 mt-2 text-[15px] font-medium text-white rounded-full text-center"
+              style={{ 
+                background: 'linear-gradient(135deg, #0052FF, #4D7CFF)',
+                boxShadow: '0 2px 8px rgba(0, 82, 255, 0.25)'
+              }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Sign Up
