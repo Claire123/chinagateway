@@ -1,21 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { contactSchema, sanitizeObject } from '@/lib/validation'
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
 // Simple in-memory storage for demo (will reset on server restart)
 const messages: any[] = []
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, email, subject, message } = body
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
+    // Rate limiting
+    const clientIp = getClientIp(request)
+    const rateLimit = checkRateLimit(`contact:${clientIp}`, {
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      maxRequests: 5, // 5 submissions per 15 minutes
+    })
+    
+    if (!rateLimit.allowed) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
+    
+    const body = await request.json()
+    
+    // Validate with Zod
+    const validationResult = contactSchema.safeParse(body)
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: validationResult.error.errors[0].message },
         { status: 400 }
       )
     }
+    
+    const { name, email, subject, message } = sanitizeObject(validationResult.data)
 
     // 1. Save to in-memory storage (with timestamp)
     const messageData = {
@@ -50,7 +68,7 @@ export async function POST(request: NextRequest) {
 
         const mailOptions = {
           from: `"ChinaGateway" <${smtpUser}>`,
-          to: 'clairezhang2018@163.com',
+          to: 'contactus@chinagateway.it.com',
           subject: `[ChinaGateway] New message from ${name}`,
           text: `
 Name: ${name}

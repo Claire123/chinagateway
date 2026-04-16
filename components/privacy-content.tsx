@@ -110,7 +110,7 @@ const sections = [
       • Right to object: Opt out of certain uses (including marketing)
       • Right to withdraw consent: Withdraw previously given consent
       
-      To exercise these rights, please contact us at clairezhang2018@163.com. We will respond within 30 days.
+      To exercise these rights, please contact us at contactus@chinagateway.it.com. We will respond within 30 days.
     `
   }
 ]
@@ -243,7 +243,7 @@ export function PrivacyContent() {
                 please contact us:
               </p>
               <div className="space-y-2 text-slate-600">
-                <p><strong>Email:</strong> clairezhang2018@163.com</p>
+                <p><strong>Email:</strong> contactus@chinagateway.it.com</p>
                 <p><strong>WhatsApp/WeChat:</strong> +86 159 0063 0236</p>
                 <p><strong>Address:</strong> Shanghai, China</p>
               </div>

@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
         await transporter.sendMail({
           from: `"ChinaGateway" <${smtpUser}>`,
-          to: 'clairezhang2018@163.com',
+          to: 'contactus@chinagateway.it.com',
           subject: `[ChinaGateway] New Appointment Request - ${name}`,
           html: `
             <h2>New Medical Appointment Request</h2>

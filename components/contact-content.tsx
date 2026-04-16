@@ -12,8 +12,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'clairezhang2018@163.com',
-    href: 'mailto:clairezhang2018@163.com',
+    value: 'contactus@chinagateway.it.com',
+    href: 'mailto:contactus@chinagateway.it.com',
   },
   {
     icon: MessageCircle,

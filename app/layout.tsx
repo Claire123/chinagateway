@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://chinagateway.com',
+    url: 'https://chinagateway.it.com',
     siteName: 'ChinaGateway',
     title: 'ChinaGateway - Your Trusted Gateway to China',
     description: 'Travel & Healthcare Made Simple. Plan your trip to China or access world-class medical care.',
