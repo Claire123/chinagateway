@@ -34,7 +34,7 @@ const guides = [
     comments: 45,
     tags: ['Shanghai', 'Visa-Free', 'Guide', 'Deep Dive'],
     excerpt: 'A detailed record of my complete experience traveling Shanghai with the 144-hour visa-free policy. Day 1: The Bund + Nanjing Road; Day 2: Yu Garden + City God Temple; Day 3: Tianzifang + Xintiandi; Day 4: Lujiazui + Oriental Pearl; Day 5: Disney; Day 6: Shopping and departure. Includes detailed subway routes, food recommendations, and tips to avoid tourist traps...',
-    image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80',
+    image: '/images/community/shanghai-guide.jpg',
     content: `
 ## Day 1: Arrival in Shanghai, The Bund Night View
 - Morning: Arrive at Pudong Airport, take Maglev to city center
@@ -82,7 +82,7 @@ const guides = [
     comments: 67,
     tags: ['Medical Tourism', 'Beijing', 'Experience', 'Peking Union'],
     excerpt: 'From appointment to discharge, a detailed record of my medical experience at Peking Union Hospital. Includes: 1) How to book the International Department; 2) Day-of-appointment process; 3) Examination arrangements; 4) Cost breakdown; 5) Accommodation recommendations. Total cost was 70% cheaper than the US, doctors were very professional...',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    image: '/images/community/medical-tourism.jpg',
     content: 'Detailed medical tourism experience...'
   },
   {
@@ -96,7 +96,7 @@ const guides = [
     comments: 89,
     tags: ['Chengdu', 'Food', 'Recommendations', 'Hot Pot'],
     excerpt: 'Lived in Chengdu for 3 years, compiled this most authentic food map. From hot pot to snacks: 1) Xiaolongkan Hot Pot; 2) Shu Da Xia; 3) Chen Mapo Tofu; 4) Zhong Dumplings; 5) Dragon Wontons; 6) Dan Dan Noodles; 7) Skewered Delights; 8) Rabbit Heads; 9) Bobo Chicken; 10) Sweet Water Noodles...',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80',
+    image: '/images/community/chengdu-food.jpg',
     content: 'Detailed Chengdu food recommendations...'
   },
   {
@@ -110,7 +110,7 @@ const guides = [
     comments: 34,
     tags: ['Xi\'an', 'Terracotta Warriors', 'One-Day', 'History'],
     excerpt: 'Must-visit Terracotta Warriors and Huaqing Pool in Xi\'an, how to arrange a one-day tour? Includes transportation guide, ticket booking, best visiting times, and guide service recommendations. Suggested departure at 8 AM to avoid peak crowds...',
-    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800&q=80',
+    image: '/images/community/xian-terracotta.jpg',
     content: 'Xi\'an one-day tour guide...'
   },
   {
@@ -124,7 +124,7 @@ const guides = [
     comments: 41,
     tags: ['Guilin', 'Li River', 'Yangshuo', 'Nature'],
     excerpt: 'Guilin landscape is the best under heaven, Yangshuo landscape is the best in Guilin. 3-day 2-night itinerary: Day 1 Li River cruise; Day 2 Yulong River bamboo raft + Ten Mile Gallery; Day 3 Yangshuo West Street + Impression Liu Sanjie. Best season is April-October...',
-    image: 'https://images.unsplash.com/photo-1537531383496-f4749b8032cf?w=800&q=80',
+    image: '/images/community/guilin-landscape.jpg',
     content: 'Guilin travel guide...'
   },
 ]
