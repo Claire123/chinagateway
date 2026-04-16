@@ -315,6 +315,38 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets on mobile */
+  .btn-brand,
+  .btn-secondary {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0.5px 1px rgba(0,0,0,0.06);
+  }
+  
+  /* Increase tap highlight */
+  * {
+    -webkit-tap-highlight-color: rgba(0, 82, 255, 0.1);
+  }
+}
+
+/* Safe area for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *,

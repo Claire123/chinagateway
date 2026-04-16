@@ -34,7 +34,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#667eea',
+  themeColor: '#0052FF',
   viewportFit: 'cover',
 }
 
@@ -55,7 +55,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="ChinaGateway" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="ChinaGateway" />
-        <meta name="msapplication-TileColor" content="#667eea" />
+        <meta name="msapplication-TileColor" content="#0052FF" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
       <body className="antialiased bg-white text-slate-700">

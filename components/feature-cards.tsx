@@ -90,7 +90,7 @@ export function FeatureCards() {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon
             const isVisible = visibleItems.includes(index)
@@ -104,21 +104,21 @@ export function FeatureCards() {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <Card className={`group bg-gradient-to-br ${feature.gradient} border border-slate-100 rounded-2xl overflow-hidden h-full hover-lift`}>
-                  <div className="p-8 md:p-10">
+                <Card className={`group bg-gradient-to-br ${feature.gradient} border border-slate-100 rounded-xl md:rounded-2xl overflow-hidden h-full hover-lift`}>
+                  <div className="p-5 md:p-10">
                     {/* Icon with brand color */}
                     <div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-white shadow-lg"
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6 text-white shadow-lg"
                       style={{ backgroundColor: feature.color }}
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     
                     {/* Content */}
-                    <h3 className="text-xl font-semibold text-slate-800 mb-3">
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2 md:mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-slate-500 mb-6 leading-relaxed">
+                    <p className="text-sm md:text-base text-slate-500 mb-4 md:mb-6 leading-relaxed">
                       {feature.description}
                     </p>
                     
