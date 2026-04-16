@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Card } from '@/components/ui/card'
-import { Plane, Stethoscope, Clock, Shield } from 'lucide-react'
+import { Plane, Stethoscope, Clock, Shield, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 
 const features = [
   {
@@ -13,7 +13,8 @@ const features = [
     description: 'Smart itinerary generator with 144-hour visa-free calculator.',
     link: '/travel',
     linkText: 'Plan your trip',
-    bgGradient: 'from-slate-50 to-stone-50',
+    color: '#0052FF',
+    gradient: 'from-[#0052FF]/5 to-[#4D7CFF]/5',
     image: '/images/cities/shanghai.jpg',
   },
   {
@@ -22,7 +23,8 @@ const features = [
     description: 'JCI-certified hospitals. Save 60-80% on medical costs.',
     link: '/healthcare',
     linkText: 'Learn more',
-    bgGradient: 'from-gray-50 to-slate-50',
+    color: '#10B981',
+    gradient: 'from-[#10B981]/5 to-[#34D399]/5',
     image: '/images/hospitals/exterior-modern-01.jpg',
   },
   {
@@ -31,7 +33,8 @@ const features = [
     description: 'Check eligibility instantly for 144-hour visa-free entry.',
     link: '/visa',
     linkText: 'Check now',
-    bgGradient: 'from-stone-50 to-gray-50',
+    color: '#F59E0B',
+    gradient: 'from-[#F59E0B]/5 to-[#FBBF24]/5',
     image: '/images/cities/beijing.jpg',
   },
   {
@@ -40,7 +43,8 @@ const features = [
     description: '50+ verified hospitals with English-speaking staff.',
     link: '/healthcare',
     linkText: 'View hospitals',
-    bgGradient: 'from-slate-50 to-gray-50',
+    color: '#8B5CF6',
+    gradient: 'from-[#8B5CF6]/5 to-[#A78BFA]/5',
     image: '/images/hospitals/interior-reception-01.jpg',
   },
 ]
@@ -60,7 +64,7 @@ export function FeatureCards() {
             observer.unobserve(ref)
           }
         },
-        { threshold: 0.2 }
+        { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
       )
       
       observer.observe(ref)
@@ -73,14 +77,14 @@ export function FeatureCards() {
   }, [])
 
   return (
-    <section className="section-xl bg-white">
+    <section className="py-24 bg-white">
       <div className="container-apple">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-headline font-semibold text-slate-800 mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl text-slate-800 mb-4 tracking-tight">
             Everything you need
           </h2>
-          <p className="text-body text-slate-500 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
             From visa-free entry to world-class healthcare, we&apos;ve got you covered.
           </p>
         </div>
@@ -100,37 +104,42 @@ export function FeatureCards() {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <Card className={`bg-gradient-to-br ${feature.bgGradient} border-0 rounded-3xl overflow-hidden h-full hover-lift`}>
-                  <div className="p-10 md:p-12">
-                    {/* Icon - 低饱和度 */}
-                    <div className="w-12 h-12 rounded-2xl bg-white/80 shadow-sm flex items-center justify-center mb-6">
-                      <Icon className="w-6 h-6 text-slate-500" />
+                <Card className={`group bg-gradient-to-br ${feature.gradient} border border-slate-100 rounded-2xl overflow-hidden h-full hover-lift`}>
+                  <div className="p-8 md:p-10">
+                    {/* Icon with brand color */}
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-white shadow-lg"
+                      style={{ backgroundColor: feature.color }}
+                    >
+                      <Icon className="w-6 h-6" />
                     </div>
                     
                     {/* Content */}
-                    <h3 className="text-title-1 font-semibold text-slate-800 mb-3">
+                    <h3 className="text-xl font-semibold text-slate-800 mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-body text-slate-500 mb-6">
+                    <p className="text-slate-500 mb-6 leading-relaxed">
                       {feature.description}
                     </p>
                     
-                    {/* Link - 低饱和度 */}
+                    {/* Link with hover effect */}
                     <Link 
                       href={feature.link}
-                      className="inline-flex items-center text-slate-500 hover:text-slate-700 text-sm font-medium"
+                      className="inline-flex items-center text-sm font-semibold transition-colors"
+                      style={{ color: feature.color }}
                     >
                       {feature.linkText}
-                      <ChevronRight className="w-4 h-4 ml-1" />
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                   
                   {/* Feature Image */}
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
+                  <div className="aspect-[16/10] overflow-hidden relative">
+                    <Image 
                       src={feature.image} 
                       alt={feature.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </Card>

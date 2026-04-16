@@ -1,9 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Calistoga&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    /* Brand Colors - Electric Blue */
+    --brand-primary: 217 100% 50%;
+    --brand-secondary: 217 100% 65%;
+    --brand-gradient: linear-gradient(135deg, #0052FF, #4D7CFF);
+    
+    /* Neutral Colors - Warm Gray */
+    --warm-gray-50: 30 20% 98%;
+    --warm-gray-100: 30 15% 96%;
+    --warm-gray-200: 30 10% 90%;
+    --warm-gray-300: 30 8% 80%;
+    --warm-gray-400: 30 6% 65%;
+    --warm-gray-500: 30 5% 50%;
+    --warm-gray-600: 30 6% 35%;
+    --warm-gray-700: 30 8% 25%;
+    --warm-gray-800: 30 10% 15%;
+    --warm-gray-900: 30 15% 10%;
+    
     /* Apple System Colors - Light Mode */
     --apple-blue: 210 100% 50%;
     --apple-green: 135 70% 50%;
@@ -25,8 +44,8 @@
     --secondary-bg: 0 0% 96%;
     --tertiary-bg: 0 0% 100%;
     
-    /* Custom accent - Apple Blue */
-    --accent: var(--apple-blue);
+    /* Custom accent - Brand Blue */
+    --accent: var(--brand-primary);
     --accent-foreground: 0 0% 100%;
     
     /* Standard vars */
@@ -36,20 +55,20 @@
     --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 210 100% 50%;
+    --primary: 217 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 0% / 0.5;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    --secondary: 30 20% 96%;
+    --secondary-foreground: 30 15% 10%;
+    --muted: 30 20% 96%;
+    --muted-foreground: 30 8% 45%;
+    --accent: 30 20% 96%;
+    --accent-foreground: 30 15% 10%;
     --destructive: 5 100% 58%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 0% / 0.1;
-    --input: 0 0% 0% / 0.1;
-    --ring: 210 100% 50%;
-    --radius: 0.625rem;
+    --border: 30 10% 90%;
+    --input: 30 10% 90%;
+    --ring: 217 100% 50%;
+    --radius: 0.75rem;
   }
 }
 
@@ -66,9 +85,14 @@
   
   body {
     @apply bg-white text-black;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
     font-feature-settings: "kern" 1, "liga" 1;
     text-rendering: optimizeLegibility;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Calistoga', serif;
+    font-weight: 400;
   }
   
   /* Apple-style selection */
@@ -210,6 +234,85 @@
     transform: translateZ(0);
     will-change: transform;
   }
+}
+
+/* Brand gradient button */
+.btn-brand {
+  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200;
+  background: linear-gradient(135deg, #0052FF, #4D7CFF);
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 82, 255, 0.25);
+}
+
+.btn-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 82, 255, 0.35);
+}
+
+.btn-brand:active {
+  transform: scale(0.98);
+}
+
+/* Secondary button */
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200;
+  @apply bg-[#F1F5F9] text-slate-700 hover:bg-[#E2E8F0];
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #0052FF, #4D7CFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Card with gradient border */
+.card-gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+}
+
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 2px;
+  background: linear-gradient(135deg, #0052FF, #4D7CFF);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* Reduced motion support */

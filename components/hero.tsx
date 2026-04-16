@@ -1,42 +1,69 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
-import { ChevronRight, Plane, Stethoscope, MapPin } from 'lucide-react'
+import { ChevronRight, Plane, Stethoscope, MapPin, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 export function Hero() {
+  const heroRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const elements = heroRef.current?.querySelectorAll('.animate-on-scroll')
+    elements?.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden bg-white">
-      {/* Background gradient - subtle Apple style */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F5F7] to-white" />
+    <section ref={heroRef} className="relative pt-32 pb-20 overflow-hidden bg-white">
+      {/* Background gradient - subtle with warm tone */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF9] via-white to-white" />
+      
+      {/* Decorative elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-[#0052FF]/5 to-[#4D7CFF]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-tr from-[#0052FF]/3 to-transparent rounded-full blur-3xl" />
       
       <div className="container-apple relative">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#007AFF]/10 text-[#007AFF] text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#007AFF] animate-pulse" />
+          {/* Badge with animation */}
+          <div className="opacity-0 animate-fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0052FF]/10 to-[#4D7CFF]/10 text-[#0052FF] text-sm font-medium mb-8 border border-[#0052FF]/10">
+            <Sparkles className="w-4 h-4" />
+            <span className="w-2 h-2 rounded-full bg-[#0052FF] animate-pulse-soft" />
             144-Hour Visa-Free Transit Available
           </div>
           
-          {/* Main headline - Apple style large title */}
-          <h1 className="text-apple-large-title md:text-[48px] lg:text-[56px] text-[#1D1D1F] mb-6 tracking-tight">
+          {/* Main headline - with display font */}
+          <h1 className="opacity-0 animate-fade-in-up stagger-1 text-4xl md:text-5xl lg:text-6xl text-[#1D1D1F] mb-6 tracking-tight leading-tight">
             Your Gateway to
             <br />
-            <span className="text-[#007AFF]">China</span>
+            <span className="text-gradient">China</span>
           </h1>
           
           {/* Subtitle */}
-          <p className="text-[17px] md:text-[21px] text-black/50 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="opacity-0 animate-fade-in-up stagger-2 text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
             Plan your perfect trip or access world-class healthcare. 
             Save 60-80% on medical costs without compromising quality.
           </p>
           
-          {/* CTA Buttons - Apple style */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA Buttons - with brand gradient */}
+          <div className="opacity-0 animate-fade-in-up stagger-3 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/travel">
               <Button 
                 size="lg"
-                className="h-12 px-8 rounded-full bg-[#007AFF] hover:bg-[#0051D5] text-white font-medium text-base transition-all duration-150 active:scale-95"
+                className="h-14 px-8 rounded-xl btn-brand text-base"
               >
                 <Plane className="w-5 h-5 mr-2" />
                 Plan Your Trip
@@ -47,7 +74,7 @@ export function Hero() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="h-12 px-8 rounded-full border-[#007AFF] text-[#007AFF] hover:bg-[#007AFF]/10 font-medium text-base transition-all duration-150"
+                className="h-14 px-8 rounded-xl btn-secondary text-base border-2"
               >
                 <Stethoscope className="w-5 h-5 mr-2" />
                 Explore Healthcare
@@ -55,31 +82,31 @@ export function Hero() {
             </Link>
           </div>
           
-          {/* Trust badges - Apple style */}
-          <div className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-black/40">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#34C759]/10 flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-[#34C759]" />
-              </div>
-              <span>50+ Partner Hospitals</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#007AFF]/10 flex items-center justify-center">
-                <span className="text-[#007AFF] font-bold text-xs">JCI</span>
-              </div>
-              <span>JCI Certified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#FF9500]/10 flex items-center justify-center">
-                <span className="text-[#FF9500] font-bold text-xs">24/7</span>
-              </div>
-              <span>Support</span>
-            </div>
+          {/* Trust badges - improved styling */}
+          <div className="opacity-0 animate-fade-in-up stagger-4 mt-16 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+            {[
+              { icon: MapPin, label: '50+ Partner Hospitals', color: '#10B981' },
+              { icon: () => <span className="font-bold text-xs">JCI</span>, label: 'JCI Certified', color: '#0052FF' },
+              { icon: () => <span className="font-bold text-xs">24/7</span>, label: 'Support', color: '#F59E0B' },
+            ].map((badge, index) => {
+              const Icon = badge.icon
+              return (
+                <div key={index} className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-50 border border-slate-100">
+                  <div 
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
+                    style={{ backgroundColor: badge.color }}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="font-medium text-slate-600">{badge.label}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
       
-      {/* Feature cards - Apple style floating cards */}
+      {/* Feature cards - with hover effects */}
       <div className="container-apple mt-20">
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -87,39 +114,46 @@ export function Hero() {
               icon: Plane,
               title: 'Visa-Free Travel',
               desc: '144-hour transit visa exemption for 54 countries',
-              color: '#007AFF',
+              color: '#0052FF',
+              gradient: 'from-[#0052FF] to-[#4D7CFF]',
             },
             {
               icon: Stethoscope,
               title: 'Medical Tourism',
               desc: 'World-class healthcare at 60-80% savings',
-              color: '#34C759',
+              color: '#10B981',
+              gradient: 'from-[#10B981] to-[#34D399]',
             },
             {
               icon: MapPin,
               title: 'Smart Itinerary',
               desc: 'AI-powered trip planning personalized for you',
-              color: '#AF52DE',
+              color: '#8B5CF6',
+              gradient: 'from-[#8B5CF6] to-[#A78BFA]',
             },
           ].map((feature, index) => {
             const Icon = feature.icon
             return (
               <div 
                 key={index}
-                className="group p-6 rounded-2xl bg-white border border-black/5 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                className="group p-6 rounded-2xl bg-white border border-slate-100 hover-lift cursor-pointer opacity-0 animate-on-scroll"
+                style={{ animationDelay: `${0.5 + index * 0.1}s` }}
               >
                 <div 
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                  style={{ backgroundColor: `${feature.color}15` }}
+                  className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br ${feature.gradient} text-white shadow-lg`}
                 >
-                  <Icon className="w-6 h-6" style={{ color: feature.color }} />
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-[17px] font-semibold text-[#1D1D1F] mb-2">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-[13px] text-black/50 leading-relaxed">
+                <p className="text-sm text-slate-500 leading-relaxed">
                   {feature.desc}
                 </p>
+                <div className="mt-4 flex items-center text-sm font-medium text-slate-400 group-hover:text-[#0052FF] transition-colors">
+                  Learn more
+                  <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             )
           })}
